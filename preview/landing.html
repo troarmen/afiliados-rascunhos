@@ -1,0 +1,960 @@
+<title>Projeto Afiliado Rascunhos Econômicos</title>
+<meta name="description" content="Preview da landing page do programa de parceria entre o Rascunhos Econômicos e criadores de conteúdo educacional." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600&family=Inter:wght@300;400;500;600;700&display=swap" />
+
+<style>
+  /* ======================================================================
+     Preview estático — mesmos tokens de src/app/globals.css.
+     A paleta e a tipografia foram extraídas do CSS de rascunhoseconomicos.com:
+     navy #0a0e1a, creme #f5f3ee / #ebe7dc, dourado #c8a45c, Fraunces + Inter.
+     ====================================================================== */
+
+  :root {
+    --tinta: #0a0e1a;
+    --tinta-2: #4a4e5a;
+    --tinta-3: #767b88;
+    --breu: #060912;
+    --papel: #f5f3ee;
+    --creme: #ebe7dc;
+    --superficie: #ffffff;
+    --superficie-2: #faf9f6;
+    --ouro: #c8a45c;
+    --ouro-forte: #9c7a3a;
+    --ouro-suave: #e8d9b8;
+    --ouro-texto: var(--ouro-forte);
+    --linha: rgba(10, 14, 26, .12);
+    --linha-forte: rgba(10, 14, 26, .22);
+    --erro: #a8302a;
+    --erro-fundo: #fbeceb;
+    --fonte-titulo: 'Fraunces', Georgia, serif;
+    --fonte-texto: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --largura: 1200px;
+    --raio: 14px;
+    --raio-g: 16px;
+    --raio-pilula: 100px;
+    --sombra-1: 0 4px 14px rgba(10, 14, 26, .06);
+    --sombra-2: 0 2px 8px rgba(10, 14, 26, .05), 0 24px 48px rgba(10, 14, 26, .1);
+    color-scheme: light;
+  }
+
+  /* Blocos navy: redefinem os tokens e tudo dentro se adapta. */
+  .escuro {
+    --papel: #0a0e1a;
+    --creme: #060912;
+    --superficie: rgba(255, 255, 255, .045);
+    --superficie-2: rgba(255, 255, 255, .07);
+    --tinta: #ffffff;
+    --tinta-2: rgba(255, 255, 255, .72);
+    --tinta-3: rgba(255, 255, 255, .5);
+    --ouro-texto: var(--ouro);
+    --linha: rgba(255, 255, 255, .1);
+    --linha-forte: rgba(255, 255, 255, .2);
+    --erro: #f0a9a4;
+    --erro-fundo: rgba(168, 48, 42, .18);
+    background: var(--papel);
+    color: var(--tinta);
+    color-scheme: dark;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme='light']) {
+      --papel: #0a0e1a;
+      --creme: #0f141f;
+      --superficie: #131926;
+      --superficie-2: #182031;
+      --tinta: #f4f3ef;
+      --tinta-2: rgba(244, 243, 239, .72);
+      --tinta-3: rgba(244, 243, 239, .5);
+      --ouro-texto: var(--ouro);
+      --linha: rgba(244, 243, 239, .12);
+      --linha-forte: rgba(244, 243, 239, .24);
+      --erro: #f0a9a4;
+      --erro-fundo: rgba(168, 48, 42, .2);
+      --sombra-1: 0 4px 14px rgba(0, 0, 0, .4);
+      --sombra-2: 0 2px 8px rgba(0, 0, 0, .45), 0 24px 48px rgba(0, 0, 0, .5);
+      color-scheme: dark;
+    }
+    :root:not([data-theme='light']) .escuro {
+      --papel: var(--breu);
+      --creme: #0a0e1a;
+      --superficie: rgba(255, 255, 255, .05);
+      --superficie-2: rgba(255, 255, 255, .08);
+    }
+    :root:not([data-theme='light']) .cartao__icone {
+      background: rgba(200, 164, 92, .16);
+      color: var(--ouro);
+    }
+  }
+
+  :root[data-theme='dark'] {
+    --papel: #0a0e1a;
+    --creme: #0f141f;
+    --superficie: #131926;
+    --superficie-2: #182031;
+    --tinta: #f4f3ef;
+    --tinta-2: rgba(244, 243, 239, .72);
+    --tinta-3: rgba(244, 243, 239, .5);
+    --ouro-texto: var(--ouro);
+    --linha: rgba(244, 243, 239, .12);
+    --linha-forte: rgba(244, 243, 239, .24);
+    --erro: #f0a9a4;
+    --erro-fundo: rgba(168, 48, 42, .2);
+    --sombra-1: 0 4px 14px rgba(0, 0, 0, .4);
+    --sombra-2: 0 2px 8px rgba(0, 0, 0, .45), 0 24px 48px rgba(0, 0, 0, .5);
+    color-scheme: dark;
+  }
+  :root[data-theme='dark'] .escuro {
+    --papel: var(--breu);
+    --creme: #0a0e1a;
+    --superficie: rgba(255, 255, 255, .05);
+    --superficie-2: rgba(255, 255, 255, .08);
+  }
+  :root[data-theme='dark'] .cartao__icone {
+    background: rgba(200, 164, 92, .16);
+    color: var(--ouro);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  * { margin: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 90px; -webkit-text-size-adjust: 100%; }
+
+  body {
+    background: var(--papel);
+    color: var(--tinta);
+    font-family: var(--fonte-texto);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  img, svg { display: block; max-width: 100%; }
+  a { color: inherit; }
+  button, input, select, textarea { font: inherit; color: inherit; }
+  :focus-visible { outline: 2px solid var(--ouro); outline-offset: 3px; border-radius: 4px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  }
+
+  h1, h2, h3 {
+    font-family: var(--fonte-titulo);
+    font-weight: 500;
+    line-height: 1.06;
+    letter-spacing: -.03em;
+    text-wrap: balance;
+  }
+  h1 { font-size: clamp(2.4rem, 1.4rem + 3.6vw, 4.4rem); letter-spacing: -.035em; }
+  h2 { font-size: clamp(1.9rem, 1.3rem + 2.3vw, 3rem); }
+  h3 { font-size: clamp(1.15rem, 1.05rem + .45vw, 1.35rem); letter-spacing: -.02em; }
+  p { text-wrap: pretty; }
+
+  /* Assinatura tipográfica da marca: uma expressão em itálico dourado. */
+  .realce { color: var(--ouro); font-style: italic; font-weight: 400; }
+
+  .olho {
+    display: inline-block;
+    font-size: .75rem; font-weight: 600; letter-spacing: .18em;
+    text-transform: uppercase; color: var(--ouro-texto);
+  }
+  .olho--pilula {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 9px 18px; border: 1px solid var(--linha-forte);
+    border-radius: var(--raio-pilula); background: var(--superficie);
+  }
+  .olho--pilula::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--ouro); flex-shrink: 0; }
+
+  .subtitulo { font-size: clamp(1rem, .96rem + .3vw, 1.12rem); color: var(--tinta-2); max-width: 60ch; line-height: 1.65; }
+  .ordinal { font-family: var(--fonte-titulo); font-style: italic; font-size: .92rem; color: var(--ouro-texto); }
+
+  .envelope { width: 100%; max-width: var(--largura); margin-inline: auto; padding-inline: clamp(20px, 5vw, 32px); }
+  .secao { padding-block: clamp(64px, 8vw, 110px); scroll-margin-top: 80px; background: var(--papel); }
+  .secao--creme { background: var(--creme); }
+  .secao--superficie { background: var(--superficie); border-block: 1px solid var(--linha); }
+  .cabecalho-secao { display: flex; flex-direction: column; gap: 18px; margin-bottom: clamp(36px, 5vw, 56px); max-width: 62ch; }
+  .grade { display: grid; gap: clamp(16px, 2vw, 24px); }
+  .grade--2 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 330px), 1fr)); }
+  .grade--3 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); }
+  /* Para conjuntos de 4: força 2×2 e evita o cartão órfão. */
+  .grade--pares { grid-template-columns: repeat(auto-fit, minmax(min(100%, 430px), 1fr)); }
+
+  .botao {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 14px 26px; border: 1px solid transparent; border-radius: var(--raio-pilula);
+    background: var(--ouro); color: var(--breu);
+    font-size: .875rem; font-weight: 600; text-decoration: none; cursor: pointer;
+    transition: transform .25s ease, box-shadow .25s ease, background .25s ease, border-color .25s ease, color .25s ease;
+  }
+  .botao:hover { background: var(--ouro-suave); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(200, 164, 92, .28); }
+  .botao:disabled { opacity: .5; cursor: not-allowed; transform: none; box-shadow: none; }
+  .botao--secundario { background: transparent; color: var(--tinta); border-color: var(--linha-forte); }
+  .botao--secundario:hover { background: var(--superficie-2); border-color: var(--tinta-3); color: var(--tinta); box-shadow: none; }
+  .botao--g { padding: 17px 32px; font-size: .95rem; }
+  .botao .seta { transition: transform .25s ease; }
+  .botao:hover .seta { transform: translateX(3px); }
+
+  .link-ouro { display: inline-flex; align-items: center; gap: 7px; color: var(--ouro-texto); font-size: .875rem; font-weight: 600; text-decoration: none; margin-top: auto; padding-top: 6px; }
+  .link-ouro .seta { transition: transform .25s ease; }
+  .link-ouro:hover .seta { transform: translateX(3px); }
+
+  .cartao {
+    background: var(--superficie); border: 1px solid var(--linha); border-radius: var(--raio);
+    padding: clamp(22px, 2.4vw, 30px); display: flex; flex-direction: column; gap: 12px;
+    transition: border-color .25s ease, transform .25s ease, box-shadow .25s ease;
+  }
+  .cartao--interativo:hover { border-color: var(--ouro); transform: translateY(-3px); box-shadow: var(--sombra-1); }
+  .cartao h3 { font-family: var(--fonte-titulo); font-size: 1.22rem; font-weight: 500; line-height: 1.24; letter-spacing: -.025em; }
+  .cartao p { color: var(--tinta-2); font-size: .94rem; line-height: 1.62; }
+  .cartao__icone { width: 42px; height: 42px; display: grid; place-items: center; border-radius: 11px; background: var(--ouro-suave); color: var(--ouro-forte); margin-bottom: 4px; }
+  .cartao__icone svg { width: 20px; height: 20px; }
+  .escuro .cartao__icone { background: rgba(200, 164, 92, .16); color: var(--ouro); }
+
+  .selo {
+    display: inline-flex; align-items: center; gap: 8px; padding: 7px 15px;
+    border-radius: var(--raio-pilula); border: 1px solid var(--linha);
+    background: var(--superficie); font-size: .78rem; font-weight: 500;
+    color: var(--tinta-2); white-space: nowrap; text-decoration: none;
+  }
+  .selo--ouro { background: rgba(200, 164, 92, .14); border-color: transparent; color: var(--ouro); font-weight: 600; }
+  .selo__ponto { width: 7px; height: 7px; border-radius: 50%; background: var(--ouro); flex-shrink: 0; }
+
+  .marca { display: inline-flex; align-items: center; gap: 11px; text-decoration: none; flex-shrink: 0; }
+  .marca__placa {
+    width: 38px; height: 38px; border-radius: 10px; background: #f9f9f9;
+    border: 1px solid rgba(255, 255, 255, .12); padding: 2px;
+    display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, .25);
+  }
+  .marca__placa img { width: 100%; height: 100%; border-radius: 8px; }
+  .marca__nome { font-family: var(--fonte-titulo); font-size: 1.22rem; font-weight: 600; letter-spacing: -.02em; color: var(--tinta); }
+  .marca__pilula {
+    font-size: .6rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--tinta-2); border: 1px solid var(--linha-forte);
+    border-radius: var(--raio-pilula); padding: 4px 10px; white-space: nowrap;
+  }
+  @media (max-width: 560px) { .marca__pilula { display: none; } }
+
+  .topo {
+    position: sticky; top: 0; z-index: 60;
+    background: rgba(10, 14, 26, .92);
+    backdrop-filter: saturate(1.4) blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, .1);
+  }
+  .topo__interno { display: flex; align-items: center; gap: 22px; height: 74px; }
+  .topo__nav { display: none; gap: 26px; margin-left: auto; }
+  .topo__nav a { font-size: .875rem; color: rgba(255, 255, 255, .7); text-decoration: none; transition: color .2s ease; }
+  .topo__nav a:hover { color: #fff; }
+  .topo__acao { margin-left: auto; }
+  @media (min-width: 980px) { .topo__nav { display: flex; } .topo__acao { margin-left: 0; } }
+
+  .hero { position: relative; overflow: hidden; padding-block: clamp(64px, 9vw, 120px) clamp(60px, 8vw, 100px); }
+  .hero::before {
+    content: ''; position: absolute; top: -50%; right: -20%; width: 80%; height: 200%;
+    background: radial-gradient(ellipse at center, rgba(200, 164, 92, .1) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: ''; position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(255, 255, 255, .02) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, .02) 1px, transparent 1px);
+    background-size: 60px 60px; pointer-events: none;
+  }
+  .hero__interno { position: relative; z-index: 1; display: grid; gap: clamp(40px, 5vw, 60px); align-items: center; }
+  @media (min-width: 1040px) { .hero__interno { grid-template-columns: 1.08fr .92fr; } }
+  .hero__texto { display: flex; flex-direction: column; align-items: flex-start; gap: 24px; }
+  /* O hero divide espaço com o painel de números: o título não usa a mesma
+     escala do site do canal, onde ele ocupa a largura inteira. */
+  .hero h1 { font-size: clamp(2.3rem, 1.5rem + 2.4vw, 3.5rem); max-width: 14ch; }
+  .hero__texto .subtitulo { max-width: 46ch; }
+  .hero__acoes { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+  .hero__nota { font-size: .84rem; color: var(--tinta-3); }
+  .hero__provas { display: flex; flex-wrap: wrap; gap: 10px; }
+
+  .painel { background: var(--superficie); border: 1px solid var(--linha); border-radius: var(--raio-g); overflow: hidden; backdrop-filter: blur(8px); }
+  .painel__topo { padding: 20px 26px; border-bottom: 1px solid var(--linha); background: var(--superficie-2); display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .painel__titulo { font-size: .72rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--tinta-3); }
+  .painel__corpo { padding: 26px; display: flex; flex-direction: column; gap: 22px; }
+  .numero { display: flex; flex-direction: column; gap: 6px; }
+  .numero__valor { font-family: var(--fonte-titulo); font-size: clamp(2.2rem, 1.5rem + 2.2vw, 3rem); font-weight: 500; line-height: 1; letter-spacing: -.035em; color: var(--ouro); font-variant-numeric: tabular-nums; }
+  .numero__rotulo { font-size: .88rem; color: var(--tinta-2); line-height: 1.5; }
+  .painel__linhas { display: flex; flex-direction: column; gap: 13px; padding-top: 20px; border-top: 1px solid var(--linha); margin: 0; }
+  .painel__linha { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; font-size: .88rem; }
+  .painel__linha dt { color: var(--tinta-3); }
+  .painel__linha dd { font-weight: 600; text-align: right; margin: 0; }
+
+  .faixa {
+    background: var(--breu); border-block: 1px solid rgba(255, 255, 255, .07);
+    overflow: hidden; padding-block: 22px; position: relative;
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+  .faixa__trilho { display: flex; align-items: center; gap: 42px; width: max-content; animation: desliza 46s linear infinite; }
+  .faixa:hover .faixa__trilho { animation-play-state: paused; }
+  .faixa__item { font-family: var(--fonte-titulo); font-size: clamp(1.1rem, .9rem + .7vw, 1.5rem); font-weight: 500; letter-spacing: -.025em; color: rgba(255, 255, 255, .82); white-space: nowrap; }
+  .faixa__estrela { color: var(--ouro); font-size: .85rem; flex-shrink: 0; }
+  @keyframes desliza { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) {
+    .faixa__trilho { animation: none; flex-wrap: wrap; width: auto; justify-content: center; }
+  }
+
+  .passo { display: grid; gap: 6px; padding-block: 28px; border-top: 1px solid var(--linha); }
+  .passo:last-child { border-bottom: 1px solid var(--linha); }
+  @media (min-width: 780px) { .passo { grid-template-columns: 180px 1fr; gap: clamp(20px, 3vw, 44px); align-items: baseline; } }
+  .passo__marca { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+  .passo__prazo { font-size: .74rem; color: var(--tinta-3); text-transform: uppercase; letter-spacing: .1em; }
+  .passo__conteudo { display: flex; flex-direction: column; gap: 8px; }
+  .passo__conteudo h3 { font-family: var(--fonte-titulo); font-size: clamp(1.2rem, 1.05rem + .6vw, 1.5rem); font-weight: 500; }
+  .passo p { color: var(--tinta-2); font-size: .95rem; max-width: 62ch; }
+
+  .lista-marcada { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+  .lista-marcada li { display: grid; grid-template-columns: 20px 1fr; gap: 13px; align-items: start; color: var(--tinta-2); font-size: .95rem; line-height: 1.6; }
+  .lista-marcada li::before {
+    content: ''; width: 18px; height: 18px; margin-top: 4px; border-radius: 50%;
+    background-color: var(--ouro-suave);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239c7a3a' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+    background-size: 11px; background-position: center; background-repeat: no-repeat;
+  }
+  .escuro .lista-marcada li::before { background-color: rgba(200, 164, 92, .18); }
+  .lista-marcada--negativa li::before {
+    background-color: var(--erro-fundo);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a8302a' stroke-width='3.4' stroke-linecap='round'%3E%3Cline x1='18' y1='6' x2='6' y2='18'/%3E%3Cline x1='6' y1='6' x2='18' y2='18'/%3E%3C/svg%3E");
+  }
+
+  .comissao { display: grid; gap: clamp(28px, 3.5vw, 48px); align-items: center; }
+  @media (min-width: 920px) { .comissao { grid-template-columns: 1fr 1fr; } }
+  .calculadora { background: var(--superficie); border: 1px solid var(--linha); border-radius: var(--raio-g); padding: clamp(24px, 3vw, 32px); display: flex; flex-direction: column; gap: 22px; }
+  .calculadora__saida { display: flex; align-items: baseline; gap: 10px; padding: 20px 22px; border-radius: var(--raio); background: rgba(200, 164, 92, .14); color: var(--ouro); }
+  .calculadora__valor { font-family: var(--fonte-titulo); font-size: clamp(2.1rem, 1.4rem + 2.4vw, 3rem); font-weight: 500; line-height: 1; letter-spacing: -.035em; font-variant-numeric: tabular-nums; }
+  .controle { display: flex; flex-direction: column; gap: 9px; }
+  .controle__cabeca { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font-size: .9rem; }
+  .controle__valor { font-weight: 600; font-variant-numeric: tabular-nums; color: var(--ouro-texto); }
+  input[type='range'] { -webkit-appearance: none; appearance: none; width: 100%; height: 4px; border-radius: var(--raio-pilula); background: var(--linha-forte); cursor: pointer; }
+  input[type='range']::-webkit-slider-thumb { -webkit-appearance: none; width: 20px; height: 20px; border-radius: 50%; background: var(--ouro); border: 3px solid #131926; box-shadow: 0 2px 8px rgba(10, 14, 26, .25); }
+  input[type='range']::-moz-range-thumb { width: 17px; height: 17px; border-radius: 50%; background: var(--ouro); border: 3px solid #131926; }
+
+  .faq { border-top: 1px solid var(--linha); max-width: 80ch; }
+  .faq details { border-bottom: 1px solid var(--linha); }
+  .faq summary { cursor: pointer; list-style: none; padding: 24px 46px 24px 0; position: relative; font-family: var(--fonte-titulo); font-size: 1.12rem; font-weight: 500; letter-spacing: -.02em; transition: color .2s ease; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary:hover { color: var(--ouro-texto); }
+  .faq summary::after { content: ''; position: absolute; right: 8px; top: 50%; width: 11px; height: 11px; margin-top: -7px; border-right: 1.8px solid var(--ouro); border-bottom: 1.8px solid var(--ouro); transform: rotate(45deg); transition: transform .25s ease; }
+  .faq details[open] summary::after { transform: rotate(-135deg); }
+  .faq__resposta { padding-bottom: 26px; color: var(--tinta-2); font-size: .95rem; line-height: 1.68; max-width: 70ch; }
+
+  .formulario { background: var(--superficie); border: 1px solid var(--linha); border-radius: var(--raio-g); box-shadow: var(--sombra-2); overflow: hidden; max-width: 800px; margin-inline: auto; }
+  .formulario__topo { padding: clamp(22px, 3vw, 30px); border-bottom: 1px solid var(--linha); background: var(--superficie-2); display: flex; flex-direction: column; gap: 18px; }
+  .formulario__topo h3 { font-size: 1.5rem; }
+  .progresso { display: flex; align-items: center; gap: 8px; }
+  .progresso__etapa { flex: 1; height: 3px; border-radius: var(--raio-pilula); background: var(--linha); transition: background .3s ease; }
+  .progresso__etapa[data-estado='feita'] { background: var(--ouro); }
+  .progresso__etapa[data-estado='atual'] { background: var(--ouro); opacity: .45; }
+  .formulario__corpo { padding: clamp(22px, 3vw, 34px); display: flex; flex-direction: column; gap: 22px; }
+  .formulario__acoes { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding-top: 24px; border-top: 1px solid var(--linha); }
+  .campo { display: flex; flex-direction: column; gap: 7px; }
+  .campo__rotulo { font-size: .88rem; font-weight: 600; }
+  .campo__dica { font-size: .82rem; color: var(--tinta-3); line-height: 1.5; }
+
+  input[type='text'], input[type='email'], input[type='tel'], select, textarea {
+    width: 100%; padding: 12px 15px; border: 1px solid var(--linha-forte); border-radius: 10px;
+    background: var(--superficie); font-size: .94rem; transition: border-color .2s ease, box-shadow .2s ease;
+  }
+  textarea { min-height: 120px; resize: vertical; line-height: 1.6; }
+  input::placeholder, textarea::placeholder { color: var(--tinta-3); opacity: .8; }
+  input:focus, select:focus, textarea:focus { outline: none; border-color: var(--ouro); box-shadow: 0 0 0 3px rgba(200, 164, 92, .22); }
+  select {
+    appearance: none; padding-right: 40px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23767b88' stroke-width='2.2' stroke-linecap='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 13px center; background-size: 17px;
+  }
+  .opcoes { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 225px), 1fr)); gap: 10px; }
+  .opcao { display: flex; align-items: flex-start; gap: 10px; padding: 13px 15px; border: 1px solid var(--linha-forte); border-radius: 10px; cursor: pointer; font-size: .9rem; line-height: 1.45; background: var(--superficie); transition: border-color .2s ease, background .2s ease; }
+  .opcao:hover { border-color: var(--tinta-3); }
+  .opcao:has(input:checked) { border-color: var(--ouro); background: var(--ouro-suave); }
+  .opcao input { margin-top: 2px; accent-color: var(--ouro-forte); width: 17px; height: 17px; flex-shrink: 0; }
+  .consentimento { display: flex; align-items: flex-start; gap: 11px; font-size: .88rem; color: var(--tinta-2); line-height: 1.55; cursor: pointer; }
+  .consentimento input { margin-top: 3px; accent-color: var(--ouro-forte); width: 17px; height: 17px; flex-shrink: 0; }
+
+  .aviso { display: flex; gap: 11px; padding: 15px 17px; border-radius: 10px; font-size: .9rem; line-height: 1.55; border: 1px solid; }
+  .aviso--info { background: var(--ouro-suave); border-color: transparent; color: var(--ouro-forte); }
+  .escuro .aviso--info { background: rgba(200, 164, 92, .12); border-color: rgba(200, 164, 92, .3); color: var(--ouro); }
+
+  .rodape { background: var(--breu); color: #fff; padding-block: clamp(52px, 6vw, 80px) 30px; border-top: 1px solid rgba(255, 255, 255, .07); }
+  .rodape a { color: rgba(255, 255, 255, .66); text-decoration: none; font-size: .9rem; transition: color .2s ease; }
+  .rodape a:hover { color: var(--ouro); }
+  .rodape__grade { display: grid; gap: 36px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr)); padding-bottom: 36px; border-bottom: 1px solid rgba(255, 255, 255, .1); }
+  .rodape__titulo { font-size: .7rem; letter-spacing: .16em; text-transform: uppercase; color: rgba(255, 255, 255, .42); margin-bottom: 16px; }
+  .rodape__lista { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+  .rodape__fim { padding-top: 26px; display: flex; flex-wrap: wrap; gap: 14px; justify-content: space-between; font-size: .82rem; color: rgba(255, 255, 255, .42); }
+
+  .revelar { opacity: 0; transform: translateY(16px); transition: opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1); }
+  .revelar[data-visivel='true'] { opacity: 1; transform: none; }
+  .centro { text-align: center; margin-inline: auto; align-items: center; }
+
+  .faixa-preview { background: var(--breu); color: rgba(255,255,255,.72); font-size: .8rem; padding: 9px 20px; text-align: center; border-bottom: 1px solid rgba(255,255,255,.08); }
+  .faixa-preview strong { color: var(--ouro); }
+</style>
+
+<div class="faixa-preview">
+  <strong>Preview de aprovação</strong> — identidade herdada de rascunhoseconomicos.com. A versão final roda em Next.js, com formulário gravando no banco de candidatos.
+</div>
+
+<header class="topo escuro">
+  <div class="envelope topo__interno">
+    <a class="marca" href="#topo">
+      <span class="marca__placa"><img id="brasao-topo" alt="" /></span>
+      <span class="marca__nome">Projeto Afiliado</span>
+      <span class="marca__pilula">Rascunhos Econômicos</span>
+    </a>
+    <nav class="topo__nav" aria-label="Navegação principal">
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#quem-pode">Quem pode participar</a>
+      <a href="#comissao">Comissão</a>
+      <a href="#selecao">Seleção</a>
+      <a href="#faq">Dúvidas</a>
+    </nav>
+    <div class="topo__acao"><a class="botao" href="#inscricao">Quero participar</a></div>
+  </div>
+</header>
+
+<main id="topo">
+  <section class="hero escuro">
+    <div class="envelope hero__interno">
+      <div class="hero__texto">
+        <span class="olho olho--pilula">Programa de parceria para criadores</span>
+        <h1>Sua audiência já <span class="realce">confia</span> em você. Falta o produto certo.</h1>
+        <p class="subtitulo">
+          Um programa de parceria para quem produz conteúdo educacional sério e quer monetizar sem
+          criar curso, gravar aula ou dar suporte a aluno. Você indica, a gente entrega — e a
+          comissão é sua.
+        </p>
+        <div class="hero__acoes">
+          <a class="botao botao--g" href="#inscricao">Quero participar <span class="seta">→</span></a>
+          <a class="botao botao--secundario botao--g" href="#como-funciona">Ver como funciona</a>
+        </div>
+        <p class="hero__nota">Inscrição gratuita · Resposta em até 7 dias úteis · Sem exclusividade</p>
+        <div class="hero__provas">
+          <span class="selo"><span class="selo__ponto"></span>Vagas abertas</span>
+          <span class="selo">Pagamento pela Hotmart</span>
+          <span class="selo">Material de divulgação pronto</span>
+        </div>
+      </div>
+
+      <aside class="painel" aria-label="Resumo do programa">
+        <div class="painel__topo">
+          <span class="painel__titulo">A parceria em números</span>
+          <span class="selo selo--ouro">1ª turma</span>
+        </div>
+        <div class="painel__corpo">
+          <div class="numero">
+            <span class="numero__valor">40%–60%</span>
+            <span class="numero__rotulo">de comissão por venda aprovada, conforme a parceria</span>
+          </div>
+          <dl class="painel__linhas">
+            <div class="painel__linha"><dt>Rastreio da indicação</dt><dd>30 dias</dd></div>
+            <div class="painel__linha"><dt>Atribuição</dt><dd>Último clique</dd></div>
+            <div class="painel__linha"><dt>Recebimento</dt><dd>D+30 da compra</dd></div>
+            <div class="painel__linha"><dt>Custo para participar</dt><dd>R$ 0</dd></div>
+            <div class="painel__linha"><dt>Meta mínima</dt><dd>Nenhuma</dd></div>
+          </dl>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <div class="faixa"><div class="faixa__trilho" id="faixa-areas"></div></div>
+
+  <section class="secao secao--superficie" id="como-funciona">
+    <div class="envelope">
+      <div class="cabecalho-secao">
+        <span class="olho">Como funciona</span>
+        <h2>Da inscrição à primeira venda, em <span class="realce">seis passos</span></h2>
+        <p class="subtitulo">Sem burocracia, sem contrato de gaveta e sem promessa vaga. Este é exatamente o caminho que você vai percorrer.</p>
+      </div>
+      <div id="passos"></div>
+    </div>
+  </section>
+
+  <section class="secao" id="quem-pode">
+    <div class="envelope">
+      <div class="cabecalho-secao">
+        <span class="olho">Quem pode participar</span>
+        <h2>Feito para canais pequenos e médios com audiência <span class="realce">de verdade</span></h2>
+        <p class="subtitulo">Não olhamos primeiro o número de seguidores. Olhamos quem te ouve e o quanto essa pessoa leva a sério o que você diz.</p>
+      </div>
+      <div class="grade grade--2 grade--pares" id="perfis"></div>
+      <div class="cartao" style="margin-top: clamp(24px, 3vw, 40px); background: var(--superficie-2)">
+        <h3>O que não tem encaixe aqui</h3>
+        <ul class="lista-marcada lista-marcada--negativa" style="margin-top: 6px">
+          <li><span>Perfis de conteúdo raso ou audiência comprada — a análise olha engajamento real, não número de seguidores.</span></li>
+          <li><span>Divulgação por spam, disparo em massa ou tráfego incentivado.</span></li>
+          <li><span>Conteúdo que conflite com o posicionamento editorial do Rascunhos Econômicos.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="secao secao--creme" id="beneficios">
+    <div class="envelope">
+      <div class="cabecalho-secao">
+        <span class="olho">Benefícios</span>
+        <h2>Você não recebe <span class="realce">só um link</span></h2>
+        <p class="subtitulo">Link de afiliado qualquer programa dá. O que trava a maioria dos criadores é o trabalho em volta: criar arte, escrever texto, entender a oferta, saber quando divulgar. Isso a gente entrega pronto.</p>
+      </div>
+      <div class="grade grade--3" id="beneficios-lista"></div>
+    </div>
+  </section>
+
+  <section class="secao escuro" id="comissao">
+    <div class="envelope">
+      <div class="cabecalho-secao">
+        <span class="olho">Como funciona a comissão</span>
+        <h2>Você é pago por venda, <span class="realce">direto pela Hotmart</span></h2>
+        <p class="subtitulo">Não existe repasse manual, planilha nossa ou “confia em mim”. A Hotmart identifica a origem de cada venda, calcula e paga a sua comissão. Você audita tudo no painel dela.</p>
+      </div>
+
+      <div class="comissao">
+        <ul class="lista-marcada">
+          <li><span><strong>Comissão de 40% na entrada</strong>, com condição negociada até 60% para parceiros com histórico de resultado.</span></li>
+          <li><span><strong>30 dias de rastreio</strong> por último clique: quem clica hoje e compra depois ainda conta para você.</span></li>
+          <li><span><strong>Cupom com o seu nome</strong>, que rastreia a venda mesmo quando a pessoa não passa pelo link.</span></li>
+          <li><span><strong>Pagamento D+30 da confirmação da compra</strong>, no prazo padrão da plataforma, sem carência extra da nossa parte.</span></li>
+          <li><span><strong>Sem meta e sem exclusividade.</strong> Você divulga no seu ritmo e continua livre para trabalhar com outros produtos.</span></li>
+        </ul>
+
+        <div class="calculadora">
+          <div>
+            <span class="olho">Simulação</span>
+            <p class="campo__dica" style="margin-top: 10px">Ticket de referência de R$ 497 por curso. Ajuste os controles para ver o cenário.</p>
+          </div>
+          <div class="calculadora__saida">
+            <span class="calculadora__valor" id="sim-saida">R$ 1.590</span>
+            <span style="font-size: .92rem">por mês</span>
+          </div>
+          <div class="controle">
+            <div class="controle__cabeca">
+              <label for="sim-vendas">Vendas no mês</label>
+              <span class="controle__valor" id="sim-vendas-valor">8</span>
+            </div>
+            <input id="sim-vendas" type="range" min="1" max="60" step="1" value="8" />
+          </div>
+          <div class="controle">
+            <div class="controle__cabeca">
+              <label for="sim-percentual">Sua comissão</label>
+              <span class="controle__valor" id="sim-percentual-valor">40%</span>
+            </div>
+            <input id="sim-percentual" type="range" min="40" max="60" step="5" value="40" />
+          </div>
+          <p class="campo__dica">Simulação para você dimensionar a oportunidade — não é promessa de ganho. O resultado real depende do seu público, do formato e da frequência da divulgação.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="secao" id="selecao">
+    <div class="envelope">
+      <div class="cabecalho-secao">
+        <span class="olho">Como funciona a seleção</span>
+        <h2>Análise humana, <span class="realce">critério aberto</span></h2>
+        <p class="subtitulo">Toda candidatura é lida por quem toca o projeto. Estes são os quatro pontos que pesam na decisão — e nenhum deles é “número de seguidores” sozinho.</p>
+      </div>
+      <div class="grade grade--2 grade--pares" id="criterios"></div>
+      <div class="aviso aviso--info" style="margin-top: 28px; max-width: 72ch">
+        <p><strong>Todo mundo recebe resposta.</strong> Se o encaixe não for agora, seu cadastro fica no banco de parceiros e voltamos a falar quando abrirmos uma campanha que combine com o seu público.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="secao secao--creme" id="faq">
+    <div class="envelope">
+      <div class="cabecalho-secao">
+        <span class="olho">Perguntas frequentes</span>
+        <h2>O que costumam perguntar <span class="realce">antes de se inscrever</span></h2>
+      </div>
+      <div class="faq" id="faq-lista"></div>
+    </div>
+  </section>
+
+  <section class="secao secao--superficie" id="inscricao">
+    <div class="envelope">
+      <div class="cabecalho-secao centro">
+        <span class="olho">Inscrição</span>
+        <h2 style="text-align: center">Candidate-se <span class="realce">ao programa</span></h2>
+        <p class="subtitulo" style="text-align: center">Cinco minutos de formulário. Resposta em até 7 dias úteis, aprovada ou não. Nenhum custo, nenhuma pegadinha.</p>
+      </div>
+
+      <div class="formulario">
+        <div class="formulario__topo">
+          <div class="progresso" aria-hidden="true">
+            <span class="progresso__etapa" data-estado="atual"></span>
+            <span class="progresso__etapa" data-estado="pendente"></span>
+            <span class="progresso__etapa" data-estado="pendente"></span>
+            <span class="progresso__etapa" data-estado="pendente"></span>
+          </div>
+          <div>
+            <p class="campo__dica" style="margin-bottom: 4px" id="form-contador">Etapa 1 de 4</p>
+            <h3 id="form-titulo">Quem é você</h3>
+            <p class="campo__dica" style="margin-top: 6px" id="form-descricao">Como falamos com você e onde encontramos seu trabalho.</p>
+          </div>
+        </div>
+
+        <form class="formulario__corpo" id="form-preview">
+          <div data-etapa="0">
+            <div class="campo"><label class="campo__rotulo" for="p-nome">Nome completo</label><input id="p-nome" type="text" placeholder="Como você assina seu trabalho" /></div>
+            <div class="grade grade--2" style="margin-top: 18px">
+              <div class="campo"><label class="campo__rotulo" for="p-email">E-mail</label><input id="p-email" type="email" placeholder="voce@email.com" /></div>
+              <div class="campo"><label class="campo__rotulo" for="p-tel">WhatsApp</label><input id="p-tel" type="tel" placeholder="(11) 90000-0000" /></div>
+            </div>
+            <div class="campo" style="margin-top: 18px"><label class="campo__rotulo" for="p-canal">Nome do canal ou projeto</label><input id="p-canal" type="text" placeholder="Ex.: História Sem Filtro" /></div>
+            <div class="campo" style="margin-top: 18px">
+              <label class="campo__rotulo" for="p-link">Link principal</label>
+              <p class="campo__dica">O endereço onde a gente vê seu trabalho: canal, perfil, site ou newsletter.</p>
+              <input id="p-link" type="text" placeholder="youtube.com/@seucanal" />
+            </div>
+          </div>
+
+          <div data-etapa="1" hidden>
+            <div class="campo">
+              <label class="campo__rotulo" for="p-area">Área de atuação</label>
+              <select id="p-area">
+                <option>Selecione…</option><option>Economia</option><option>História</option>
+                <option>Filosofia</option><option>Matemática</option><option>Sociologia</option>
+                <option>Direito</option><option>Geopolítica</option><option>Finanças pessoais</option>
+                <option>Ciências</option><option>Concursos e vestibulares</option>
+              </select>
+            </div>
+            <div class="campo" style="margin-top: 18px">
+              <label class="campo__rotulo" for="p-audiencia">Tamanho aproximado da audiência</label>
+              <p class="campo__dica">Some seguidores, inscritos e assinantes da sua plataforma principal. Estimativa serve.</p>
+              <select id="p-audiencia">
+                <option>Selecione…</option><option>Até 1.000</option><option>De 1.000 a 10.000</option>
+                <option>De 10.000 a 50.000</option><option>De 50.000 a 200.000</option>
+                <option>De 200.000 a 1 milhão</option><option>Mais de 1 milhão</option>
+              </select>
+            </div>
+            <div class="grade grade--2" style="margin-top: 18px">
+              <div class="campo"><label class="campo__rotulo" for="p-yt">YouTube</label><input id="p-yt" type="text" placeholder="@seuperfil" /></div>
+              <div class="campo"><label class="campo__rotulo" for="p-ig">Instagram</label><input id="p-ig" type="text" placeholder="@seuperfil" /></div>
+            </div>
+          </div>
+
+          <div data-etapa="2" hidden>
+            <p class="campo__rotulo">Como você pretende divulgar?</p>
+            <p class="campo__dica" style="margin: 4px 0 12px">Pode marcar mais de uma. Não é compromisso — é só para entendermos o formato.</p>
+            <div class="opcoes">
+              <label class="opcao"><input type="checkbox" /><span>Menção dentro dos vídeos</span></label>
+              <label class="opcao"><input type="checkbox" /><span>Vídeo dedicado / review</span></label>
+              <label class="opcao"><input type="checkbox" /><span>Descrição e comentário fixado</span></label>
+              <label class="opcao"><input type="checkbox" /><span>Stories e posts</span></label>
+              <label class="opcao"><input type="checkbox" /><span>Newsletter</span></label>
+              <label class="opcao"><input type="checkbox" /><span>Comunidade fechada</span></label>
+            </div>
+            <div class="campo" style="margin-top: 20px">
+              <label class="campo__rotulo" for="p-motivo">Por que você quer participar?</label>
+              <p class="campo__dica">Conte o que sua audiência procura e por que os cursos fariam sentido para ela. É o campo que mais pesa na análise.</p>
+              <textarea id="p-motivo" placeholder="Meu público é formado principalmente por…"></textarea>
+            </div>
+          </div>
+
+          <div data-etapa="3" hidden>
+            <div class="cartao" style="background: var(--superficie-2); gap: 12px">
+              <h3>Confira seus dados</h3>
+              <dl class="painel__linhas" style="border: 0; padding-top: 0">
+                <div class="painel__linha"><dt>Nome</dt><dd id="r-nome">—</dd></div>
+                <div class="painel__linha"><dt>E-mail</dt><dd id="r-email">—</dd></div>
+                <div class="painel__linha"><dt>Canal</dt><dd id="r-canal">—</dd></div>
+                <div class="painel__linha"><dt>Área</dt><dd id="r-area">—</dd></div>
+                <div class="painel__linha"><dt>Audiência</dt><dd id="r-audiencia">—</dd></div>
+              </dl>
+            </div>
+            <label class="consentimento" style="margin-top: 18px"><input type="checkbox" /><span>Li e aceito os <a href="#" style="color: var(--ouro-texto)">termos de participação</a> do programa.</span></label>
+            <label class="consentimento" style="margin-top: 12px"><input type="checkbox" /><span>Autorizo o contato por e-mail e WhatsApp sobre esta candidatura e concordo com a <a href="#" style="color: var(--ouro-texto)">política de privacidade</a>.</span></label>
+          </div>
+
+          <div class="aviso aviso--info" id="form-mensagem" hidden>
+            <p><strong>Isto é um preview.</strong> Na aplicação real, o envio grava a candidatura no banco, dispara a confirmação por e-mail para o candidato e o alerta para a equipe, com a prioridade da triagem já calculada.</p>
+          </div>
+
+          <div class="formulario__acoes">
+            <button type="button" class="botao botao--secundario" id="form-voltar" hidden>Voltar</button>
+            <span class="campo__dica" id="form-tempo">Leva cerca de 5 minutos.</span>
+            <button type="submit" class="botao" id="form-avancar">Continuar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="secao">
+    <div class="envelope">
+      <div class="cabecalho-secao">
+        <span class="olho">Contato</span>
+        <h2>Prefere <span class="realce">conversar antes?</span></h2>
+        <p class="subtitulo">Dúvida sobre encaixe, formato de divulgação ou condição comercial: fale direto com a equipe. Respondemos em dias úteis.</p>
+      </div>
+      <div class="grade grade--2" style="max-width: 760px">
+        <div class="cartao cartao--interativo">
+          <h3>E-mail</h3><p>parceiros@rascunhoseconomicos.com</p>
+          <span class="link-ouro">Escrever agora <span class="seta">→</span></span>
+        </div>
+        <div class="cartao cartao--interativo">
+          <h3>WhatsApp</h3><p>Atendimento em horário comercial</p>
+          <span class="link-ouro">Abrir conversa <span class="seta">→</span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="secao escuro">
+    <div class="envelope">
+      <div class="cabecalho-secao centro" style="text-align: center">
+        <span class="olho">Visão de longo prazo</span>
+        <h2 style="text-align: center">Isto é maior que um <span class="realce">programa de afiliados</span></h2>
+        <p class="subtitulo" style="text-align: center">
+          O Rascunhos Econômicos é o primeiro produto da rede. A ideia é construir uma estrutura de
+          distribuição de conteúdo educacional — conectando quem produz curso a quem já tem a
+          confiança de uma audiência. Quem entra agora entra na fundação disso.
+        </p>
+        <a class="botao botao--g" href="#inscricao" style="margin-top: 14px">Quero fazer parte</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="rodape">
+  <div class="envelope">
+    <div class="rodape__grade">
+      <div>
+        <div style="display: flex; align-items: center; gap: 11px; margin-bottom: 16px">
+          <span class="marca__placa" style="width: 36px; height: 36px"><img id="brasao-rodape" alt="" /></span>
+          <span style="font-family: var(--fonte-titulo); font-size: 1.15rem; font-weight: 600; letter-spacing: -.02em">Projeto Afiliado</span>
+        </div>
+        <p style="font-size: .88rem; color: rgba(255,255,255,.55); max-width: 32ch; line-height: 1.65">Uma rede de criadores de conteúdo educacional distribuindo cursos em que acreditam. Primeiro caso: Rascunhos Econômicos.</p>
+      </div>
+      <div>
+        <p class="rodape__titulo">Programa</p>
+        <ul class="rodape__lista">
+          <li><a href="#como-funciona">Sobre o programa</a></li>
+          <li><a href="#faq">Perguntas frequentes</a></li>
+          <li><a href="#inscricao">Quero me inscrever</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="rodape__titulo">Rascunhos Econômicos</p>
+        <ul class="rodape__lista">
+          <li><a href="https://rascunhoseconomicos.com">Site oficial</a></li>
+          <li><a href="https://www.youtube.com/@rascunhoseconomicos">Canal no YouTube</a></li>
+          <li><a href="mailto:parceiros@rascunhoseconomicos.com">parceiros@rascunhoseconomicos.com</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="rodape__titulo">Legal</p>
+        <ul class="rodape__lista">
+          <li><a href="#">Termos de participação</a></li>
+          <li><a href="#">Política de privacidade</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="rodape__fim">
+      <p>© 2026 Rascunhos Econômicos · Green Eyes</p>
+      <p>Vendas e comissões processadas pela Hotmart. Este site não vende produtos nem processa pagamentos.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Brasão oficial do canal (rascunhoseconomicos.com/logo.svg), embutido para
+  // que o preview funcione como arquivo único.
+  const BRASAO = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAIAAADdvvtQAAAQAElEQVR4nOydebxVVdnHl0NUVmRlWREoKKQIaJkimoKJA6khaAoyyCCgggOOOF5GAWVQEQQHRBQUxBRBUQYRBacCAwUEgRRx1rLS5vT9uh9Z73rXtPfZ517uubzn98f9nLvPPufsvfaznuH3POtZO//zn/9UZZSRFzuqMsooAmUBKqMolAWojKJQFqAyikJZgMooCmUBKqMolAWojKJQFqAyikJZgMooCmUBKqMolAWojKJQFqAyikJZgMooCmUBKqMolAWojKJQFqAyikJZgMooCmUBKqMolAWojKJQFqAyikJZgMooCmUBKqMolAWojKJQFqAyikJZgMooCmUB2p7Ro0eP9u3bf/zxx6rKUBag7RYdO3Z85ZVX3nnnneOPP37NmjWqalAWoO0QH330UZs2bV5//XX599///nfPnj3nzp2rqgA7lJsrbGd44403OnXq9J///Mc6/umnnyJVFRUVqlJRFqDtCi+//DLKZqeddgqdsOeee06fPl1VHsombPvB6tWr49IDXnvtNVyiDz74QFUSygK0nWDlypXEXHHpEfzpT39q167d8uXLVWWgLEDbAx555JFu3bplkR7Bf//73379+t19992qaJR9oBoP5GDMmDFf/epXVeFo2rTppEmTVBEoC1DNRjHSI/jBD37wwAMPqLwom7AajPnz5xcpPeDtt9++4IILVF6UBaimYvPmzVdeeWWR0iN44YUXbr31VpULZRNWU3Hcccf95S9/UZWHZ555RhWOnVUZNRBXXXVV5UpPbpQFqKrwxBNPjB8/Xv9bjKPq4qWXXlKlgbIPVCXYsmVLkeFxHLvssoub7aoWlJwG2rRp08yZM3fYYYfddttt48aNzz//fJ8+fU499VRVc4Bbed1118UfMBlyuGAc4c8++2z33Xc/7LDDvvSlL6nMQID++te/fvOb39xxx+pUAe+9915pCdBtt9328ccff/3rX+f13//+9+985ztNmjS55ppr9tlnn2bNmqkagltuueXNN98MvYt4zZs3b/bs2aYTM2HChDp16uy///6tW7f+0Y9+pNLAOUgeMlS7dm0mm9q2eP/998m7rV279sMPPywVAeJSiCS/8Y1vmBPxy1/+csOGDevVqzdy5Mgbb7wRnaRKHsuWLXv66ae9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'
+  document.getElementById('brasao-topo').src = BRASAO
+  document.getElementById('brasao-rodape').src = BRASAO
+
+  const areas = ['Economia', 'História', 'Filosofia', 'Matemática', 'Sociologia', 'Direito', 'Geopolítica', 'Finanças pessoais', 'Ciências', 'Concursos e vestibulares']
+  const itens = areas.map((a) => `<span class="faixa__item">${a}</span><span class="faixa__estrela" aria-hidden="true">✦</span>`).join('')
+  document.getElementById('faixa-areas').innerHTML = itens + itens
+
+  const etapas = [
+    ['Você se inscreve', '5 minutos', 'Um formulário de cinco minutos com seu canal, sua área e como você pretende divulgar. Não pedimos nada além do que precisamos para avaliar.'],
+    ['Analisamos sua candidatura', 'até 7 dias úteis', 'Olhamos o conteúdo, o encaixe com os cursos e o tipo de audiência. Análise humana, feita por quem toca o projeto — não é um filtro automático.'],
+    ['Conversamos', '30 minutos', 'Uma conversa por e-mail, WhatsApp ou Google Meet para alinhar expectativa, formato de divulgação e condições da parceria.'],
+    ['Você entra como afiliado', 'mesmo dia', 'Aprovada a parceria, você cria (ou usa) sua conta Hotmart e é liberado nos produtos. Toda a venda, o rastreio e o pagamento correm por lá.'],
+    ['Recebe acesso à comunidade', 'imediato', 'Artes, thumbnails, vídeos, textos prontos, cupons, calendário de campanhas e as atualizações dos produtos — tudo em um lugar só.'],
+    ['Começa a divulgar', 'contínuo', 'No seu ritmo e no seu formato. A gente acompanha os resultados junto e ajusta material, oferta e campanha com você.'],
+  ]
+
+  document.getElementById('passos').innerHTML = etapas
+    .map(([titulo, prazo, texto], i) => `
+      <div class="passo revelar">
+        <div class="passo__marca">
+          <span class="ordinal">— ${String(i + 1).padStart(2, '0')}</span>
+          <span class="passo__prazo">${prazo}</span>
+        </div>
+        <div class="passo__conteudo"><h3>${titulo}</h3><p>${texto}</p></div>
+      </div>`)
+    .join('')
+
+  const perfis = [
+    ['Canais de conteúdo educacional', 'YouTube, TikTok, Instagram ou podcast tratando economia, história, filosofia, matemática, sociologia, direito, geopolítica e áreas vizinhas.'],
+    ['Professores e pesquisadores', 'Quem já tem autoridade no assunto e uma audiência que confia na indicação — mesmo que ainda não venda nada.'],
+    ['Newsletters e comunidades', 'Listas de e-mail, servidores do Discord, grupos de estudo e canais do Telegram com público engajado em aprender.'],
+    ['Criadores sem produto próprio', 'Você construiu audiência qualificada mas não quer (ou não tem tempo de) criar e dar suporte a um curso. Monetize com o nosso.'],
+  ]
+
+  document.getElementById('perfis').innerHTML = perfis
+    .map(([t, d]) => `<div class="cartao cartao--interativo revelar"><h3>${t}</h3><p>${d}</p></div>`)
+    .join('')
+
+  const icones = {
+    comissao: '<circle cx="12" cy="12" r="9"/><path d="M14.8 9.3c-.6-.8-1.6-1.3-2.8-1.3-1.8 0-2.9.9-2.9 2.1 0 3 5.9 1.5 5.9 4.5 0 1.3-1.2 2.2-3 2.2-1.3 0-2.4-.5-3-1.4"/><path d="M12 6v12"/>',
+    material: '<rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 15l4.5-4.2a1.6 1.6 0 012.2 0L14 15"/><circle cx="9" cy="8.6" r="1.3"/><path d="M8 21h8"/>',
+    cupom: '<path d="M3 9.2V7a2 2 0 012-2h14a2 2 0 012 2v2.2a2.8 2.8 0 000 5.6V17a2 2 0 01-2 2H5a2 2 0 01-2-2v-2.2a2.8 2.8 0 000-5.6z"/><path d="M14.5 9.5l-5 5"/>',
+    campanha: '<rect x="3" y="4.5" width="18" height="16" rx="2"/><path d="M3 9.5h18M8 3v3M16 3v3"/><path d="M7.5 13.5h3M13.5 13.5h3"/>',
+    comunidade: '<circle cx="9" cy="8.5" r="3"/><path d="M3.5 19.5c0-3 2.5-5 5.5-5s5.5 2 5.5 5"/><circle cx="17" cy="10" r="2.3"/><path d="M15.2 15.4c2.4-.5 5.3 1 5.3 4.1"/>',
+    suporte: '<path d="M21 15a2 2 0 01-2 2H8l-4 3.5V6a2 2 0 012-2h13a2 2 0 012 2z"/><path d="M8.5 9.5h8M8.5 13h5"/>',
+  }
+
+  const beneficios = [
+    ['comissao', 'Comissão por venda, sem teto', 'A partir de 40% por venda aprovada, com condição negociada até 60% para parceiros com histórico. Pagamento pela Hotmart, D+30 da confirmação da compra.'],
+    ['material', 'Material pronto para publicar', 'Artes, thumbnails, cortes de vídeo, roteiros, textos para descrição e stories. Você não precisa parar sua produção para criar peça de divulgação.'],
+    ['cupom', 'Cupom exclusivo com seu nome', 'Desconto real para a sua audiência e rastreio independente do link. Quem compra sente que ganhou algo por te seguir.'],
+    ['campanha', 'Calendário de campanhas', 'Você sabe com antecedência quando tem lançamento, promoção e data sazonal — dá para encaixar a divulgação no seu planejamento de conteúdo.'],
+    ['comunidade', 'Comunidade de parceiros', 'Um grupo fechado de criadores educacionais trocando o que funciona: formato, abordagem, números. Contato direto com quem produz os cursos.'],
+    ['suporte', 'Acompanhamento de verdade', 'Você não recebe um link e some. A gente revisa resultado com você e ajusta oferta, material e formato para o seu público específico.'],
+  ]
+
+  document.getElementById('beneficios-lista').innerHTML = beneficios
+    .map(([icone, titulo, texto]) => `
+      <div class="cartao cartao--interativo revelar">
+        <span class="cartao__icone">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${icones[icone]}</svg>
+        </span>
+        <h3>${titulo}</h3><p>${texto}</p>
+      </div>`)
+    .join('')
+
+  const criterios = [
+    ['Qualidade da audiência', 'Engajamento real e público interessado em aprofundamento, não em viralização.'],
+    ['Alinhamento editorial', 'Seu conteúdo e o nosso precisam conversar. Seriedade acima de tamanho.'],
+    ['Potencial comercial', 'Formato e frequência de publicação que comportem uma divulgação natural.'],
+    ['Histórico', 'Experiência anterior com afiliação ajuda, mas não é pré-requisito.'],
+  ]
+
+  document.getElementById('criterios').innerHTML = criterios
+    .map(([t, d]) => `<div class="cartao revelar"><h3>${t}</h3><p>${d}</p></div>`)
+    .join('')
+
+  const faq = [
+    ['Preciso ter um canal grande para participar?', 'Não. Avaliamos a qualidade da audiência antes do tamanho. Um canal de 3 mil inscritos que discute economia a sério converte mais do que um perfil de 300 mil sem foco. Canais pequenos e médios são exatamente o público deste programa.'],
+    ['Quanto eu recebo por venda?', 'A comissão parte de 40% por venda aprovada e pode chegar a 60% em condições negociadas para parceiros com histórico de resultado. Todo o cálculo e o repasse são feitos pela Hotmart, D+30 da confirmação da compra.'],
+    ['Como o pagamento é feito?', 'Pela Hotmart, que é quem processa a venda, identifica a origem e paga a comissão direto na sua conta. Você não depende de repasse manual nosso e consegue auditar cada venda no painel da plataforma.'],
+    ['Preciso já ter conta na Hotmart?', 'Não. Se ainda não tiver, você cria durante a aprovação — leva poucos minutos e é gratuito. Depois disso a gente libera você como afiliado dos produtos.'],
+    ['Por quanto tempo vale a minha indicação?', 'O rastreio segue a regra da Hotmart: 30 dias de cookie, com atribuição por último clique. Se a pessoa clicar no seu link hoje e comprar dentro desse prazo, a comissão é sua.'],
+    ['Existe exclusividade ou meta obrigatória?', 'Não. Você continua livre para divulgar outros produtos e não tem meta mínima de vendas. O que pedimos é honestidade com a sua audiência: só indique o que você realmente acha que vale.'],
+    ['Quanto tempo leva a resposta?', 'Analisamos as candidaturas em até 7 dias úteis. Todo mundo recebe retorno, aprovado ou não. Se o encaixe não for agora, seu cadastro fica no banco de parceiros para campanhas futuras.'],
+    ['Tem algum custo para participar?', 'Nenhum. O programa é gratuito e sempre será. Não vendemos curso de afiliado, não cobramos taxa de adesão e não pedimos investimento em tráfego pago.'],
+  ]
+
+  document.getElementById('faq-lista').innerHTML = faq
+    .map(([p, r]) => `<details><summary>${p}</summary><div class="faq__resposta"><p>${r}</p></div></details>`)
+    .join('')
+
+  // --- Simulador de comissão ---
+  const moeda = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 })
+  const vendas = document.getElementById('sim-vendas')
+  const percentual = document.getElementById('sim-percentual')
+
+  function recalcular() {
+    const v = Number(vendas.value)
+    const p = Number(percentual.value)
+    document.getElementById('sim-vendas-valor').textContent = v
+    document.getElementById('sim-percentual-valor').textContent = p + '%'
+    document.getElementById('sim-saida').textContent = moeda.format((497 * p * v) / 100)
+  }
+  vendas.addEventListener('input', recalcular)
+  percentual.addEventListener('input', recalcular)
+  recalcular()
+
+  // --- Formulário multi-etapas ---
+  const TITULOS = [
+    ['Quem é você', 'Como falamos com você e onde encontramos seu trabalho.'],
+    ['Sua audiência', 'O que você produz e para quem.'],
+    ['Sua divulgação', 'Como você imagina apresentar os cursos.'],
+    ['Confirmação', 'Uma última conferida antes de enviar.'],
+  ]
+
+  let etapaAtual = 0
+  const paineis = [...document.querySelectorAll('[data-etapa]')]
+  const marcadores = [...document.querySelectorAll('.progresso__etapa')]
+  const botaoVoltar = document.getElementById('form-voltar')
+  const botaoAvancar = document.getElementById('form-avancar')
+  const mensagem = document.getElementById('form-mensagem')
+
+  function pintarEtapa() {
+    paineis.forEach((p, i) => (p.hidden = i !== etapaAtual))
+    marcadores.forEach((m, i) => {
+      m.dataset.estado = i < etapaAtual ? 'feita' : i === etapaAtual ? 'atual' : 'pendente'
+    })
+    document.getElementById('form-contador').textContent = `Etapa ${etapaAtual + 1} de 4`
+    document.getElementById('form-titulo').textContent = TITULOS[etapaAtual][0]
+    document.getElementById('form-descricao').textContent = TITULOS[etapaAtual][1]
+    botaoVoltar.hidden = etapaAtual === 0
+    document.getElementById('form-tempo').hidden = etapaAtual !== 0
+    botaoAvancar.textContent = etapaAtual === 3 ? 'Enviar inscrição' : 'Continuar'
+
+    if (etapaAtual === 3) {
+      const valor = (id) => {
+        const v = document.getElementById(id).value.trim()
+        return v && v !== 'Selecione…' ? v : '—'
+      }
+      document.getElementById('r-nome').textContent = valor('p-nome')
+      document.getElementById('r-email').textContent = valor('p-email')
+      document.getElementById('r-canal').textContent = valor('p-canal')
+      document.getElementById('r-area').textContent = valor('p-area')
+      document.getElementById('r-audiencia').textContent = valor('p-audiencia')
+    }
+  }
+
+  botaoVoltar.addEventListener('click', () => {
+    etapaAtual = Math.max(0, etapaAtual - 1)
+    mensagem.hidden = true
+    pintarEtapa()
+  })
+
+  document.getElementById('form-preview').addEventListener('submit', (evento) => {
+    evento.preventDefault()
+    if (etapaAtual < 3) {
+      etapaAtual += 1
+      pintarEtapa()
+      document.getElementById('inscricao').scrollIntoView({ behavior: 'smooth', block: 'start' })
+    } else {
+      mensagem.hidden = false
+      botaoAvancar.disabled = true
+      botaoAvancar.textContent = 'Preview — envio desativado'
+    }
+  })
+
+  pintarEtapa()
+
+  // --- Entrada suave dos blocos ---
+  const observador = new IntersectionObserver(
+    (entradas) => {
+      entradas.forEach((entrada) => {
+        if (entrada.isIntersecting) {
+          entrada.target.dataset.visivel = 'true'
+          observador.unobserve(entrada.target)
+        }
+      })
+    },
+    { rootMargin: '0px 0px -12% 0px', threshold: 0.05 },
+  )
+  const blocos = [...document.querySelectorAll('.revelar')]
+  blocos.forEach((no, i) => {
+    no.style.transitionDelay = `${(i % 6) * 55}ms`
+    observador.observe(no)
+  })
+
+  // Rede de segurança: se o observador não disparar, o conteúdo aparece assim
+  // mesmo. Conteúdo invisível é falha grave; animação perdida, não.
+  setTimeout(() => blocos.forEach((no) => (no.dataset.visivel = 'true')), 1500)
+</script>

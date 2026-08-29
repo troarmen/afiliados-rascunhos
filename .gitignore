@@ -1,0 +1,27 @@
+node_modules/
+.next/
+out/
+build/
+.DS_Store
+*.pem
+
+# Variáveis de ambiente
+.env
+.env.local
+.env*.local
+
+# Banco de dados local do modo arquivo (fallback de desenvolvimento)
+.data/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# Vercel
+.vercel

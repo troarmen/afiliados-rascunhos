@@ -1,0 +1,149 @@
+import type { Metadata } from 'next'
+import Link from 'next/link'
+import { Topo } from '@/components/Topo'
+import { Rodape } from '@/components/Rodape'
+import { comissao, etapas, criteriosSelecao } from '@/lib/programa'
+import { site } from '@/lib/site'
+
+export const metadata: Metadata = {
+  title: 'Como funciona o programa de parceria',
+  description:
+    'Regras, comissão, critérios de seleção e obrigações do Projeto Afiliado Rascunhos Econômicos, explicados por extenso.',
+  alternates: { canonical: '/programa' },
+}
+
+export default function Programa() {
+  return (
+    <>
+      <Topo />
+      <main id="conteudo" className="secao">
+        <div className="envelope">
+          <nav className="migalhas" aria-label="Você está aqui">
+            <Link href="/">Início</Link> <span aria-hidden="true">/</span>{' '}
+            <span>Sobre o programa</span>
+          </nav>
+
+          <div className="prosa">
+            <span className="olho">Documento aberto</span>
+            <h1>Como funciona o Projeto Afiliado</h1>
+            <p className="subtitulo">
+              A versão longa e sem marketing do que estamos propondo. Se você vai colocar seu
+              nome em uma indicação, merece ler as regras inteiras antes.
+            </p>
+
+            <h2>O que é</h2>
+            <p>
+              Um programa de parceria entre o {site.produtor} e criadores de conteúdo
+              educacional. Você indica os cursos para a sua audiência; a venda, o rastreio e o
+              pagamento acontecem na Hotmart; você recebe a comissão por venda aprovada.
+            </p>
+            <p>
+              A tese é simples: existem milhares de criadores produzindo conteúdo sério sobre
+              economia, história, filosofia, matemática e outras áreas, com comunidades
+              qualificadas e sem produto próprio para monetizar. Do outro lado existe um catálogo
+              de cursos que já funciona comercialmente. O programa conecta as duas pontas.
+            </p>
+
+            <h2>O que você recebe</h2>
+            <ul>
+              <li>
+                Comissão de <strong>{comissao.base}% a {comissao.teto}%</strong> por venda
+                aprovada, conforme a parceria acordada.
+              </li>
+              <li>Link de afiliado e cupom de desconto exclusivo com o seu nome.</li>
+              <li>
+                Biblioteca de materiais: artes, thumbnails, cortes de vídeo, roteiros e textos
+                prontos.
+              </li>
+              <li>Calendário de campanhas e cronograma de descontos com antecedência.</li>
+              <li>Acesso à comunidade de parceiros e contato direto com a equipe do produto.</li>
+            </ul>
+
+            <h2>O que esperamos de você</h2>
+            <ul>
+              <li>
+                <strong>Honestidade com a audiência.</strong> Só indique se você realmente acha
+                que o curso serve para quem te acompanha.
+              </li>
+              <li>
+                <strong>Identificação da parceria.</strong> Deixe claro que a indicação é
+                remunerada — exigência do CDC e do bom senso.
+              </li>
+              <li>
+                <strong>Sem spam.</strong> Nada de disparo em massa, comentário automatizado ou
+                tráfego incentivado.
+              </li>
+              <li>
+                <strong>Alinhamento prévio</strong> quando for criar material próprio sobre os
+                produtos, para não conflitar com campanha em andamento.
+              </li>
+            </ul>
+
+            <h2>Comissão, rastreio e pagamento</h2>
+            <p>
+              Toda a operação financeira é da Hotmart. Ela identifica a origem da venda, calcula
+              a comissão e paga direto na sua conta — não há repasse manual da nossa parte, e
+              você audita cada venda no painel da plataforma.
+            </p>
+            <ul>
+              <li>
+                <strong>Rastreio:</strong> {comissao.cookieDias} dias de cookie, atribuição por{' '}
+                {comissao.atribuicao}.
+              </li>
+              <li>
+                <strong>Pagamento:</strong> {comissao.prazoPagamento}, seguindo o calendário da
+                plataforma.
+              </li>
+              <li>
+                <strong>Reembolso:</strong> venda cancelada dentro do prazo de garantia estorna a
+                comissão correspondente. É a regra padrão de qualquer programa sério.
+              </li>
+            </ul>
+
+            <h2>O processo, passo a passo</h2>
+            <ol>
+              {etapas.map((etapa) => (
+                <li key={etapa.numero}>
+                  <strong>{etapa.titulo}</strong> ({etapa.prazo}) — {etapa.descricao}
+                </li>
+              ))}
+            </ol>
+
+            <h2>Critérios de seleção</h2>
+            <p>
+              A análise é humana e considera quatro pontos, nesta ordem de importância:
+            </p>
+            <ul>
+              {criteriosSelecao.map((criterio) => (
+                <li key={criterio.titulo}>
+                  <strong>{criterio.titulo}</strong> — {criterio.descricao}
+                </li>
+              ))}
+            </ul>
+            <p>
+              Não usamos número mínimo de seguidores como corte. Já recusamos perfis grandes com
+              audiência desalinhada e aprovamos canais pequenos com comunidade forte.
+            </p>
+
+            <h2>Encerramento da parceria</h2>
+            <p>
+              Qualquer um dos lados pode encerrar quando quiser, sem multa. Comissões de vendas já
+              aprovadas continuam sendo pagas normalmente pela Hotmart. Descredenciamos parceiros
+              que descumpram as regras de divulgação — sobretudo spam e promessa de resultado
+              financeiro em nome do produto.
+            </p>
+
+            <div className="cartao" style={{ marginTop: 20 }}>
+              <h3>Pronto para se candidatar?</h3>
+              <p>Leva cinco minutos e a resposta sai em até sete dias úteis.</p>
+              <Link className="botao" href="/#inscricao" style={{ alignSelf: 'flex-start', marginTop: 8 }}>
+                Quero participar
+              </Link>
+            </div>
+          </div>
+        </div>
+      </main>
+      <Rodape />
+    </>
+  )
+}
