@@ -1,76 +1,90 @@
 /* ==========================================================================
-   PARE — Sistema de design
+   Duck Affiliate — Sistema de design
 
-   Herdado da identidade do Rascunhos Econômicos (rascunhoseconomicos.com):
-   navy profundo, creme e dourado latão; Fraunces 500 no display com uma
-   palavra em itálico dourado por título; Inter na interface.
+   A identidade nasce do logo oficial: navy #000E29 no fundo, âmbar #FFC20E
+   no acento, azul royal como apoio e branco no texto. Os valores de cor
+   foram amostrados pixel a pixel do PNG do logo — não são aproximações.
 
-   Os valores de cor abaixo foram extraídos das variáveis CSS do site do
-   cliente — não são aproximações.
+   Display em Figtree 800 (geométrica pesada, o gesto do wordmark);
+   Inter na interface.
+
+   O Rascunhos Econômicos assina como produtor do catálogo. A paleta creme e
+   dourada dele NÃO aparece aqui de propósito: as duas marcas precisam ser
+   distinguíveis à primeira vista.
    ========================================================================== */
 
 :root {
   /* Cor — paleta oficial ---------------------------------------------------
-     --tinta / --breu / --papel / --creme / --ouro* vêm de site.css do cliente
-     (--ink, --bg-darker, --bg-light, --bg-cream, --accent*). */
-  --tinta: #0a0e1a;
-  --tinta-2: #4a4e5a;
-  --tinta-3: #767b88;
-  --breu: #060912;
+     Navy e âmbar saem direto do logo; royal é o azul da jaqueta e dos óculos. */
+  --tinta: #000e29;
+  --tinta-2: #47526b;
+  --tinta-3: #6b7690;
+  --abissal: #00081c;
+  --navy: #000e29;
+  --navy-2: #0a1a3f;
 
-  --papel: #f5f3ee;
-  --creme: #ebe7dc;
+  --papel: #f4f6fb;
+  --gelo: #e9eef8;
   --superficie: #ffffff;
-  --superficie-2: #faf9f6;
+  --superficie-2: #f7f9fd;
 
-  --ouro: #c8a45c;
-  --ouro-forte: #9c7a3a;
-  --ouro-suave: #e8d9b8;
-  /* Dourado com contraste suficiente para texto corrido sobre claro (4.6:1).
-     O --ouro puro fica reservado a fundo escuro, títulos grandes e ornamento. */
-  --ouro-texto: var(--ouro-forte);
+  --ambar: #ffc20e;
+  --ambar-claro: #ffd84d;
+  --ambar-forte: #8a5a00;
+  --ambar-suave: #fff0c2;
+  /* O âmbar puro dá 1,6:1 sobre branco — não serve para texto corrido.
+     Este é o âmbar escurecido que passa (5,5:1 sobre --papel); o --ambar
+     fica reservado a fundo escuro, botão e ornamento. */
+  --ambar-texto: var(--ambar-forte);
 
-  --linha: rgba(10, 14, 26, 0.12);
-  --linha-forte: rgba(10, 14, 26, 0.22);
+  --royal: #1b4cb8;
+  --royal-claro: #4e86f7;
 
-  --ok: #2f7d55;
-  --alerta: #9c7a3a;
-  --erro: #a8302a;
-  --erro-fundo: #fbeceb;
+  --linha: rgba(0, 14, 41, 0.12);
+  --linha-forte: rgba(0, 14, 41, 0.22);
+
+  --ok: #1f7a4d;
+  --alerta: #8a5a00;
+  --erro: #c2261e;
+  --erro-fundo: #fdecea;
 
   /* Tipografia ----------------------------------------------------------- */
-  --fonte-titulo: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --fonte-titulo: 'Figtree', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --fonte-texto: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
-  /* Espaço e forma — raios e sombras conforme o site do cliente ----------- */
+  /* Espaço e forma — cantos mais generosos que os do canal, para afastar
+     o Duck do desenho editorial do Rascunhos. -------------------------- */
   --largura: 1200px;
   --largura-texto: 68ch;
-  --raio: 14px;
-  --raio-g: 16px;
+  --raio: 16px;
+  --raio-g: 22px;
   --raio-pilula: 100px;
-  --sombra-1: 0 4px 14px rgba(10, 14, 26, 0.06);
-  --sombra-2: 0 2px 8px rgba(10, 14, 26, 0.05), 0 24px 48px rgba(10, 14, 26, 0.1);
+  --sombra-1: 0 4px 16px rgba(0, 14, 41, 0.07);
+  --sombra-2: 0 2px 8px rgba(0, 14, 41, 0.06), 0 26px 52px rgba(0, 14, 41, 0.12);
+  --sombra-ambar: 0 10px 30px rgba(255, 194, 14, 0.28);
 
   color-scheme: light;
 }
 
-/* Blocos escuros — a marca alterna faixas navy e creme. Em vez de duplicar
+/* Blocos escuros — a marca alterna faixas navy e claras. Em vez de duplicar
    componente, o bloco redefine os tokens e tudo dentro dele se adapta. */
 .escuro {
   /* Valores literais de propósito: `var(--tinta)` aqui resolveria pelo
      --tinta redefinido logo abaixo (branco), não pelo herdado. */
-  --papel: #0a0e1a;
-  --creme: #060912;
-  --superficie: rgba(255, 255, 255, 0.045);
-  --superficie-2: rgba(255, 255, 255, 0.07);
+  --papel: #000e29;
+  --gelo: #00081c;
+  --superficie: rgba(255, 255, 255, 0.05);
+  --superficie-2: rgba(255, 255, 255, 0.08);
   --tinta: #ffffff;
-  --tinta-2: rgba(255, 255, 255, 0.72);
-  --tinta-3: rgba(255, 255, 255, 0.5);
-  --ouro-texto: var(--ouro);
-  --linha: rgba(255, 255, 255, 0.1);
-  --linha-forte: rgba(255, 255, 255, 0.2);
-  --erro-fundo: rgba(168, 48, 42, 0.18);
-  --erro: #f0a9a4;
+  --tinta-2: rgba(255, 255, 255, 0.74);
+  --tinta-3: rgba(255, 255, 255, 0.52);
+  --ambar-texto: var(--ambar);
+  --royal: var(--royal-claro);
+  --linha: rgba(255, 255, 255, 0.11);
+  --linha-forte: rgba(255, 255, 255, 0.22);
+  --erro-fundo: rgba(194, 38, 30, 0.2);
+  --erro: #ffaba5;
+  --ok: #5fcf99;
   background: var(--papel);
   color: var(--tinta);
   color-scheme: dark;
@@ -78,58 +92,60 @@
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-tema='claro']) {
-    --papel: #0a0e1a;
-    --creme: #0f141f;
-    --superficie: #131926;
-    --superficie-2: #182031;
-    --tinta: #f4f3ef;
-    --tinta-2: rgba(244, 243, 239, 0.72);
-    --tinta-3: rgba(244, 243, 239, 0.5);
-    --ouro-texto: var(--ouro);
-    --linha: rgba(244, 243, 239, 0.12);
-    --linha-forte: rgba(244, 243, 239, 0.24);
-    --ok: #6fc194;
-    --erro: #f0a9a4;
-    --erro-fundo: rgba(168, 48, 42, 0.2);
-    --sombra-1: 0 4px 14px rgba(0, 0, 0, 0.4);
-    --sombra-2: 0 2px 8px rgba(0, 0, 0, 0.45), 0 24px 48px rgba(0, 0, 0, 0.5);
+    --papel: #000e29;
+    --gelo: #04122e;
+    --superficie: #0c1c40;
+    --superficie-2: #122448;
+    --tinta: #f2f5fb;
+    --tinta-2: rgba(242, 245, 251, 0.74);
+    --tinta-3: rgba(242, 245, 251, 0.52);
+    --ambar-texto: var(--ambar);
+    --royal: var(--royal-claro);
+    --linha: rgba(242, 245, 251, 0.13);
+    --linha-forte: rgba(242, 245, 251, 0.25);
+    --ok: #5fcf99;
+    --erro: #ffaba5;
+    --erro-fundo: rgba(194, 38, 30, 0.22);
+    --sombra-1: 0 4px 16px rgba(0, 0, 0, 0.42);
+    --sombra-2: 0 2px 8px rgba(0, 0, 0, 0.45), 0 26px 52px rgba(0, 0, 0, 0.5);
     color-scheme: dark;
   }
 
   /* Dentro do tema escuro, o bloco "escuro" fica mais fundo que o entorno
      em vez de mais claro — a alternância continua legível. */
   :root:not([data-tema='claro']) .escuro {
-    --papel: var(--breu);
-    --creme: #0a0e1a;
-    --superficie: rgba(255, 255, 255, 0.05);
-    --superficie-2: rgba(255, 255, 255, 0.08);
+    --papel: var(--abissal);
+    --gelo: #000e29;
+    --superficie: rgba(255, 255, 255, 0.055);
+    --superficie-2: rgba(255, 255, 255, 0.085);
   }
 }
 
 [data-tema='escuro'] {
-  --papel: #0a0e1a;
-  --creme: #0f141f;
-  --superficie: #131926;
-  --superficie-2: #182031;
-  --tinta: #f4f3ef;
-  --tinta-2: rgba(244, 243, 239, 0.72);
-  --tinta-3: rgba(244, 243, 239, 0.5);
-  --ouro-texto: var(--ouro);
-  --linha: rgba(244, 243, 239, 0.12);
-  --linha-forte: rgba(244, 243, 239, 0.24);
-  --ok: #6fc194;
-  --erro: #f0a9a4;
-  --erro-fundo: rgba(168, 48, 42, 0.2);
-  --sombra-1: 0 4px 14px rgba(0, 0, 0, 0.4);
-  --sombra-2: 0 2px 8px rgba(0, 0, 0, 0.45), 0 24px 48px rgba(0, 0, 0, 0.5);
+  --papel: #000e29;
+  --gelo: #04122e;
+  --superficie: #0c1c40;
+  --superficie-2: #122448;
+  --tinta: #f2f5fb;
+  --tinta-2: rgba(242, 245, 251, 0.74);
+  --tinta-3: rgba(242, 245, 251, 0.52);
+  --ambar-texto: var(--ambar);
+  --royal: var(--royal-claro);
+  --linha: rgba(242, 245, 251, 0.13);
+  --linha-forte: rgba(242, 245, 251, 0.25);
+  --ok: #5fcf99;
+  --erro: #ffaba5;
+  --erro-fundo: rgba(194, 38, 30, 0.22);
+  --sombra-1: 0 4px 16px rgba(0, 0, 0, 0.42);
+  --sombra-2: 0 2px 8px rgba(0, 0, 0, 0.45), 0 26px 52px rgba(0, 0, 0, 0.5);
   color-scheme: dark;
 }
 
 [data-tema='escuro'] .escuro {
-  --papel: var(--breu);
-  --creme: #0a0e1a;
-  --superficie: rgba(255, 255, 255, 0.05);
-  --superficie-2: rgba(255, 255, 255, 0.08);
+  --papel: var(--abissal);
+  --gelo: #000e29;
+  --superficie: rgba(255, 255, 255, 0.055);
+  --superficie-2: rgba(255, 255, 255, 0.085);
 }
 
 /* Reset -------------------------------------------------------------------- */
@@ -181,7 +197,7 @@ textarea {
 }
 
 :focus-visible {
-  outline: 2px solid var(--ouro);
+  outline: 2px solid var(--ambar);
   outline-offset: 3px;
   border-radius: 4px;
 }
@@ -206,9 +222,9 @@ h2,
 h3,
 h4 {
   font-family: var(--fonte-titulo);
-  font-weight: 500;
-  line-height: 1.06;
-  letter-spacing: -0.03em;
+  font-weight: 800;
+  line-height: 1.04;
+  letter-spacing: -0.035em;
   text-wrap: balance;
 }
 
@@ -228,12 +244,41 @@ p {
   text-wrap: pretty;
 }
 
-/* A assinatura tipográfica da marca: uma expressão em itálico dourado
-   dentro do título. Usar UMA vez por título — é o que a torna eficaz. */
+/* A assinatura tipográfica da marca: uma expressão em âmbar riscada pela
+   curva que o logo faz sob o pato. Usar UMA vez por título — é o que a
+   torna eficaz.
+
+   O traço é um ::after posicionado, e não um `text-decoration`, porque
+   precisa acompanhar a linha de base com folga e sobreviver à quebra de
+   linha do título sem cortar letra descendente. */
 .realce {
-  color: var(--ouro);
-  font-style: italic;
-  font-weight: 400;
+  position: relative;
+  color: var(--ambar-texto);
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.realce::after {
+  content: '';
+  position: absolute;
+  left: -0.04em;
+  right: -0.04em;
+  bottom: -0.12em;
+  height: 0.16em;
+  border-radius: var(--raio-pilula);
+  background: linear-gradient(90deg, var(--ambar) 0%, var(--ambar-claro) 100%);
+  opacity: 0.55;
+}
+
+.escuro .realce,
+[data-tema='escuro'] .realce {
+  color: var(--ambar);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-tema='claro']) .realce {
+    color: var(--ambar);
+  }
 }
 
 /* Olho / eyebrow — 12px, 600, versalete largo, dourado. */
@@ -244,7 +289,7 @@ p {
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--ouro-texto);
+  color: var(--ambar-texto);
 }
 
 /* Variante em pílula, como o selo do hero do site do cliente. */
@@ -263,7 +308,7 @@ p {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: var(--ouro);
+  background: var(--ambar);
   flex-shrink: 0;
 }
 
@@ -274,14 +319,15 @@ p {
   line-height: 1.65;
 }
 
-/* Marcador de sequência: "— 01 · Etapa", em Fraunces itálico dourado.
-   Só use onde a ordem for informação de verdade. */
+/* Marcador de sequência: "— 01". Só use onde a ordem for informação de
+   verdade. Tabular para os números não dançarem entre um passo e outro. */
 .ordinal {
   font-family: var(--fonte-titulo);
-  font-style: italic;
-  font-size: 0.92rem;
-  color: var(--ouro-texto);
-  letter-spacing: 0;
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: var(--ambar-texto);
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
 }
 
 /* Layout ------------------------------------------------------------------- */
@@ -299,8 +345,8 @@ p {
   background: var(--papel);
 }
 
-.secao--creme {
-  background: var(--creme);
+.secao--gelo {
+  background: var(--gelo);
 }
 
 .secao--superficie {
@@ -350,13 +396,14 @@ p {
   align-items: center;
   justify-content: center;
   gap: 8px;
+  white-space: nowrap;
   padding: 14px 26px;
   border: 1px solid transparent;
   border-radius: var(--raio-pilula);
-  background: var(--ouro);
-  color: var(--breu);
+  background: var(--ambar);
+  color: var(--navy);
   font-size: 0.875rem;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: -0.005em;
   text-decoration: none;
   cursor: pointer;
@@ -369,9 +416,9 @@ p {
 }
 
 .botao:hover {
-  background: var(--ouro-suave);
+  background: var(--ambar-claro);
   transform: translateY(-1px);
-  box-shadow: 0 8px 24px rgba(200, 164, 92, 0.28);
+  box-shadow: var(--sombra-ambar);
 }
 
 .botao:active {
@@ -401,7 +448,7 @@ p {
 
 .botao--fantasma {
   background: transparent;
-  color: var(--ouro-texto);
+  color: var(--ambar-texto);
   padding-inline: 6px;
 }
 
@@ -409,7 +456,7 @@ p {
   background: transparent;
   box-shadow: none;
   text-decoration: underline;
-  color: var(--ouro-texto);
+  color: var(--ambar-texto);
 }
 
 .botao--g {
@@ -431,11 +478,11 @@ p {
 }
 
 /* Link dourado com seta, padrão dos cartões da marca. */
-.link-ouro {
+.link-ambar {
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  color: var(--ouro-texto);
+  color: var(--ambar-texto);
   font-size: 0.875rem;
   font-weight: 600;
   text-decoration: none;
@@ -443,11 +490,11 @@ p {
   padding-top: 6px;
 }
 
-.link-ouro:hover .seta {
+.link-ambar:hover .seta {
   transform: translateX(3px);
 }
 
-.link-ouro .seta {
+.link-ambar .seta {
   transition: transform 0.25s ease;
 }
 
@@ -468,11 +515,14 @@ p {
 }
 
 .cartao--interativo:hover {
-  border-color: var(--ouro);
+  border-color: var(--ambar);
   transform: translateY(-3px);
   box-shadow: var(--sombra-1);
 }
 
+/* Um cartão que é a única subdivisão sob o <h1> da página precisa de <h2>,
+   senão a hierarquia salta de h1 para h3. O estilo é o mesmo nos dois. */
+.cartao h2,
 .cartao h3 {
   font-family: var(--fonte-titulo);
   font-size: 1.22rem;
@@ -493,21 +543,21 @@ p {
   display: grid;
   place-items: center;
   border-radius: 11px;
-  background: var(--ouro-suave);
-  color: var(--ouro-forte);
+  background: var(--ambar-suave);
+  color: var(--ambar-forte);
   margin-bottom: 4px;
 }
 
 .escuro .cartao__icone,
 [data-tema='escuro'] .cartao__icone {
-  background: rgba(200, 164, 92, 0.16);
-  color: var(--ouro);
+  background: rgba(255, 194, 14, 0.16);
+  color: var(--ambar);
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-tema='claro']) .cartao__icone {
-    background: rgba(200, 164, 92, 0.16);
-    color: var(--ouro);
+    background: rgba(255, 194, 14, 0.16);
+    color: var(--ambar);
   }
 }
 
@@ -533,23 +583,23 @@ p {
   text-decoration: none;
 }
 
-.selo--ouro {
-  background: var(--ouro-suave);
+.selo--ambar {
+  background: var(--ambar-suave);
   border-color: transparent;
-  color: var(--ouro-forte);
+  color: var(--ambar-forte);
   font-weight: 600;
 }
 
-.escuro .selo--ouro {
-  background: rgba(200, 164, 92, 0.14);
-  color: var(--ouro);
+.escuro .selo--ambar {
+  background: rgba(255, 194, 14, 0.16);
+  color: var(--ambar);
 }
 
 .selo__ponto {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: var(--ouro);
+  background: var(--ambar);
   flex-shrink: 0;
 }
 
@@ -563,50 +613,60 @@ p {
   flex-shrink: 0;
 }
 
-/* O brasão é escuro sobre placa clara — como no site do cliente, ele ganha
-   uma placa própria para funcionar sobre o navy. */
+/* O emblema é exportado sobre o navy oficial do logo (o recorte com alfa
+   comia a jaqueta do pato, porque o aro amarelo é interrompido pela cabeça
+   e pela seta e o preenchimento vazava para dentro). A placa usa o MESMO
+   navy: a emenda some sobre qualquer fundo de página. */
 .marca__placa {
-  width: 38px;
-  height: 38px;
-  border-radius: 10px;
-  background: #f9f9f9;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  padding: 2px;
+  width: 40px;
+  height: 40px;
+  border-radius: 13px;
+  background: var(--navy);
+  border: 1px solid rgba(255, 194, 14, 0.35);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
 }
 
 .marca__placa img {
   width: 100%;
   height: 100%;
-  border-radius: 8px;
+  display: block;
 }
 
+/* O wordmark é bicolor como no logo: "Duck" em âmbar, "Affiliate" em
+   branco. Duas <span> em vez de uma imagem, para escalar e ficar buscável. */
 .marca__nome {
   font-family: var(--fonte-titulo);
-  font-size: 1.22rem;
-  font-weight: 600;
-  letter-spacing: -0.02em;
+  font-size: 1.24rem;
+  font-weight: 800;
+  letter-spacing: -0.035em;
   color: var(--tinta);
+  line-height: 1;
 }
 
-/* "RASCUNHOS ECONÔMICOS" na pílula, espelhando o lockup do canal. */
+.marca__nome b {
+  color: var(--ambar);
+  font-weight: 800;
+}
+
+/* "POWERED BY RASCUNHOS ECONÔMICOS" — a assinatura do produtor do catálogo. */
 .marca__pilula {
-  font-size: 0.6rem;
+  font-size: 0.58rem;
   font-weight: 600;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--tinta-2);
+  color: var(--tinta-3);
   border: 1px solid var(--linha-forte);
   border-radius: var(--raio-pilula);
   padding: 4px 10px;
   white-space: nowrap;
 }
 
-@media (max-width: 560px) {
+@media (max-width: 1219px) {
   .marca__pilula {
     display: none;
   }
@@ -618,7 +678,7 @@ p {
   position: sticky;
   top: 0;
   z-index: 60;
-  background: rgba(10, 14, 26, 0.85);
+  background: rgba(0, 14, 41, 0.86);
   backdrop-filter: saturate(1.4) blur(12px);
   border-bottom: 1px solid rgba(255, 255, 255, 0);
   transition: border-color 0.25s ease, background 0.25s ease;
@@ -626,7 +686,7 @@ p {
 
 .topo[data-rolado='true'] {
   border-bottom-color: rgba(255, 255, 255, 0.1);
-  background: rgba(10, 14, 26, 0.94);
+  background: rgba(0, 14, 41, 0.95);
 }
 
 .topo__interno {
@@ -638,7 +698,7 @@ p {
 
 .topo__nav {
   display: none;
-  gap: 26px;
+  gap: clamp(15px, 1.5vw, 26px);
   margin-left: auto;
 }
 
@@ -646,6 +706,7 @@ p {
   font-size: 0.875rem;
   color: rgba(255, 255, 255, 0.7);
   text-decoration: none;
+  white-space: nowrap;
   transition: color 0.2s ease;
 }
 
@@ -657,7 +718,7 @@ p {
   margin-left: auto;
 }
 
-@media (min-width: 980px) {
+@media (min-width: 1120px) {
   .topo__nav {
     display: flex;
   }
@@ -682,7 +743,7 @@ p {
   right: -20%;
   width: 80%;
   height: 200%;
-  background: radial-gradient(ellipse at center, rgba(200, 164, 92, 0.1) 0%, transparent 60%);
+  background: radial-gradient(ellipse at center, rgba(255, 194, 14, 0.13) 0%, transparent 62%);
   pointer-events: none;
 }
 
@@ -791,10 +852,10 @@ p {
 .numero__valor {
   font-family: var(--fonte-titulo);
   font-size: clamp(2.2rem, 1.5rem + 2.2vw, 3rem);
-  font-weight: 500;
+  font-weight: 800;
   line-height: 1;
   letter-spacing: -0.035em;
-  color: var(--ouro);
+  color: var(--ambar);
   font-variant-numeric: tabular-nums;
 }
 
@@ -834,7 +895,7 @@ p {
 /* Faixa de áreas (marquee) -------------------------------------------------- */
 
 .faixa {
-  background: var(--breu);
+  background: var(--abissal);
   border-block: 1px solid rgba(255, 255, 255, 0.07);
   overflow: hidden;
   padding-block: 22px;
@@ -874,7 +935,7 @@ p {
 }
 
 .faixa__estrela {
-  color: var(--ouro);
+  color: var(--ambar);
   font-size: 0.85rem;
   flex-shrink: 0;
 }
@@ -972,15 +1033,15 @@ p {
   height: 18px;
   margin-top: 4px;
   border-radius: 50%;
-  background-color: var(--ouro-suave);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239c7a3a' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+  background-color: var(--ambar-suave);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000e29' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
   background-size: 11px;
   background-position: center;
   background-repeat: no-repeat;
 }
 
 .escuro .lista-marcada li::before {
-  background-color: rgba(200, 164, 92, 0.18);
+  background-color: rgba(255, 194, 14, 0.18);
 }
 
 .lista-marcada--negativa li::before {
@@ -1018,13 +1079,13 @@ p {
   gap: 10px;
   padding: 20px 22px;
   border-radius: var(--raio);
-  background: var(--ouro-suave);
-  color: var(--ouro-forte);
+  background: var(--ambar-suave);
+  color: var(--ambar-forte);
 }
 
 .escuro .calculadora__saida {
-  background: rgba(200, 164, 92, 0.14);
-  color: var(--ouro);
+  background: rgba(255, 194, 14, 0.14);
+  color: var(--ambar);
 }
 
 .calculadora__valor {
@@ -1053,7 +1114,7 @@ p {
 .controle__valor {
   font-weight: 600;
   font-variant-numeric: tabular-nums;
-  color: var(--ouro-texto);
+  color: var(--ambar-texto);
 }
 
 input[type='range'] {
@@ -1071,7 +1132,7 @@ input[type='range']::-webkit-slider-thumb {
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: var(--ouro);
+  background: var(--ambar);
   border: 3px solid var(--superficie);
   box-shadow: 0 2px 8px rgba(10, 14, 26, 0.25);
 }
@@ -1080,7 +1141,7 @@ input[type='range']::-moz-range-thumb {
   width: 17px;
   height: 17px;
   border-radius: 50%;
-  background: var(--ouro);
+  background: var(--ambar);
   border: 3px solid var(--superficie);
 }
 
@@ -1112,7 +1173,7 @@ input[type='range']::-moz-range-thumb {
 }
 
 .faq summary:hover {
-  color: var(--ouro-texto);
+  color: var(--ambar-texto);
 }
 
 .faq summary::after {
@@ -1123,8 +1184,8 @@ input[type='range']::-moz-range-thumb {
   width: 11px;
   height: 11px;
   margin-top: -7px;
-  border-right: 1.8px solid var(--ouro);
-  border-bottom: 1.8px solid var(--ouro);
+  border-right: 1.8px solid var(--ambar);
+  border-bottom: 1.8px solid var(--ambar);
   transform: rotate(45deg);
   transition: transform 0.25s ease;
 }
@@ -1181,11 +1242,11 @@ input[type='range']::-moz-range-thumb {
 }
 
 .progresso__etapa[data-estado='feita'] {
-  background: var(--ouro);
+  background: var(--ambar);
 }
 
 .progresso__etapa[data-estado='atual'] {
-  background: var(--ouro);
+  background: var(--ambar);
   opacity: 0.45;
 }
 
@@ -1264,8 +1325,8 @@ input:focus,
 select:focus,
 textarea:focus {
   outline: none;
-  border-color: var(--ouro);
-  box-shadow: 0 0 0 3px rgba(200, 164, 92, 0.22);
+  border-color: var(--ambar);
+  box-shadow: 0 0 0 3px rgba(255, 194, 14, 0.22);
 }
 
 [aria-invalid='true'] {
@@ -1308,17 +1369,17 @@ select {
 }
 
 .opcao:has(input:checked) {
-  border-color: var(--ouro);
-  background: var(--ouro-suave);
+  border-color: var(--ambar);
+  background: var(--ambar-suave);
 }
 
 .escuro .opcao:has(input:checked) {
-  background: rgba(200, 164, 92, 0.14);
+  background: rgba(255, 194, 14, 0.14);
 }
 
 .opcao input {
   margin-top: 2px;
-  accent-color: var(--ouro-forte);
+  accent-color: var(--ambar-forte);
   width: 17px;
   height: 17px;
   flex-shrink: 0;
@@ -1336,7 +1397,7 @@ select {
 
 .consentimento input {
   margin-top: 3px;
-  accent-color: var(--ouro-forte);
+  accent-color: var(--ambar-forte);
   width: 17px;
   height: 17px;
   flex-shrink: 0;
@@ -1367,21 +1428,21 @@ select {
 }
 
 .aviso--info {
-  background: var(--ouro-suave);
+  background: var(--ambar-suave);
   border-color: transparent;
-  color: var(--ouro-forte);
+  color: var(--ambar-forte);
 }
 
 .escuro .aviso--info {
-  background: rgba(200, 164, 92, 0.12);
-  border-color: rgba(200, 164, 92, 0.3);
-  color: var(--ouro);
+  background: rgba(255, 194, 14, 0.12);
+  border-color: rgba(255, 194, 14, 0.3);
+  color: var(--ambar);
 }
 
 /* Rodapé ------------------------------------------------------------------- */
 
 .rodape {
-  background: var(--breu);
+  background: var(--abissal);
   color: #fff;
   padding-block: clamp(52px, 6vw, 80px) 30px;
   border-top: 1px solid rgba(255, 255, 255, 0.07);
@@ -1391,11 +1452,14 @@ select {
   color: rgba(255, 255, 255, 0.66);
   text-decoration: none;
   font-size: 0.9rem;
+  /* O e-mail de contato tem 33 caracteres sem espaço e não cabe na coluna
+     de 210px do rodapé: sem isto ele empurra a página 23px para o lado. */
+  overflow-wrap: anywhere;
   transition: color 0.2s ease;
 }
 
 .rodape a:hover {
-  color: var(--ouro);
+  color: var(--ambar);
 }
 
 .rodape__grade {
@@ -1466,7 +1530,7 @@ select {
 }
 
 .prosa a {
-  color: var(--ouro-texto);
+  color: var(--ambar-texto);
   font-weight: 500;
 }
 
@@ -1485,7 +1549,7 @@ select {
 }
 
 .migalhas a:hover {
-  color: var(--ouro-texto);
+  color: var(--ambar-texto);
 }
 
 /* Animação de entrada ------------------------------------------------------ */
@@ -1522,8 +1586,8 @@ select {
   left: 12px;
   top: -60px;
   z-index: 100;
-  background: var(--ouro);
-  color: var(--breu);
+  background: var(--ambar);
+  color: var(--abissal);
   padding: 10px 18px;
   border-radius: 8px;
   font-weight: 600;
@@ -1539,4 +1603,461 @@ select {
   text-align: center;
   margin-inline: auto;
   align-items: center;
+}
+
+/* ==========================================================================
+   Componentes do Duck Affiliate
+
+   Blocos que não existiam no desenho anterior e nasceram do reposicionamento:
+   barra de anúncio, menu móvel, faixa de números, pilares, portal do
+   parceiro, comparativo e assinatura do produtor.
+   ========================================================================== */
+
+/* Barra de anúncio --------------------------------------------------------- */
+
+.barra-anuncio {
+  background: linear-gradient(90deg, var(--ambar) 0%, var(--ambar-claro) 55%, var(--ambar) 100%);
+  color: var(--navy);
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.barra-anuncio__interno {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  padding-block: 10px;
+}
+
+.barra-anuncio a {
+  color: var(--navy);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 700;
+}
+
+.barra-anuncio a:hover {
+  text-decoration-thickness: 2px;
+}
+
+/* Menu móvel --------------------------------------------------------------- */
+
+/* Abaixo de 980px a navegação sumia e não havia nada no lugar: o único
+   caminho para as seções era rolar a página inteira. */
+.topo__gatilho {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  margin-left: auto;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+  cursor: pointer;
+}
+
+.topo__gatilho:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+@media (min-width: 1120px) {
+  .topo__gatilho {
+    display: none;
+  }
+}
+
+.menu-movel {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 14, 41, 0.98);
+  padding-block: 12px 22px;
+}
+
+.menu-movel ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-movel a {
+  display: block;
+  padding: 13px 2px;
+  color: rgba(255, 255, 255, 0.82);
+  text-decoration: none;
+  font-size: 0.98rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.menu-movel a:hover {
+  color: #fff;
+}
+
+.menu-movel .botao {
+  margin-top: 18px;
+  width: 100%;
+}
+
+@media (min-width: 1120px) {
+  .menu-movel {
+    display: none;
+  }
+}
+
+/* Faixa de números --------------------------------------------------------- */
+
+/* Prova de programa, não de histórico: todo valor aqui é REGRA (comissão,
+   rastreio, custo, prazo). O projeto não tem métrica de resultado ainda e
+   inventar uma seria mentir para o candidato. */
+.numeros {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--linha);
+  border-block: 1px solid var(--linha);
+}
+
+@media (min-width: 860px) {
+  .numeros {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.numeros__item {
+  background: var(--papel);
+  padding: clamp(24px, 3.2vw, 38px) clamp(18px, 2.4vw, 30px);
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  text-align: center;
+  align-items: center;
+}
+
+.numeros__valor {
+  font-family: var(--fonte-titulo);
+  font-weight: 800;
+  font-size: clamp(1.6rem, 1.1rem + 1.9vw, 2.4rem);
+  line-height: 1;
+  letter-spacing: -0.035em;
+  color: var(--ambar-texto);
+  font-variant-numeric: tabular-nums;
+}
+
+.numeros__rotulo {
+  font-size: 0.86rem;
+  color: var(--tinta-2);
+  line-height: 1.45;
+  max-width: 24ch;
+}
+
+/* Pilares ------------------------------------------------------------------ */
+
+.pilares {
+  display: grid;
+  gap: clamp(18px, 2.4vw, 26px);
+  counter-reset: pilar;
+}
+
+@media (min-width: 900px) {
+  .pilares {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.pilar {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: clamp(26px, 3vw, 34px);
+  border: 1px solid var(--linha);
+  border-radius: var(--raio-g);
+  background: var(--superficie);
+  box-shadow: var(--sombra-1);
+  overflow: hidden;
+}
+
+/* O número é ornamento, não conteúdo: sai do fluxo e do leitor de tela.
+   A ordem real está no <h3>, que já diz "Você divulga", "O link rastreia". */
+.pilar::before {
+  counter-increment: pilar;
+  content: counter(pilar, decimal-leading-zero);
+  position: absolute;
+  top: -14px;
+  right: 10px;
+  font-family: var(--fonte-titulo);
+  font-weight: 800;
+  font-size: 5.2rem;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  color: var(--ambar);
+  opacity: 0.16;
+  pointer-events: none;
+}
+
+.pilar__ator {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ambar-texto);
+}
+
+.pilar h3 {
+  font-size: clamp(1.3rem, 1.1rem + 0.8vw, 1.65rem);
+}
+
+.pilar p {
+  color: var(--tinta-2);
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+/* Portal do parceiro ------------------------------------------------------- */
+
+.portal {
+  display: grid;
+  gap: clamp(16px, 2vw, 22px);
+}
+
+@media (min-width: 700px) {
+  .portal {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1040px) {
+  .portal {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.portal__grupo {
+  padding: clamp(22px, 2.6vw, 28px);
+  border: 1px solid var(--linha);
+  border-radius: var(--raio-g);
+  background: var(--superficie);
+}
+
+.portal__grupo h3 {
+  font-size: 1.02rem;
+  margin-bottom: 14px;
+}
+
+.portal__itens {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.portal__itens li {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  font-size: 0.9rem;
+  color: var(--tinta-2);
+  line-height: 1.5;
+}
+
+.portal__itens li::before {
+  content: '';
+  flex-shrink: 0;
+  width: 6px;
+  height: 6px;
+  margin-top: 8px;
+  border-radius: 50%;
+  background: var(--ambar);
+}
+
+/* Comparativo -------------------------------------------------------------- */
+
+.comparativo {
+  border: 1px solid var(--linha);
+  border-radius: var(--raio-g);
+  overflow: hidden;
+  background: var(--superficie);
+}
+
+/* A tabela rola dentro do próprio quadro; a página nunca rola na horizontal. */
+.comparativo__rolagem {
+  overflow-x: auto;
+}
+
+.comparativo table {
+  width: 100%;
+  min-width: 620px;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.comparativo th,
+.comparativo td {
+  padding: 16px clamp(14px, 2vw, 22px);
+  border-bottom: 1px solid var(--linha);
+  vertical-align: top;
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.comparativo tbody tr:last-child th,
+.comparativo tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.comparativo thead th {
+  background: var(--superficie-2);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--tinta-3);
+  white-space: nowrap;
+}
+
+.comparativo thead .comparativo__nos {
+  color: var(--ambar-texto);
+}
+
+.comparativo tbody th {
+  font-weight: 700;
+  color: var(--tinta);
+  width: 1%;
+  white-space: nowrap;
+}
+
+.comparativo__nos {
+  background: rgba(255, 194, 14, 0.07);
+  color: var(--tinta);
+  font-weight: 600;
+}
+
+.comparativo__comum {
+  color: var(--tinta-3);
+}
+
+.comparativo__marca {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.comparativo__marca svg {
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+/* Assinatura do produtor --------------------------------------------------- */
+
+.assinatura {
+  display: grid;
+  gap: clamp(26px, 4vw, 48px);
+  align-items: center;
+}
+
+@media (min-width: 900px) {
+  .assinatura {
+    grid-template-columns: 1fr 0.85fr;
+  }
+}
+
+.assinatura__selo {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 18px 10px 12px;
+  border: 1px solid var(--linha-forte);
+  border-radius: var(--raio-pilula);
+  background: var(--superficie);
+  text-decoration: none;
+  color: var(--tinta);
+}
+
+.assinatura__selo:hover {
+  border-color: var(--ambar);
+}
+
+.assinatura__selo strong {
+  font-family: var(--fonte-titulo);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  font-size: 1rem;
+}
+
+.assinatura__selo span {
+  display: block;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--tinta-3);
+}
+
+/* O lockup é exportado sobre o navy oficial, mas o WebP desloca o fundo
+   chapado o suficiente para aparecer uma emenda contra a seção. Em vez de
+   perseguir o casamento exato de cor, ele ganha moldura: vira um cartão de
+   marca, e a diferença de tom deixa de ser defeito. */
+.assinatura__logo {
+  width: 100%;
+  max-width: 460px;
+  height: auto;
+  display: block;
+  margin-inline: auto;
+  border-radius: var(--raio-g);
+  border: 1px solid rgba(255, 194, 14, 0.22);
+  box-shadow: 0 18px 46px rgba(0, 0, 0, 0.4);
+}
+
+/* Chamada final ------------------------------------------------------------ */
+
+.chamada {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--raio-g);
+  border: 1px solid rgba(255, 194, 14, 0.28);
+  background:
+    radial-gradient(ellipse at 78% 20%, rgba(255, 194, 14, 0.16) 0%, transparent 58%),
+    var(--navy-2);
+  padding: clamp(34px, 5vw, 66px);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.chamada h2 {
+  max-width: 20ch;
+}
+
+.chamada .subtitulo {
+  max-width: 54ch;
+  margin-inline: auto;
+}
+
+/* Em telas estreitas o CTA do topo e o gatilho do menu disputavam a mesma
+   linha e o lockup era espremido. Abaixo de 600px o CTA sai do cabeçalho —
+   ele continua sendo o primeiro item de dentro do menu. */
+@media (max-width: 599px) {
+  .topo__acao {
+    display: none;
+  }
+}
+
+@media (max-width: 1119px) {
+  .topo__acao {
+    margin-left: auto;
+  }
+  .topo__gatilho {
+    margin-left: 10px;
+  }
+  .topo__interno {
+    gap: 12px;
+  }
 }

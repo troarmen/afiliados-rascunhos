@@ -136,7 +136,7 @@ table.adm-tabela {
 }
 
 .adm-tabela a {
-  color: var(--ouro-texto);
+  color: var(--ambar-texto);
   font-weight: 600;
   text-decoration: none;
 }
@@ -164,11 +164,11 @@ table.adm-tabela {
 }
 
 .etiqueta[data-status='novo'] {
-  background: var(--ouro-suave);
-  color: var(--ouro-texto);
+  background: var(--ambar-suave);
+  color: var(--ambar-texto);
 }
 .etiqueta[data-status='em_analise'] {
-  background: rgba(200, 164, 92, 0.18);
+  background: rgba(255, 194, 14, 0.18);
   color: var(--alerta);
 }
 .etiqueta[data-status='contatado'],
@@ -186,7 +186,7 @@ table.adm-tabela {
   color: var(--erro);
 }
 .etiqueta[data-status='standby'] {
-  background: var(--creme);
+  background: var(--gelo);
   color: var(--tinta-3);
 }
 
@@ -209,11 +209,11 @@ table.adm-tabela {
 .pontuacao__preenchimento {
   height: 100%;
   border-radius: 999px;
-  background: var(--ouro-texto);
+  background: var(--ambar-texto);
 }
 
 .pontuacao[data-tom='medio'] .pontuacao__preenchimento {
-  background: var(--ouro);
+  background: var(--ambar);
 }
 .pontuacao[data-tom='baixo'] .pontuacao__preenchimento {
   background: var(--tinta-3);
@@ -309,12 +309,12 @@ table.adm-tabela {
 }
 
 .botao-status:hover {
-  border-color: var(--ouro-texto);
-  color: var(--ouro-texto);
+  border-color: var(--ambar-texto);
+  color: var(--ambar-texto);
 }
 
 .botao-status[data-ativo='true'] {
-  background: var(--ouro-texto);
-  border-color: var(--ouro-texto);
+  background: var(--ambar-texto);
+  border-color: var(--ambar-texto);
   color: #fff;
 }

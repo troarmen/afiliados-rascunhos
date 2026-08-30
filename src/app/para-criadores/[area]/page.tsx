@@ -5,7 +5,7 @@ import { Topo } from '@/components/Topo'
 import { Rodape } from '@/components/Rodape'
 import { ListaFaq } from '@/components/secoes/Faq'
 import { areasComPagina, comissao, faq } from '@/lib/programa'
-import { site } from '@/lib/site'
+import { site, urlAbsoluta } from '@/lib/site'
 
 /**
  * Páginas programáticas de SEO — uma por área de conteúdo.
@@ -18,6 +18,21 @@ import { site } from '@/lib/site'
 
 type Conteudo = {
   titulo: string
+  /**
+   * Usado só no <title>, quando o `titulo` mais o sufixo da marca passa de
+   * ~70 caracteres e o Google corta. Hoje só "concursos e vestibulares"
+   * precisa: o H1 continua com o nome inteiro da área.
+   */
+  tituloSeo?: string
+  /**
+   * Linha curta só para a meta description.
+   *
+   * Antes a description era `intro` + o fecho comercial, e as dez páginas
+   * passavam de 185 caracteres — o Google cortava exatamente no fecho
+   * ("40% a 60%, material pronto, Hotmart"), que é o que faz clicar.
+   * O resumo cabe no corte e não repete o title.
+   */
+  resumo: string
   intro: string
   contexto: string
   encaixe: string[]
@@ -26,6 +41,8 @@ type Conteudo = {
 
 const CONTEUDO: Record<string, Conteudo> = {
   economia: {
+    resumo:
+      'Seu canal explica inflação, juros e câmbio para quem acompanha de verdade.',
     titulo: 'Programa de afiliados para canais de economia',
     intro:
       'Se você explica inflação, juros, câmbio ou política monetária para uma audiência que realmente acompanha, este programa foi desenhado literalmente para o seu caso.',
@@ -44,6 +61,8 @@ const CONTEUDO: Record<string, Conteudo> = {
     ],
   },
   historia: {
+    resumo:
+      'Canais de história têm audiência que assiste até o fim — e economia é o passo seguinte.',
     titulo: 'Programa de afiliados para canais de história',
     intro:
       'História e economia se explicam uma pela outra. Se o seu público gosta de entender por que as coisas aconteceram, ele já está a um passo de querer entender como a economia funciona.',
@@ -62,6 +81,8 @@ const CONTEUDO: Record<string, Conteudo> = {
     ],
   },
   filosofia: {
+    resumo:
+      'Sua audiência topa exercício difícil, e é ela que termina um curso.',
     titulo: 'Programa de afiliados para canais de filosofia',
     intro:
       'Sua audiência já topa exercício intelectual difícil. Essa é exatamente a audiência que termina um curso — e que decide comprar por argumento, não por gatilho de escassez.',
@@ -80,6 +101,8 @@ const CONTEUDO: Record<string, Conteudo> = {
     ],
   },
   matematica: {
+    resumo:
+      'Quem ensina matemática tem a credibilidade de quem prova o que diz.',
     titulo: 'Programa de afiliados para canais de matemática',
     intro:
       'Quem ensina matemática tem a credibilidade mais difícil de comprar: a de quem prova o que diz. Vale usar isso para indicar formação de verdade.',
@@ -98,6 +121,8 @@ const CONTEUDO: Record<string, Conteudo> = {
     ],
   },
   sociologia: {
+    resumo:
+      'Desigualdade, trabalho, mercado, classe: metade do vocabulário já é economia.',
     titulo: 'Programa de afiliados para canais de sociologia',
     intro:
       'Desigualdade, trabalho, mercado, classe: metade do vocabulário da sociologia é economia. Seu público já está fazendo a pergunta que o curso responde.',
@@ -116,6 +141,8 @@ const CONTEUDO: Record<string, Conteudo> = {
     ],
   },
   direito: {
+    resumo:
+      'Direito tributário, regulatório e concorrencial não se entendem sem economia.',
     titulo: 'Programa de afiliados para canais de direito',
     intro:
       'Direito tributário, regulatório e concorrencial não se entendem sem economia. Seu público profissional sabe disso — e paga por formação que resolva a lacuna.',
@@ -134,6 +161,8 @@ const CONTEUDO: Record<string, Conteudo> = {
     ],
   },
   geopolitica: {
+    resumo:
+      'Toda análise geopolítica esbarra em comércio, energia, moeda e sanção.',
     titulo: 'Programa de afiliados para canais de geopolítica',
     intro:
       'Toda análise geopolítica esbarra em comércio, energia, moeda e sanção. Seu público já sente essa lacuna — e quer fechá-la.',
@@ -152,6 +181,8 @@ const CONTEUDO: Record<string, Conteudo> = {
     ],
   },
   financas: {
+    resumo:
+      'Indique algo que explica o sistema, não mais uma promessa de renda extra.',
     titulo: 'Programa de afiliados para canais de finanças pessoais',
     intro:
       'Seu público já compra educação financeira. A diferença aqui é indicar algo que explica o sistema, e não mais uma promessa de renda extra.',
@@ -170,6 +201,8 @@ const CONTEUDO: Record<string, Conteudo> = {
     ],
   },
   ciencias: {
+    resumo:
+      'Público treinado em método reconhece rigor — e desconfia de curso raso.',
     titulo: 'Programa de afiliados para canais de ciências',
     intro:
       'Física, química e biologia formam público treinado em método e evidência — gente que reconhece rigor quando vê, e que desconfia de curso raso.',
@@ -188,6 +221,9 @@ const CONTEUDO: Record<string, Conteudo> = {
     ],
   },
   concursos: {
+    tituloSeo: 'Programa de afiliados para canais de concursos',
+    resumo:
+      'Economia cai em prova e seu público compra material o ano inteiro.',
     titulo: 'Programa de afiliados para canais de concursos e vestibulares',
     intro:
       'Economia cai em prova — e seu público compra material o ano inteiro. É o encaixe mais direto entre conteúdo gratuito e curso pago.',
@@ -222,8 +258,8 @@ export async function generateMetadata({
   if (!conteudo || !dados) return {}
 
   return {
-    title: conteudo.titulo,
-    description: `${conteudo.intro} Comissão de ${comissao.base}% a ${comissao.teto}%, material pronto e pagamento pela Hotmart.`,
+    title: conteudo.tituloSeo ?? conteudo.titulo,
+    description: `${conteudo.resumo} Comissão de ${comissao.base}% a ${comissao.teto}%, material pronto e pagamento pela Hotmart.`,
     alternates: { canonical: `/para-criadores/${area}` },
     openGraph: {
       title: conteudo.titulo,
@@ -241,8 +277,29 @@ export default async function PaginaArea({ params }: { params: Promise<{ area: s
 
   const outras = areasComPagina.filter((a) => a.slug !== area).slice(0, 6)
 
+  // Espelha a trilha visível logo abaixo — o schema e a migalha precisam
+  // dizer a mesma coisa, senão o Google descarta os dois.
+  const migalhaEstruturada = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Início', item: urlAbsoluta('/') },
+      { '@type': 'ListItem', position: 2, name: 'Programa', item: urlAbsoluta('/programa') },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: dados.nome,
+        item: urlAbsoluta(`/para-criadores/${area}`),
+      },
+    ],
+  }
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(migalhaEstruturada) }}
+      />
       <Topo />
       <main id="conteudo">
         <section className="secao">
@@ -321,7 +378,8 @@ export default async function PaginaArea({ params }: { params: Promise<{ area: s
             </div>
 
             <p className="campo__dica" style={{ marginTop: 32 }}>
-              Programa mantido pelo {site.produtor}. Vendas e comissões processadas pela Hotmart.
+              Programa do {site.nome}, com catálogo produzido pelo {site.produtor}. Vendas e
+              comissões processadas pela Hotmart.
             </p>
           </div>
         </section>

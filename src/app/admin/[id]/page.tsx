@@ -6,7 +6,7 @@ import { estaAutenticado } from '@/lib/auth'
 import { obterCandidatura, modoPersistencia } from '@/lib/store'
 import { faixaDoScore } from '@/lib/score'
 import { dataLonga, nomeDaArea, normalizarUrl } from '@/lib/utils'
-import { linkWhatsApp } from '@/lib/site'
+import { linkWhatsApp, site } from '@/lib/site'
 
 export const dynamic = 'force-dynamic'
 
@@ -20,7 +20,7 @@ export default async function FichaCandidato({ params }: { params: Promise<{ id:
   const faixa = faixaDoScore(c.score)
   const redes = Object.entries(c.redes ?? {}).filter(([, valor]) => Boolean(valor))
   const whatsapp = linkWhatsApp(
-    `Olá, ${c.nome.split(' ')[0]}! Aqui é da equipe do Rascunhos Econômicos, sobre sua inscrição no Projeto Afiliado.`,
+    `Olá, ${c.nome.split(' ')[0]}! Aqui é da equipe do ${site.nome}, sobre a sua inscrição no programa de afiliados.`,
   )
 
   return (
@@ -55,7 +55,7 @@ export default async function FichaCandidato({ params }: { params: Promise<{ id:
                       href={normalizarUrl(c.canalUrl)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      style={{ color: 'var(--ouro-texto)', fontWeight: 600 }}
+                      style={{ color: 'var(--ambar-texto)', fontWeight: 600 }}
                     >
                       {c.canalNome}
                     </a>
@@ -129,7 +129,7 @@ export default async function FichaCandidato({ params }: { params: Promise<{ id:
                 <div>
                   <dt>E-mail</dt>
                   <dd>
-                    <a href={`mailto:${c.email}`} style={{ color: 'var(--ouro-texto)' }}>
+                    <a href={`mailto:${c.email}`} style={{ color: 'var(--ambar-texto)' }}>
                       {c.email}
                     </a>
                   </dd>

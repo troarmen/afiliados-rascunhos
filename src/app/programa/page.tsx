@@ -6,10 +6,16 @@ import { comissao, etapas, criteriosSelecao } from '@/lib/programa'
 import { site } from '@/lib/site'
 
 export const metadata: Metadata = {
-  title: 'Como funciona o programa de parceria',
+  title: 'Como funciona o programa de afiliados: regras e comissão',
   description:
-    'Regras, comissão, critérios de seleção e obrigações do Projeto Afiliado Rascunhos Econômicos, explicados por extenso.',
+    'Comissão de 40% a 60%, 30 dias de rastreio, pagamento pela Hotmart e critérios de seleção: as regras completas do programa, por extenso.',
   alternates: { canonical: '/programa' },
+  openGraph: {
+    title: 'Como funciona o programa de afiliados do Duck Affiliate',
+    description:
+      'Comissão, rastreio, pagamento e critérios de seleção — a versão longa e sem marketing das regras.',
+    url: '/programa',
+  },
 }
 
 export default function Programa() {
@@ -25,7 +31,7 @@ export default function Programa() {
 
           <div className="prosa">
             <span className="olho">Documento aberto</span>
-            <h1>Como funciona o Projeto Afiliado</h1>
+            <h1>Como funciona o programa de afiliados do {site.nome}</h1>
             <p className="subtitulo">
               A versão longa e sem marketing do que estamos propondo. Se você vai colocar seu
               nome em uma indicação, merece ler as regras inteiras antes.
@@ -33,8 +39,8 @@ export default function Programa() {
 
             <h2>O que é</h2>
             <p>
-              Um programa de parceria entre o {site.produtor} e criadores de conteúdo
-              educacional. Você indica os cursos para a sua audiência; a venda, o rastreio e o
+              Um programa de afiliados para criadores de conteúdo educacional, com foco em canais
+              do YouTube. Você indica os cursos para a sua audiência; a venda, o rastreio e o
               pagamento acontecem na Hotmart; você recebe a comissão por venda aprovada.
             </p>
             <p>
@@ -42,6 +48,12 @@ export default function Programa() {
               economia, história, filosofia, matemática e outras áreas, com comunidades
               qualificadas e sem produto próprio para monetizar. Do outro lado existe um catálogo
               de cursos que já funciona comercialmente. O programa conecta as duas pontas.
+            </p>
+            <p>
+              O {site.nome} é a estrutura da parceria — recrutamento, seleção, material e
+              acompanhamento. O primeiro catálogo de cursos disponível dentro dela é produzido
+              pelo {site.produtor}; daí a assinatura <em>{site.selo}</em>. A arquitetura foi
+              desenhada para receber outros produtores de conteúdo educacional depois.
             </p>
 
             <h2>O que você recebe</h2>
@@ -52,8 +64,8 @@ export default function Programa() {
               </li>
               <li>Link de afiliado e cupom de desconto exclusivo com o seu nome.</li>
               <li>
-                Biblioteca de materiais: artes, thumbnails, cortes de vídeo, roteiros e textos
-                prontos.
+                Kit de divulgação pensado para o YouTube: thumbnails, cortes editados, roteiro de
+                menção, texto de descrição e comentário fixado.
               </li>
               <li>Calendário de campanhas e cronograma de descontos com antecedência.</li>
               <li>Acesso à comunidade de parceiros e contato direto com a equipe do produto.</li>
@@ -121,8 +133,8 @@ export default function Programa() {
               ))}
             </ul>
             <p>
-              Não usamos número mínimo de seguidores como corte. Já recusamos perfis grandes com
-              audiência desalinhada e aprovamos canais pequenos com comunidade forte.
+              Não usamos número mínimo de inscritos como corte. Um canal pequeno com comunidade
+              forte e alinhada pesa mais na análise do que um perfil grande e disperso.
             </p>
 
             <h2>Encerramento da parceria</h2>
@@ -135,9 +147,11 @@ export default function Programa() {
 
             <div className="cartao" style={{ marginTop: 20 }}>
               <h3>Pronto para se candidatar?</h3>
-              <p>Leva cinco minutos e a resposta sai em até sete dias úteis.</p>
+              <p>
+                Leva cinco minutos e a resposta sai em até {comissao.prazoResposta} dias úteis.
+              </p>
               <Link className="botao" href="/#inscricao" style={{ alignSelf: 'flex-start', marginTop: 8 }}>
-                Quero participar
+                Quero ser afiliado
               </Link>
             </div>
           </div>

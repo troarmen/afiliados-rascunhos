@@ -7,7 +7,7 @@ import { site } from '@/lib/site'
 export const metadata: Metadata = {
   title: 'Política de privacidade',
   description:
-    'Como tratamos os dados enviados no formulário de inscrição do Projeto Afiliado Rascunhos Econômicos.',
+    'Como tratamos os dados enviados no formulário de inscrição do programa de afiliados do Duck Affiliate.',
   alternates: { canonical: '/privacidade' },
 }
 

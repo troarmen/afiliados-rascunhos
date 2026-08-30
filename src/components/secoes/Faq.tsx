@@ -18,10 +18,10 @@ export function ListaFaq({ perguntas = faq }: { perguntas?: Pergunta[] }) {
 
 export function Faq() {
   return (
-    <section className="secao secao--creme" id="faq">
+    <section className="secao secao--gelo" id="faq">
       <div className="envelope">
         <div className="cabecalho-secao">
-          <span className="olho">Perguntas frequentes</span>
+          <span className="olho">Dúvidas</span>
           <h2>
             O que costumam perguntar <span className="realce">antes de se inscrever</span>
           </h2>
@@ -31,7 +31,7 @@ export function Faq() {
 
         <p style={{ marginTop: 28, color: 'var(--tinta-2)', fontSize: '0.93rem' }}>
           Ficou algo de fora?{' '}
-          <Link href="/#contato" style={{ color: 'var(--ouro-texto)', fontWeight: 600 }}>
+          <Link href="/#contato" style={{ color: 'var(--ambar-texto)', fontWeight: 600 }}>
             Fale com a gente
           </Link>{' '}
           antes de se inscrever.

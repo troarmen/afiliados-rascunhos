@@ -6,13 +6,13 @@ export function Selecao() {
     <section className="secao" id="selecao">
       <div className="envelope">
         <div className="cabecalho-secao">
-          <span className="olho">Como funciona a seleção</span>
+          <span className="olho">A seleção</span>
           <h2>
             Análise humana, <span className="realce">critério aberto</span>
           </h2>
           <p className="subtitulo">
             Toda candidatura é lida por quem toca o projeto. Estes são os quatro pontos que
-            pesam na decisão — e nenhum deles é &ldquo;número de seguidores&rdquo; sozinho.
+            pesam na decisão — e nenhum deles é &ldquo;número de inscritos&rdquo; sozinho.
           </p>
         </div>
 

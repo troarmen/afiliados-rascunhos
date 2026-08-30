@@ -5,7 +5,7 @@ parceiros. Este é o plano para isso.
 
 ## Premissa
 
-Ninguém busca "Projeto Afiliado Rascunhos Econômicos" — o programa não existe ainda. As
+Ninguém busca "Duck Affiliate" — a marca acabou de nascer. As
 buscas que existem são de **problema**, feitas por criadores:
 
 - "como monetizar canal educacional"

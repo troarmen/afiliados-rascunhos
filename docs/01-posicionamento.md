@@ -7,20 +7,36 @@ professores, pesquisadores, criadores de conteúdo sério — ela evoca curso de
 promessa de ganho fácil e gente vendendo o que não usa.
 
 Esse público não recusa dinheiro. Recusa **constrangimento**. O risco que ele calcula não é
-financeiro, é reputacional: "o que meus seguidores vão pensar de mim se eu indicar isso?"
+financeiro, é reputacional: "o que meus inscritos vão pensar de mim se eu indicar isso?"
 
 Todo o posicionamento decorre daí.
 
+## O nicho: YouTube educacional
+
+O programa fala com **quem tem canal no YouTube e ensina alguma coisa**. Não é um recorte
+cosmético — ele muda o produto:
+
+- o kit de divulgação é feito para **vídeo longo e corte**: thumbnail, corte editado,
+  roteiro de menção de 40 segundos, texto de descrição e comentário fixado;
+- a análise de candidatura olha **comentário e retenção**, não número de inscritos;
+- a copy fala em "canal", "inscritos" e "vídeo", não em "seguidores" e "perfil".
+
+Criadores de Instagram, TikTok, podcast, newsletter e comunidade fechada **continuam sendo
+aceitos**. O foco é uma escolha de comunicação e de material, não uma cerca. O aviso em
+`#quem-pode` diz isso explicitamente, e o formulário pergunta qual é o canal principal.
+
+Um programa que fala com todo mundo não fala com ninguém; um programa que fecha a porta
+perde bom candidato. O meio-termo é: mirar no YouTube, aceitar quem chegar de outro lugar.
+
 ## Frase-âncora
 
-> Sua audiência já *confia* em você. Falta o produto certo.
+> Seu canal já ensina. Agora ele também *paga*.
 
-Ela funciona porque inverte a hierarquia usual. Não é o produtor fazendo um favor ao
-criador; é o criador que já tem o ativo escasso — confiança — e a quem falta apenas o
-produto. Isso põe os dois lados no mesmo nível, que é exatamente o modelo de parceria
-descrito no documento de visão.
+Ela funciona porque parte de algo que o criador já sabe ser verdade (o canal ensina) e
+acrescenta a única parte que falta (pagar), sem prometer valor, prazo nem transformação.
+Não há verbo no imperativo, não há "ganhe", não há cifra.
 
-O itálico em "confia" não é enfeite: é a assinatura tipográfica da marca (ver abaixo).
+O realce em "paga" não é enfeite: é a assinatura tipográfica da marca (ver abaixo).
 
 ## Os quatro compromissos do tom de voz
 
@@ -32,83 +48,130 @@ O itálico em "confia" não é enfeite: é a assinatura tipográfica da marca (v
 3. **Nada de escassez fabricada.** Sem contador regressivo, sem "últimas vagas", sem
    depoimento inventado. O público-alvo identifica esses recursos em dois segundos e o custo
    de ser pego é a credibilidade inteira.
-4. **Prazo é promessa.** "Resposta em até 7 dias úteis" aparece em cinco lugares no site.
+4. **Prazo é promessa.** "Resposta em até 7 dias úteis" aparece em vários lugares no site.
    Se a operação não cumprir, o dano é maior do que se nunca tivéssemos prometido — ver o
    playbook de operação.
+
+## A regra que governa toda a copy: nada de dado inventado
+
+O programa **não tem histórico**. Não houve turma anterior, não há parceiro ativo, não há
+volume de vendas. Por isso o site não traz — e não pode passar a trazer sem que o número
+exista de verdade:
+
+- depoimento de parceiro;
+- contagem de afiliados, de vendas ou de faturamento;
+- "já recusamos X" ou "já aprovamos Y";
+- métrica de mercado sem fonte.
+
+No lugar disso, a faixa de prova sob o hero (`Numeros`) carrega a **regra** do programa —
+comissão, rastreio, custo, prazo de resposta. É verificável, e para quem está decidindo se
+se inscreve é mais útil que prova social genérica.
+
+O comparativo (`#comparativo`) descreve o **padrão de mercado** na coluna da direita, nunca
+um concorrente nomeado: não temos como auditar o programa alheio. Cada linha da coluna
+esquerda é regra nossa e está escrita nos termos.
 
 ---
 
 ## Identidade visual
 
-A identidade **não foi inventada para este projeto**. Ela é herdada do
-[rascunhoseconomicos.com](https://rascunhoseconomicos.com): os valores abaixo foram
-extraídos das variáveis CSS do próprio site do canal (`/assets/site.css`), e não
-aproximados a olho.
+O Duck Affiliate é **marca própria**. A identidade sai do logo oficial — pato de óculos
+escuros sobre navy, wordmark bicolor, seta ascendente — e **não** da paleta do Rascunhos
+Econômicos.
 
-Isso importa porque o parceiro chega aqui vindo de um vídeo do canal. Se a página parecer
-de outra empresa, ele hesita — e hesitação, num formulário de cinco minutos, é abandono.
+Isso é uma inversão deliberada em relação à primeira versão do projeto, que herdava creme e
+dourado do canal. O motivo: o documento de visão pede que o site seja "um ativo digital
+independente", capaz de receber outros produtores depois. Uma marca que veste a roupa de um
+produtor específico não sobrevive à chegada do segundo.
+
+O que preserva a confiança de quem chega vindo de um vídeo do canal não é a paleta, é a
+**assinatura**: *Powered by Rascunhos Econômicos* aparece na pílula do cabeçalho, no rodapé,
+no cartão social e numa seção própria da home (`#catalogo`) que explica a relação em duas
+frases.
 
 ### Paleta
 
-| Papel | Token | Valor | Origem no site do canal |
-|---|---|---|---|
-| Fundo escuro (hero, faixas, rodapé) | `--tinta` | `#0a0e1a` | `--ink` / `--bg-dark` |
-| Fundo mais fundo | `--breu` | `#060912` | `--bg-darker` |
-| Fundo claro | `--papel` | `#f5f3ee` | `--bg-light` |
-| Faixa alternada | `--creme` | `#ebe7dc` | `--bg-cream` |
-| Dourado (marca) | `--ouro` | `#c8a45c` | `--accent` |
-| Dourado escuro | `--ouro-forte` | `#9c7a3a` | `--accent-dark` |
-| Dourado claro | `--ouro-suave` | `#e8d9b8` | `--accent-soft` |
-| Texto secundário | `--tinta-2` | `#4a4e5a` | `--ink-muted` |
+Amostrada pixel a pixel do PNG do logo, com um script que contou as famílias de cor da
+imagem. Não é aproximação de olho.
 
-**Uma correção acessível em relação ao original:** `#c8a45c` sobre branco tem contraste de
-cerca de 2,1:1 — abaixo do mínimo da WCAG para texto. No nosso sistema o dourado puro fica
-reservado a fundo escuro, números grandes e ornamento; para texto e links sobre fundo claro
-existe o token `--ouro-texto`, que resolve para `#9c7a3a` (≈4,6:1). Visualmente é o mesmo
-dourado; legalmente e na prática, é legível.
+| Papel | Token | Valor | Origem |
+|---|---|---|---|
+| Fundo escuro (hero, faixas, cabeçalho) | `--navy` | `#000E29` | Fundo do logo |
+| Fundo mais fundo | `--abissal` | `#00081C` | Derivado |
+| Fundo claro | `--papel` | `#F4F6FB` | Neutro azulado |
+| Faixa alternada | `--gelo` | `#E9EEF8` | Derivado |
+| Âmbar (marca) | `--ambar` | `#FFC20E` | Pato, aro e seta |
+| Âmbar claro | `--ambar-claro` | `#FFD84D` | Luz do pato |
+| Âmbar para texto | `--ambar-texto` | `#8A5A00` | Derivado acessível |
+| Azul de apoio | `--royal` | `#1B4CB8` | Jaqueta e óculos |
+| Texto secundário | `--tinta-2` | `#47526B` | Derivado |
+
+**A correção acessível:** `#FFC20E` sobre branco dá **1,62:1** — muito abaixo do mínimo da
+WCAG para texto. No sistema, o âmbar puro fica reservado a fundo escuro, botão, números
+grandes e ornamento; para texto e link sobre fundo claro existe `--ambar-texto`, com
+**5,48:1** sobre `--papel`. Visualmente lê como o mesmo âmbar; na prática, é legível.
+
+Pares conferidos e aprovados: âmbar/navy 11,85:1 · branco/navy 19,18:1 · navy/papel 17,74:1
+· navy sobre botão âmbar 11,85:1 · royal/branco 7,57:1.
 
 ### Tipografia
 
-Mesma dupla do canal, carregada da mesma fonte (Google Fonts):
+- **Figtree** — títulos, números e nomes de cartão. Peso **800**, entrelinha 1.04,
+  espacejamento −0.035em. É a geométrica pesada de licença aberta mais próxima do wordmark
+  do logo. Não use peso 500 em título: perde o gesto da marca.
+- **Inter** — texto corrido, interface, botões (14px / 700 no primário).
 
-- **Fraunces** — títulos, números e nomes de cartão. Peso **500**, entrelinha 1.06,
-  espacejamento negativo (−0.03em). Não use 600/700 em título: fica pesado demais e sai do
-  padrão do canal.
-- **Inter** — texto corrido, interface, botões (14px / 600).
+A serifa Fraunces saiu do projeto. Ela é a voz do Rascunhos Econômicos e, mantida aqui,
+apagaria justamente a distinção que o rebrand existe para criar.
 
-### A assinatura: a expressão em itálico dourado
+### A assinatura: a expressão riscada em âmbar
 
-O gesto mais reconhecível do site do canal é uma expressão do título em **Fraunces itálico,
-peso 400, na cor dourada**:
+O gesto mais reconhecível do logo é a **seta amarela que passa por baixo do pato**.
+Replicamos isso na classe `.realce`: a expressão de destaque fica em âmbar com um traço
+arredondado sob a linha de base.
 
-> Economia é *ciência*. E dá para entendê-la sem rótulo.
-> Um projeto de divulgação científica — não um canal *de opinião*.
+> Seu canal já ensina. Agora ele também *paga*.
+> Você não recebe *só um link*.
 
-Replicamos isso na classe `.realce`, e a regra de uso é: **uma expressão por título, nunca
-duas**. É o que a mantém eficaz. Se todo título tiver duas palavras douradas, nenhuma
-chama atenção.
+A regra de uso é: **uma expressão por título, nunca duas**. É o que a mantém eficaz.
 
-### Outros elementos herdados
+O traço é um `::after` posicionado, não um `text-decoration`, porque precisa de folga em
+relação à linha de base e não pode cortar letra descendente na quebra de linha.
+
+### Outros elementos
 
 | Elemento | Tratamento |
 |---|---|
-| Brasão | Arquivo oficial (`public/logo.svg`), sempre sobre placa clara de 38px com raio 10px — o traçado é escuro e some no navy |
-| Olho de seção | 12px, 600, versalete, `letter-spacing: .18em`, dourado |
-| Botão primário | Fundo dourado, texto navy, raio 100px |
-| Cartões | Raio 14–16px, borda de 1px, sem sombra pesada |
-| Hero | Navy + brilho dourado radial deslocado à direita + malha quadriculada de 60px a 2% de opacidade |
-| Faixa deslizante | Termos em Fraunces separados por `✦` dourado, sobre o fundo mais escuro |
+| Emblema | `public/duck-emblema-192.webp`, sobre placa navy de 40px com raio 13px e aro âmbar a 35% |
+| Wordmark | Texto, não imagem: `<b>Duck</b>Affiliate`, âmbar + branco, Figtree 800 |
+| Olho de seção | 12px, 700, versalete, `letter-spacing: .18em`, âmbar-texto |
+| Botão primário | Fundo âmbar, texto navy, peso 700, raio 100px, sombra âmbar no hover |
+| Cartões | Raio 16–22px, borda de 1px, sombra leve |
+| Hero | Navy + brilho âmbar radial deslocado à direita + malha quadriculada de 60px a 2% |
+| Pilares | Numeral gigante em âmbar a 16% de opacidade, fora do fluxo e do leitor de tela |
 
-Duas coisas foram **acrescentadas**, não copiadas, porque o site do canal não tem
-equivalente: o painel de números do hero (a oferta precisa ser lida em três segundos) e os
-ordinais `— 01` em Fraunces itálico dourado nas etapas. O ordinal só aparece onde a ordem é
-informação de verdade; nos benefícios, que não são sequência, não há numeração.
+**Por que o emblema não tem fundo transparente:** o aro amarelo do círculo é interrompido
+pela cabeça do pato e pela seta, então o preenchimento a partir das bordas vaza para dentro
+do desenho e come a jaqueta. Ele é exportado sobre o navy do próprio logo, e a placa em CSS
+usa exatamente essa cor — a emenda desaparece sobre qualquer fundo de página.
+
+### Blocos acrescentados no reposicionamento
+
+Quatro seções não existiam na primeira versão e nasceram das referências de plataforma de
+afiliação (Eduzz, Guru):
+
+| Seção | Pergunta que responde |
+|---|---|
+| `Numeros` | "isso é sério?" — a regra do programa em quatro números |
+| `Pilares` | "quem faz o quê?" — você divulga, o link rastreia, a Hotmart paga |
+| `Portal` | "o que eu ganho além do link?" — o inventário do que chega na aprovação |
+| `Comparativo` | "por que aqui e não em outro?" — nós contra o padrão de mercado |
 
 ### Modo escuro
 
-O site do canal é claro com faixas navy. Nosso sistema faz o mesmo por padrão e ainda
-responde a `prefers-color-scheme: dark`, quando a página inteira assume o navy e as faixas
-escuras descem para `--breu` — a alternância entre seções continua legível nos dois temas.
+O site é claro com faixas navy por padrão e responde a `prefers-color-scheme: dark`, quando
+a página inteira assume o navy e as faixas escuras descem para `--abissal` — a alternância
+entre seções continua legível nos dois temas.
 
 A troca é feita só por tokens (`.escuro` e os blocos de tema em `globals.css`), então nenhum
 componente sabe em que tema está.
@@ -117,12 +180,12 @@ componente sabe em que tema está.
 
 ## Nome
 
-O documento de visão usa a sigla **PARE** (Projeto Afiliado Rascunhos Econômicos). No site,
-a marca visível é **"Projeto Afiliado"**, com "Rascunhos Econômicos" na pílula ao lado —
-espelhando o lockup do canal, onde "Rascunhos" aparece em Fraunces e "ECONÔMICOS" numa
-pílula contornada.
+**Duck Affiliate**, com a tagline *"Afiliados que transformam conteúdo em renda"*.
 
-Dois motivos: "PARE" como imperativo tem carga negativa em português, e um nome que não
-contém o produtor sobrevive melhor à expansão para outros produtores — que é a visão de
-longo prazo do documento. A sigla continua no `<meta>` e nos dados estruturados, para quem
-buscar por ela.
+O nome não contém o produtor, e é isso que o faz sobreviver à expansão para outros
+produtores de conteúdo educacional — a visão de longo prazo do documento original. A sigla
+PARE foi aposentada: como imperativo, tem carga negativa em português.
+
+No lockup, "Duck" vai em âmbar e "Affiliate" em branco, como no logo. Em telas abaixo de
+1220px a pílula *Powered by Rascunhos Econômicos* sai do cabeçalho por falta de espaço —
+ela é assinatura, não navegação, e continua presente no rodapé e na seção `#catalogo`.

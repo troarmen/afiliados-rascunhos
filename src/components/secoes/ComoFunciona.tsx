@@ -12,7 +12,7 @@ export function ComoFunciona() {
           </h2>
           <p className="subtitulo">
             Sem burocracia, sem contrato de gaveta e sem promessa vaga. Este é exatamente o
-            caminho que você vai percorrer.
+            caminho que você vai percorrer — e quanto tempo cada etapa leva.
           </p>
         </div>
 

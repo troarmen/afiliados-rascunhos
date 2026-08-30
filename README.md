@@ -1,12 +1,33 @@
-# PARE — Projeto Afiliado Rascunhos Econômicos
+# Duck Affiliate
 
-Central de apresentação, recrutamento e triagem de parceiros criadores de conteúdo.
+**Afiliados que transformam conteúdo em renda.**
+
+Programa de afiliados para canais educacionais do **YouTube**. Central de apresentação,
+recrutamento e triagem de parceiros criadores de conteúdo.
 
 Não é uma landing page com um Google Forms embutido: é uma aplicação Next.js com
 formulário próprio, banco de candidatos, triagem automática de prioridade e painel
 administrativo. A operação financeira (venda, rastreio e comissão) continua na Hotmart,
 como previsto no documento de visão — o que muda é que o **cadastro e o funil de
 seleção passam a ser um ativo nosso**, não de um formulário do Google.
+
+## Marca própria, catálogo do parceiro
+
+O Duck Affiliate é **marca independente**: nome, identidade visual, domínio e posicionamento
+são dele. O **Rascunhos Econômicos** é o produtor do primeiro catálogo de cursos oferecido
+dentro do programa — daí a assinatura *Powered by Rascunhos Econômicos*, que aparece na
+pílula do cabeçalho, no rodapé, no cartão social e numa seção própria da home
+(`#catalogo`).
+
+A separação é proposital e está no documento de visão: a arquitetura precisa receber outros
+produtores de conteúdo educacional depois, sem que o site tenha de ser reescrito.
+
+### Nicho: YouTube-first
+
+Toda a copy fala com quem tem canal no YouTube, e o kit de divulgação é feito para vídeo
+longo e corte. Criadores de Instagram, TikTok, podcast, newsletter e comunidade fechada
+**continuam sendo aceitos** — o formulário pergunta qual é o canal principal, e o aviso em
+`#quem-pode` diz isso com todas as letras.
 
 ---
 
@@ -57,23 +78,79 @@ src/
 └── middleware.ts                   Barreira do /admin
 supabase/schema.sql                 Tabela, índices, RLS e views do funil
 docs/                               Playbooks de operação, comunidade, SEO e roadmap
-preview/landing.html                Preview estático para aprovação do cliente
 ```
+
+O `preview/landing.html` foi removido no rebrand: era um espelho estático da identidade
+anterior e, mantido, mostraria a marca velha em qualquer aprovação de cliente. O preview
+agora é o próprio `npm run dev` (continua no histórico do git, se precisar).
+
+### Seções da home, na ordem
+
+`Hero` · `Numeros` · `Pilares` · `FaixaAreas` · `ComoFunciona` · `QuemPodeParticipar` ·
+`Beneficios` · `Comissao` · `Portal` · `Comparativo` · `Selecao` · `Assinatura` · `Faq` ·
+formulário · `Contato` · `Chamada`
+
+A sequência responde, nesta ordem, às perguntas de quem chega: o que é → é sério? → como
+funciona → serve para mim? → o que eu ganho → quanto → o que recebo → por que aqui → como
+me escolhem → de quem é o curso → e as dúvidas → me inscrevo.
 
 ---
 
 ## Identidade visual
 
-A paleta, a tipografia e o brasão vêm do site do cliente, não de um palpite: os valores
-foram extraídos das variáveis CSS de `rascunhoseconomicos.com/assets/site.css` e o brasão é
-o arquivo oficial (`/logo.svg`), baixado e versionado em [`public/logo.svg`](public/logo.svg).
+A paleta **sai do logo oficial**, amostrada pixel a pixel do PNG entregue — não é
+aproximação de olho:
 
-Navy `#0a0e1a`, creme `#f5f3ee` / `#ebe7dc`, dourado `#c8a45c`, Fraunces 500 + Inter — com a
-assinatura do canal: uma expressão do título em Fraunces itálico dourado. Tudo mora em
-tokens no topo de [`src/app/globals.css`](src/app/globals.css); nenhum componente conhece
-cor literal.
+| Token | Valor | Papel |
+|---|---|---|
+| `--navy` | `#000E29` | Fundo do logo, cabeçalho, faixas escuras |
+| `--ambar` | `#FFC20E` | Acento, botão primário, realce de título |
+| `--ambar-texto` | `#8A5A00` | Âmbar para **texto sobre fundo claro** |
+| `--royal` | `#1B4CB8` | Azul da jaqueta e dos óculos, cor de apoio |
+| `--papel` | `#F4F6FB` | Fundo claro (azulado, nunca creme) |
+
+O `--ambar` puro dá **1,6:1** sobre branco e não serve para texto corrido; por isso existe o
+`--ambar-texto`, com **5,5:1**. Todos os pares de cor do sistema foram conferidos em
+contraste WCAG antes de entrar.
+
+**Tipografia:** Figtree 800 no display (a geométrica pesada mais próxima do wordmark) e
+Inter na interface. A assinatura tipográfica é uma expressão do título em âmbar riscada por
+uma curva — o gesto da seta que o logo faz sob o pato (`.realce`).
+
+**A paleta creme e dourada do Rascunhos Econômicos não é usada aqui de propósito:** as duas
+marcas precisam ser distinguíveis à primeira vista.
+
+### Assets
+
+Todos derivados do logo oficial por [`public/`](public/):
+
+| Arquivo | Uso |
+|---|---|
+| `duck-emblema-192.webp` | Emblema no cabeçalho, rodapé e painel |
+| `duck-emblema.png` | Campo `logo` do schema.org |
+| `duck-lockup.webp` | Lockup completo na seção `#catalogo` |
+| `icone-64.png` · `apple-touch-icon.png` | Favicon e ícone de app |
+
+O emblema é exportado **sobre o navy oficial**, não com fundo transparente: o aro amarelo do
+círculo é interrompido pela cabeça do pato e pela seta, então o recorte por preenchimento
+vazava para dentro e comia a jaqueta. A placa em CSS usa exatamente a mesma cor, e a emenda
+some em qualquer fundo de página.
 
 Detalhes e regras de uso em [docs/01-posicionamento.md](docs/01-posicionamento.md).
+
+---
+
+## ⚠️ Regra de conteúdo: nada de dado inventado
+
+O programa não tem histórico — não houve turma anterior, não há parceiro ativo, não há
+volume de vendas. Por isso **não existe no site** depoimento, contagem de afiliados, número
+de vendas ou "já recusamos X"; e nada disso pode ser acrescentado sem que o dado exista.
+
+No lugar da prova social, a faixa sob o hero carrega a **regra** do programa (comissão,
+rastreio, custo, prazo de resposta) — verificável, e mais útil para quem está decidindo se
+se inscreve. O comparativo descreve o **padrão de mercado**, nunca um concorrente nomeado.
+
+Detalhe em [docs/01-posicionamento.md](docs/01-posicionamento.md).
 
 ---
 
@@ -94,8 +171,10 @@ Mudar qualquer um deles é editar uma linha: todo o site lê desse arquivo.
 
 Também precisam de decisão do cliente antes do ar:
 
-- **Domínio.** A sugestão é `afiliados.rascunhoseconomicos.com` (subdomínio herda parte da
-  autoridade do domínio principal). Ajuste em `NEXT_PUBLIC_SITE_URL`.
+- **Domínio.** Decidido: domínio próprio, coerente com a marca independente — **ainda não
+  comprado**. Até lá `NEXT_PUBLIC_SITE_URL` guarda um provisório e **nenhum domínio aparece
+  em texto visível do site**; comprar e trocar a variável resolve canonical, sitemap, OG e
+  o rodapé dos e-mails de uma vez.
 - **E-mail e WhatsApp** de contato (`src/lib/site.ts` e `.env.local`).
 - **Revisão jurídica** de `/termos` e `/privacidade`, incluindo razão social e CNPJ.
 

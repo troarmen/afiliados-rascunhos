@@ -2,28 +2,39 @@ import Link from 'next/link'
 import { site } from '@/lib/site'
 
 /**
- * Lockup do programa, espelhando o do canal:
- * [brasão em placa clara] + nome em Fraunces + qualificador em pílula.
+ * Lockup do Duck Affiliate: [emblema em placa navy] + wordmark bicolor
+ * + pílula com a assinatura do produtor do catálogo.
  *
- * O brasão é o arquivo oficial do cliente (public/logo.svg, baixado de
- * rascunhoseconomicos.com/logo.svg). É um traçado escuro sobre fundo claro —
- * por isso vai sempre sobre a placa `.marca__placa`, e nunca solto no navy.
+ * O emblema é o PNG recortado do logo oficial. Ele vem sobre o navy do
+ * próprio logo (a versão com alfa comia a jaqueta do pato), e a placa usa
+ * exatamente essa cor — por isso a emenda é invisível em qualquer fundo.
+ *
+ * O nome é texto, não imagem: escala com a tipografia, é selecionável e
+ * indexável, e o bicolor sai do <b> em âmbar, como no logo.
  */
-export function Brasao({ tamanho = 38 }: { tamanho?: number }) {
+export function Emblema({ tamanho = 40 }: { tamanho?: number }) {
   return (
     <span className="marca__placa" style={{ width: tamanho, height: tamanho }}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src="/logo.svg" alt="" width={tamanho} height={tamanho} />
+      <img src="/duck-emblema-192.webp" alt="" width={tamanho} height={tamanho} />
     </span>
   )
 }
 
-export function Marca({ href = '/' }: { href?: string }) {
+export function Wordmark() {
   return (
-    <Link className="marca" href={href} aria-label={`${site.nomeCompleto} — página inicial`}>
-      <Brasao />
-      <span className="marca__nome">Projeto Afiliado</span>
-      <span className="marca__pilula">{site.produtor}</span>
+    <span className="marca__nome">
+      <b>Duck</b>Affiliate
+    </span>
+  )
+}
+
+export function Marca({ href = '/', comSelo = true }: { href?: string; comSelo?: boolean }) {
+  return (
+    <Link className="marca" href={href} aria-label={`${site.nome} — página inicial`}>
+      <Emblema />
+      <Wordmark />
+      {comSelo && <span className="marca__pilula">{site.selo}</span>}
     </Link>
   )
 }

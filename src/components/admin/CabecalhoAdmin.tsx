@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { Brasao } from '../Marca'
+import { Emblema } from '../Marca'
 
 export function CabecalhoAdmin({ modo }: { modo: 'supabase' | 'arquivo' }) {
   const router = useRouter()
@@ -17,7 +17,7 @@ export function CabecalhoAdmin({ modo }: { modo: 'supabase' | 'arquivo' }) {
     <header className="adm__topo">
       <div className="adm__topo-interno">
         <Link className="adm__marca" href="/admin">
-          <Brasao tamanho={28} />
+          <Emblema tamanho={28} />
           Painel de parceiros
         </Link>
 

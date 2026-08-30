@@ -7,7 +7,7 @@ import { site } from '@/lib/site'
 
 export const metadata: Metadata = {
   title: 'Termos de participação',
-  description: 'Regras de participação no Projeto Afiliado Rascunhos Econômicos.',
+  description: 'Regras de participação no programa de afiliados do Duck Affiliate.',
   alternates: { canonical: '/termos' },
 }
 
@@ -32,7 +32,7 @@ export default function Termos() {
 
             <h2>1. Objeto</h2>
             <p>
-              Estes termos regem a participação de criadores de conteúdo no {site.nomeCompleto},
+              Estes termos regem a participação de criadores de conteúdo no {site.nome},
               programa de parceria mantido pelo {site.produtor} para divulgação de seus produtos
               educacionais.
             </p>

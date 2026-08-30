@@ -50,7 +50,7 @@ Só faz sentido depois de ~20 parceiros ativos.
 - [ ] **Marketplace de encaixe** — o parceiro vê os produtos compatíveis com a área dele.
 - [ ] **Biblioteca de materiais nativa**, no lugar do Google Drive.
 - [ ] **Ranking e níveis de parceiro**, com comissão progressiva por histórico.
-- [ ] **Marca própria da rede** (Green Eyes), com o Projeto Afiliado como um dos programas.
+- [ ] **Marca própria da rede** (Green Eyes), com o Duck Affiliate como um dos programas.
 
 ### O que na arquitetura de hoje já prepara isso
 

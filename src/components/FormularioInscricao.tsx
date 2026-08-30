@@ -51,7 +51,7 @@ const INICIAL: Estado = {
 }
 
 const ETAPAS = [
-  { titulo: 'Quem é você', descricao: 'Como falamos com você e onde encontramos seu trabalho.' },
+  { titulo: 'Seu canal', descricao: 'Como falamos com você e onde assistimos ao seu trabalho.' },
   { titulo: 'Sua audiência', descricao: 'O que você produz e para quem.' },
   { titulo: 'Sua divulgação', descricao: 'Como você imagina apresentar os cursos.' },
   { titulo: 'Confirmação', descricao: 'Uma última conferida antes de enviar.' },
@@ -307,7 +307,7 @@ export function FormularioInscricao() {
               rotulo="Link principal"
               id="canalUrl"
               erro={erros.canalUrl}
-              dica="O endereço onde a gente vê seu trabalho: canal, perfil, site ou newsletter."
+              dica="De preferência o seu canal no YouTube. Se o seu principal for outro, use o dele."
             >
               <input
                 id="canalUrl"
@@ -364,7 +364,7 @@ export function FormularioInscricao() {
               rotulo="Tamanho aproximado da audiência"
               id="audiencia"
               erro={erros.audiencia}
-              dica="Some seguidores, inscritos e assinantes da sua plataforma principal. Estimativa serve."
+              dica="Inscritos do canal, ou seguidores/assinantes da sua plataforma principal. Estimativa serve."
             >
               <select
                 id="audiencia"
@@ -446,7 +446,7 @@ export function FormularioInscricao() {
               rotulo="Por que você quer participar?"
               id="motivacao"
               erro={erros.motivacao}
-              dica="Conte o que sua audiência procura e por que os cursos do Rascunhos Econômicos fariam sentido para ela. É o campo que mais pesa na análise."
+              dica="Conte o que a sua audiência procura e por que estes cursos fariam sentido para ela. É o campo que mais pesa na análise."
             >
               <textarea
                 id="motivacao"
@@ -526,7 +526,7 @@ export function FormularioInscricao() {
               />
               <span>
                 Li e aceito os{' '}
-                <Link href="/termos" target="_blank" style={{ color: 'var(--ouro-texto)' }}>
+                <Link href="/termos" target="_blank" style={{ color: 'var(--ambar-texto)' }}>
                   termos de participação
                 </Link>{' '}
                 do programa.
@@ -543,7 +543,7 @@ export function FormularioInscricao() {
               />
               <span>
                 Autorizo o contato por e-mail e WhatsApp sobre esta candidatura e concordo com a{' '}
-                <Link href="/privacidade" target="_blank" style={{ color: 'var(--ouro-texto)' }}>
+                <Link href="/privacidade" target="_blank" style={{ color: 'var(--ambar-texto)' }}>
                   política de privacidade
                 </Link>
                 .

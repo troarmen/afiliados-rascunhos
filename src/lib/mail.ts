@@ -45,18 +45,28 @@ async function enviar({ para, assunto, html, responderPara }: Email): Promise<bo
   }
 }
 
+/**
+ * Molde dos e-mails transacionais, na identidade do Duck.
+ *
+ * Tudo em estilo inline e tabela: cliente de e-mail não lê CSS externo nem
+ * variável de tema. As cores são as mesmas do site, escritas à mão porque
+ * `var(--ambar)` não existe do lado do Gmail.
+ */
 function layout(titulo: string, corpo: string) {
-  return `<!doctype html><html lang="pt-BR"><body style="margin:0;background:#f6f4ef;padding:32px 16px;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:#12161a">
+  return `<!doctype html><html lang="pt-BR"><body style="margin:0;background:#f4f6fb;padding:32px 16px;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:#000e29">
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center">
-    <table role="presentation" width="100%" style="max-width:560px;background:#fff;border-radius:14px;border:1px solid #e6e1d8">
-      <tr><td style="padding:28px 28px 8px">
-        <p style="margin:0;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#0b5f45;font-weight:700">${site.produtor}</p>
-        <h1 style="margin:8px 0 0;font-size:22px;line-height:1.3">${titulo}</h1>
+    <table role="presentation" width="100%" style="max-width:560px;background:#fff;border-radius:16px;border:1px solid #dde3f0;overflow:hidden">
+      <tr><td style="background:#000e29;padding:20px 28px">
+        <span style="font-size:19px;font-weight:800;letter-spacing:-.5px;color:#ffc20e">Duck</span><span style="font-size:19px;font-weight:800;letter-spacing:-.5px;color:#fff">Affiliate</span>
+        <p style="margin:5px 0 0;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5)">${site.selo}</p>
       </td></tr>
-      <tr><td style="padding:8px 28px 28px;font-size:15px;line-height:1.65;color:#3a424a">${corpo}</td></tr>
+      <tr><td style="padding:26px 28px 8px">
+        <h1 style="margin:0;font-size:22px;line-height:1.3;color:#000e29">${titulo}</h1>
+      </td></tr>
+      <tr><td style="padding:8px 28px 28px;font-size:15px;line-height:1.65;color:#47526b">${corpo}</td></tr>
       <tr><td style="padding:0 28px 28px">
-        <p style="margin:0;font-size:12px;color:#8a9099;border-top:1px solid #eee;padding-top:16px">
-          ${site.nomeCompleto} · <a href="${site.url}" style="color:#0b5f45">${site.url.replace(/^https?:\/\//, '')}</a>
+        <p style="margin:0;font-size:12px;color:#6b7690;border-top:1px solid #eef1f7;padding-top:16px">
+          ${site.nome} · <a href="${site.url}" style="color:#8a5a00">${site.url.replace(/^https?:\/\//, '')}</a>
         </p>
       </td></tr>
     </table>
@@ -67,10 +77,10 @@ function layout(titulo: string, corpo: string) {
 export function confirmacaoCandidato(c: Candidatura) {
   return enviar({
     para: c.email,
-    assunto: `Recebemos sua inscrição no ${site.nome} — ${site.produtor}`,
+    assunto: `Recebemos a sua inscrição no ${site.nome}`,
     html: layout(
       `Inscrição recebida, ${c.nome.split(' ')[0]}!`,
-      `<p>Sua candidatura para o <strong>${site.nomeCompleto}</strong> chegou até nós e já está na fila de análise.</p>
+      `<p>Sua candidatura para o <strong>${site.nome}</strong> chegou até nós e já está na fila de análise.</p>
        <p><strong>O que acontece agora:</strong></p>
        <ol style="padding-left:18px">
          <li>Analisamos seu canal e o encaixe com os cursos — leva até <strong>7 dias úteis</strong>.</li>
@@ -116,7 +126,7 @@ export function alertaEquipe(c: Candidatura) {
       </table>
       <p style="margin-top:20px"><strong>Motivação:</strong><br>${c.motivacao.replace(/</g, '&lt;').replace(/\n/g, '<br>')}</p>
       ${c.experiencia ? `<p><strong>Experiência:</strong><br>${c.experiencia.replace(/</g, '&lt;').replace(/\n/g, '<br>')}</p>` : ''}
-      <p style="margin-top:24px"><a href="${site.url}/admin/${c.id}" style="background:#0b5f45;color:#fff;padding:12px 20px;border-radius:8px;text-decoration:none;display:inline-block">Abrir no painel</a></p>`,
+      <p style="margin-top:24px"><a href="${site.url}/admin/${c.id}" style="background:#ffc20e;color:#000e29;font-weight:700;padding:12px 20px;border-radius:8px;text-decoration:none;display:inline-block">Abrir no painel</a></p>`,
     ),
     responderPara: c.email,
   })

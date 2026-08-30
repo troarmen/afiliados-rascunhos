@@ -6,34 +6,36 @@ import { site } from '@/lib/site'
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.nome} — ${site.produtor} | Programa de parceria para criadores`,
+    default: `Programa de afiliados para canais do YouTube | ${site.nome}`,
     template: `%s · ${site.nome}`,
   },
   description: site.descricao,
-  applicationName: site.nomeCompleto,
+  applicationName: site.nome,
   keywords: [
     'programa de afiliados',
-    'afiliado curso de economia',
+    'afiliado YouTube',
+    'monetizar canal do YouTube',
     'monetizar canal educacional',
-    'parceria criadores de conteúdo',
+    'afiliado curso online',
     'afiliado Hotmart educação',
-    'Rascunhos Econômicos',
+    'parceria para criadores de conteúdo',
+    'Duck Affiliate',
   ],
-  authors: [{ name: site.produtor, url: site.canal.site }],
-  creator: site.produtor,
-  publisher: site.rede,
+  authors: [{ name: site.nome, url: site.url }],
+  creator: site.nome,
+  publisher: site.nome,
   alternates: { canonical: '/' },
   openGraph: {
     type: 'website',
     locale: 'pt_BR',
     url: site.url,
-    siteName: site.nomeCompleto,
-    title: `${site.nome} — monetize sua audiência com cursos que já vendem`,
+    siteName: site.nome,
+    title: `${site.nome} — ${site.tagline}`,
     description: site.descricao,
   },
   twitter: {
     card: 'summary_large_image',
-    title: `${site.nome} — ${site.produtor}`,
+    title: `${site.nome} — ${site.tagline}`,
     description: site.descricao,
   },
   robots: {
@@ -46,22 +48,28 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#f5f3ee' },
-    { media: '(prefers-color-scheme: dark)', color: '#0a0e1a' },
+    { media: '(prefers-color-scheme: light)', color: '#f4f6fb' },
+    { media: '(prefers-color-scheme: dark)', color: '#000e29' },
   ],
   width: 'device-width',
   initialScale: 1,
 }
 
+/**
+ * O Duck Affiliate é a organização que assina o site; o Rascunhos Econômicos
+ * entra como `provider`, que é o papel real dele — produtor do catálogo de
+ * cursos oferecido dentro do programa, não dono da marca.
+ */
 const dadosEstruturados = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
-  name: site.nomeCompleto,
-  alternateName: site.sigla,
+  name: site.nome,
   url: site.url,
-  parentOrganization: { '@type': 'Organization', name: site.rede },
+  logo: `${site.url}/duck-emblema.png`,
+  slogan: site.tagline,
   description: site.descricao,
   email: site.email,
+  memberOf: { '@type': 'Organization', name: site.rede },
   sameAs: [site.canal.site, site.canal.youtube],
 }
 
@@ -71,14 +79,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        {/* Mesma requisição de fontes do site do canal — inclui o eixo itálico
-            do Fraunces, usado no realce dourado dos títulos. */}
+        {/* Figtree 700/800/900 no display — a geométrica pesada que mais se
+            aproxima do wordmark do logo. Inter segue na interface. */}
         <link
           rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600&family=Inter:wght@300;400;500;600;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Figtree:wght@500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap"
         />
-        <link rel="icon" href="/brasao.png" type="image/png" />
-        <link rel="apple-touch-icon" href="/brasao.png" />
+        <link rel="icon" href="/icone-64.png" type="image/png" sizes="64x64" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(dadosEstruturados) }}

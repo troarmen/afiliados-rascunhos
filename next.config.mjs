@@ -1,7 +1,15 @@
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
+
+const raiz = path.dirname(fileURLToPath(import.meta.url))
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
+  // Sem isto o Next sobe a árvore procurando lockfile, acha um solto no
+  // diretório do usuário e elege ELE como raiz do workspace.
+  outputFileTracingRoot: raiz,
   async headers() {
     return [
       {

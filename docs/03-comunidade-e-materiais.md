@@ -66,7 +66,7 @@ transformar a comunidade em cobrança.
 O Drive continua sendo o repositório; o Discord aponta para ele. Estrutura:
 
 ```
-Projeto Afiliado/
+Duck Affiliate/
 ├── 00 — Comece aqui/
 │   ├── Guia do parceiro.pdf
 │   ├── Boas práticas de divulgação.pdf

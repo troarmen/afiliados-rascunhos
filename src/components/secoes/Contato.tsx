@@ -2,7 +2,7 @@ import { linkWhatsApp, site } from '@/lib/site'
 import { Seta } from '../Icones'
 
 export function Contato() {
-  const whatsapp = linkWhatsApp('Olá! Tenho uma dúvida sobre o Projeto Afiliado.')
+  const whatsapp = linkWhatsApp(`Olá! Tenho uma dúvida sobre o ${site.nome}.`)
 
   return (
     <section className="secao" id="contato">
@@ -13,8 +13,8 @@ export function Contato() {
             Prefere <span className="realce">conversar antes?</span>
           </h2>
           <p className="subtitulo">
-            Dúvida sobre encaixe, formato de divulgação ou condição comercial: fale direto com a
-            equipe. Respondemos em dias úteis.
+            Dúvida sobre encaixe, formato de divulgação ou condição comercial: fale direto com
+            quem toca o programa. Respondemos em dias úteis.
           </p>
         </div>
 
@@ -22,7 +22,7 @@ export function Contato() {
           <a className="cartao cartao--interativo" href={`mailto:${site.email}`}>
             <h3>E-mail</h3>
             <p>{site.email}</p>
-            <span className="link-ouro">
+            <span className="link-ambar">
               Escrever agora <Seta />
             </span>
           </a>
@@ -36,7 +36,7 @@ export function Contato() {
             >
               <h3>WhatsApp</h3>
               <p>Atendimento em horário comercial</p>
-              <span className="link-ouro">
+              <span className="link-ambar">
                 Abrir conversa <Seta />
               </span>
             </a>
@@ -49,7 +49,7 @@ export function Contato() {
             >
               <h3>Canal no YouTube</h3>
               <p>Conheça o conteúdo do {site.produtor} antes de decidir</p>
-              <span className="link-ouro">
+              <span className="link-ambar">
                 Assistir <Seta />
               </span>
             </a>

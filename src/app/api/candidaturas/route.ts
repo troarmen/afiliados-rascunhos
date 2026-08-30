@@ -2,6 +2,7 @@ import { NextResponse, type NextRequest } from 'next/server'
 import { candidaturaSchema } from '@/lib/schema'
 import { criarCandidatura, jaExisteEmail } from '@/lib/store'
 import { alertaEquipe, confirmacaoCandidato } from '@/lib/mail'
+import { site } from '@/lib/site'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
@@ -96,8 +97,9 @@ export async function POST(req: NextRequest) {
     console.error('[candidaturas] falha ao gravar:', erro)
     return NextResponse.json(
       {
-        mensagem:
-          'Tivemos um problema para registrar sua inscrição. Tente novamente em instantes ou escreva para parceiros@rascunhoseconomicos.com.',
+        // Lê de `site.email` em vez de repetir o endereço: era a única
+        // cópia solta e ficou para trás na primeira troca de contato.
+        mensagem: `Tivemos um problema para registrar sua inscrição. Tente novamente em instantes ou escreva para ${site.email}.`,
       },
       { status: 500 },
     )

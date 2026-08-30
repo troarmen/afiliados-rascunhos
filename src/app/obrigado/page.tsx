@@ -6,7 +6,7 @@ import { site } from '@/lib/site'
 
 export const metadata: Metadata = {
   title: 'Inscrição recebida',
-  description: 'Recebemos sua candidatura ao Projeto Afiliado Rascunhos Econômicos.',
+  description: 'Recebemos sua candidatura ao programa de afiliados do Duck Affiliate.',
   robots: { index: false, follow: false },
 }
 
@@ -25,12 +25,12 @@ export default function Obrigado() {
           </p>
 
           <div className="cartao" style={{ marginTop: 32 }}>
-            <h3>O que acontece agora</h3>
+            <h2>O que acontece agora</h2>
             <ol className="lista-marcada" style={{ marginTop: 8 }}>
               <li>
                 <span>
-                  <strong>Análise em até 7 dias úteis.</strong> Olhamos seu conteúdo, o perfil da
-                  audiência e o encaixe com os cursos.
+                  <strong>Análise em até 7 dias úteis.</strong> Assistimos ao seu conteúdo,
+                  olhamos o perfil da audiência e medimos o encaixe com os cursos.
                 </span>
               </li>
               <li>
@@ -48,11 +48,10 @@ export default function Obrigado() {
           </div>
 
           <div className="cartao" style={{ marginTop: 18, background: 'var(--superficie-2)' }}>
-            <h3>Quer adiantar a análise?</h3>
+            <h2>Quer adiantar a análise?</h2>
             <p>
-              Responda o e-mail de confirmação contando qual conteúdo seu costuma performar melhor
-              e mandando um link desse material. Ajuda bastante — e coloca sua candidatura na
-              frente.
+              Responda o e-mail de confirmação contando qual vídeo seu costuma performar melhor
+              e mandando o link dele. Ajuda bastante — e coloca sua candidatura na frente.
             </p>
           </div>
 
@@ -63,7 +62,7 @@ export default function Obrigado() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Conhecer o canal
+              Conhecer o catálogo
             </a>
             <Link className="botao botao--secundario" href="/">
               Voltar ao início

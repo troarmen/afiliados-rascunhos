@@ -6,10 +6,16 @@ import { ListaFaq } from '@/components/secoes/Faq'
 import { faq } from '@/lib/programa'
 
 export const metadata: Metadata = {
-  title: 'Perguntas frequentes',
+  title: 'Perguntas frequentes sobre o programa de afiliados',
   description:
-    'Comissão, pagamento, rastreio, exclusividade e prazo de resposta: as dúvidas mais comuns sobre o Projeto Afiliado Rascunhos Econômicos.',
+    'Quanto ganha o afiliado, como a comissão é paga, precisa ter canal grande, tem exclusividade: as dúvidas mais comuns, respondidas.',
   alternates: { canonical: '/perguntas-frequentes' },
+  openGraph: {
+    title: 'Perguntas frequentes sobre o programa de afiliados',
+    description:
+      'Quanto ganha o afiliado, como a comissão é paga, precisa ter canal grande e outras dúvidas comuns.',
+    url: '/perguntas-frequentes',
+  },
 }
 
 const estruturado = {
@@ -39,7 +45,7 @@ export default function PerguntasFrequentes() {
 
           <div className="cabecalho-secao">
             <span className="olho">Dúvidas</span>
-            <h1>Perguntas frequentes</h1>
+            <h1>Perguntas frequentes sobre o programa de afiliados</h1>
             <p className="subtitulo">
               Tudo o que costumam perguntar antes de se inscrever. Não achou sua dúvida? Escreva
               para <Link href="/#contato">a equipe</Link>.
@@ -49,7 +55,7 @@ export default function PerguntasFrequentes() {
           <ListaFaq />
 
           <div className="cartao" style={{ marginTop: 36, maxWidth: 640 }}>
-            <h3>Ainda quer entender melhor as regras?</h3>
+            <h2>Ainda quer entender melhor as regras?</h2>
             <p>
               A página do programa traz a versão longa: comissão, rastreio, obrigações e critérios
               de seleção por extenso.

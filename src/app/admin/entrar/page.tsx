@@ -2,7 +2,7 @@
 
 import { Suspense, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { Brasao } from '@/components/Marca'
+import { Emblema } from '@/components/Marca'
 
 function Entrada() {
   const router = useRouter()
@@ -50,7 +50,7 @@ function Entrada() {
       >
         <div className="formulario__corpo" style={{ gap: 18 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-            <Brasao tamanho={38} />
+            <Emblema tamanho={38} />
             <div>
               <p style={{ fontFamily: 'var(--fonte-titulo)', fontSize: '1.15rem', fontWeight: 600 }}>
                 Painel de parceiros

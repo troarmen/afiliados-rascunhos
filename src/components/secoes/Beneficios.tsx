@@ -4,7 +4,7 @@ import { Revelar } from '../Revelar'
 
 export function Beneficios() {
   return (
-    <section className="secao secao--creme" id="beneficios">
+    <section className="secao secao--gelo" id="beneficios">
       <div className="envelope">
         <div className="cabecalho-secao">
           <span className="olho">Benefícios</span>
@@ -13,8 +13,8 @@ export function Beneficios() {
           </h2>
           <p className="subtitulo">
             Link de afiliado qualquer programa dá. O que trava a maioria dos criadores é o
-            trabalho em volta: criar arte, escrever texto, entender a oferta, saber quando
-            divulgar. Isso a gente entrega pronto.
+            trabalho em volta: fazer thumbnail, escrever o texto da descrição, entender a oferta,
+            saber quando divulgar. Isso a gente entrega pronto.
           </p>
         </div>
 

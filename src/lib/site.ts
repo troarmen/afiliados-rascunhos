@@ -1,20 +1,36 @@
 /**
- * Configuração institucional do site.
+ * Configuração institucional do Duck Affiliate.
+ *
+ * O Duck Affiliate é marca própria: nome, identidade e domínio são dele.
+ * O Rascunhos Econômicos aparece como produtor do primeiro catálogo —
+ * a assinatura "Powered by" — e não como dono do site.
+ *
  * Tudo que muda por decisão comercial mora aqui ou em `programa.ts`,
  * nunca dentro de componentes.
  */
 
 export const site = {
-  nome: 'Projeto Afiliado',
-  nomeCompleto: 'Projeto Afiliado Rascunhos Econômicos',
-  sigla: 'PARE',
+  nome: 'Duck Affiliate',
+  nomeCurto: 'Duck',
+  tagline: 'Afiliados que transformam conteúdo em renda',
+  /** Assinatura do produtor do catálogo. Aparece no topo, no rodapé e no OG. */
+  selo: 'Powered by Rascunhos Econômicos',
   produtor: 'Rascunhos Econômicos',
   rede: 'Green Eyes',
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://afiliados.rascunhoseconomicos.com',
+  /**
+   * O domínio próprio ainda não foi comprado. Até lá nada de domínio aparece
+   * em texto visível — só aqui, e sempre sobrescrito por NEXT_PUBLIC_SITE_URL.
+   */
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://duckaffiliate.com.br',
+  /**
+   * Vira a meta description e a descrição do Open Graph. O Google corta por
+   * volta de 155 caracteres: a versão anterior tinha 225 e perdia justamente
+   * o fecho comercial. Mantida abaixo do corte, de propósito.
+   */
   descricao:
-    'Programa de parceria entre o Rascunhos Econômicos e criadores de conteúdo educacional. ' +
-    'Você indica cursos que já vendem, com material pronto e comissão recorrente por venda.',
-  email: 'parceiros@rascunhoseconomicos.com',
+    'Monetize seu canal educacional do YouTube indicando cursos que já vendem: ' +
+    '40% a 60% de comissão por venda, kit de divulgação pronto e pagamento pela Hotmart.',
+  email: 'contato@rascunhoseconomicos.com',
   whatsapp: process.env.NEXT_PUBLIC_WHATSAPP ?? '',
   hotmart: process.env.NEXT_PUBLIC_HOTMART_URL ?? 'https://hotmart.com',
   gaId: process.env.NEXT_PUBLIC_GA_ID ?? '',
@@ -26,17 +42,19 @@ export const site = {
 
 export const navegacao = [
   { href: '/#como-funciona', rotulo: 'Como funciona' },
-  { href: '/#quem-pode', rotulo: 'Quem pode participar' },
+  { href: '/#quem-pode', rotulo: 'Para quem é' },
   { href: '/#comissao', rotulo: 'Comissão' },
-  { href: '/#selecao', rotulo: 'Seleção' },
+  { href: '/#portal', rotulo: 'O que você recebe' },
   { href: '/perguntas-frequentes', rotulo: 'Dúvidas' },
 ] as const
 
 export const rodape = {
-  institucional: [
-    { href: '/programa', rotulo: 'Sobre o programa' },
+  programa: [
+    { href: '/programa', rotulo: 'Regras do programa' },
+    { href: '/#como-funciona', rotulo: 'Como funciona' },
+    { href: '/#comissao', rotulo: 'Comissão e pagamento' },
+    { href: '/#portal', rotulo: 'Portal do afiliado' },
     { href: '/perguntas-frequentes', rotulo: 'Perguntas frequentes' },
-    { href: '/#contato', rotulo: 'Contato' },
   ],
   legal: [
     { href: '/termos', rotulo: 'Termos de participação' },
@@ -48,7 +66,7 @@ export function urlAbsoluta(caminho = '/') {
   return new URL(caminho, site.url).toString()
 }
 
-export function linkWhatsApp(mensagem = 'Olá! Vim pelo site do Projeto Afiliado.') {
+export function linkWhatsApp(mensagem = 'Olá! Vim pelo site do Duck Affiliate.') {
   if (!site.whatsapp) return null
   return `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(mensagem)}`
 }

@@ -7,22 +7,23 @@ export function Hero() {
     <section className="hero escuro">
       <div className="envelope hero__interno">
         <div className="hero__texto">
-          <span className="olho olho--pilula">Programa de parceria para criadores</span>
+          <span className="olho olho--pilula">Programa de afiliados para o YouTube educacional</span>
 
           <h1>
-            Sua audiência já <span className="realce">confia</span> em você. Falta o produto
-            certo.
+            Seu canal já ensina. Agora ele também <span className="realce">paga</span>.
           </h1>
 
           <p className="subtitulo">
-            Um programa de parceria para quem produz conteúdo educacional sério e quer
-            monetizar sem criar curso, gravar aula ou dar suporte a aluno. Você indica, a gente
-            entrega — e a comissão é sua.
+            O Duck Affiliate conecta criadores de conteúdo educacional do YouTube a cursos que
+            já vendem.
+            Você indica com material pronto, o link rastreia a venda por {comissao.cookieDias}{' '}
+            dias e a Hotmart deposita a sua comissão. Sem criar curso, sem gravar aula, sem
+            responder aluno.
           </p>
 
           <div className="hero__acoes">
             <Link className="botao botao--g" href="/#inscricao">
-              Quero participar <Seta />
+              Quero ser afiliado <Seta />
             </Link>
             <Link className="botao botao--secundario botao--g" href="/#como-funciona">
               Ver como funciona
@@ -30,23 +31,24 @@ export function Hero() {
           </div>
 
           <p className="hero__nota">
-            Inscrição gratuita · Resposta em até 7 dias úteis · Sem exclusividade
+            Inscrição gratuita · Resposta em até {comissao.prazoResposta} dias úteis · Sem
+            exclusividade
           </p>
 
           <div className="hero__provas">
             <span className="selo">
               <span className="selo__ponto" />
-              Vagas abertas
+              1ª turma com vagas abertas
             </span>
             <span className="selo">Pagamento pela Hotmart</span>
-            <span className="selo">Material de divulgação pronto</span>
+            <span className="selo">Kit de divulgação pronto</span>
           </div>
         </div>
 
         <aside className="painel" aria-label="Resumo do programa">
           <div className="painel__topo">
             <span className="painel__titulo">A parceria em números</span>
-            <span className="selo selo--ouro">1ª turma</span>
+            <span className="selo selo--ambar">1ª turma</span>
           </div>
           <div className="painel__corpo">
             <div className="numero">

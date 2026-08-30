@@ -1,5 +1,5 @@
 -- ===========================================================================
--- PARE — Projeto Afiliado Rascunhos Econômicos
+-- Duck Affiliate — programa de afiliados para canais educacionais
 -- Rode este arquivo no SQL Editor do Supabase (projeto novo, uma vez só).
 -- ===========================================================================
 

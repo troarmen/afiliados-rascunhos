@@ -61,7 +61,7 @@ Ajuste o tom, mas mantenha a estrutura: contexto → decisão → próximo passo
 
 ### 1. Convite para conversa (aprovado na triagem)
 
-> **Assunto:** Sua inscrição no Projeto Afiliado — vamos conversar?
+> **Assunto:** Sua inscrição no Duck Affiliate — vamos conversar?
 >
 > Oi, {primeiro nome}!
 >
@@ -81,7 +81,7 @@ disparo automático, e o público-alvo percebe a diferença na primeira linha.
 
 ### 2. Aprovação e onboarding
 
-> **Assunto:** Bem-vindo(a) ao Projeto Afiliado 🎉
+> **Assunto:** Bem-vindo(a) ao Duck Affiliate 🎉
 >
 > {primeiro nome}, fechado! Parceria confirmada.
 >
@@ -100,7 +100,7 @@ disparo automático, e o público-alvo percebe a diferença na primeira linha.
 
 ### 3. Recusa (educada e útil)
 
-> **Assunto:** Sobre sua inscrição no Projeto Afiliado
+> **Assunto:** Sobre a sua inscrição no Duck Affiliate
 >
 > Oi, {primeiro nome}, obrigado por se candidatar.
 >

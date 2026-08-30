@@ -11,7 +11,7 @@ const moeda = new Intl.NumberFormat('pt-BR', {
 
 export function Comissao() {
   const [vendas, setVendas] = useState(8)
-  const [percentual, setPercentual] = useState(comissao.base)
+  const [percentual, setPercentual] = useState<number>(comissao.base)
 
   const ganho = useMemo(
     () => (comissao.precoReferencia * percentual * vendas) / 100,
@@ -22,7 +22,7 @@ export function Comissao() {
     <section className="secao escuro" id="comissao">
       <div className="envelope">
         <div className="cabecalho-secao">
-          <span className="olho">Como funciona a comissão</span>
+          <span className="olho">Comissão e pagamento</span>
           <h2>
             Você é pago por venda, <span className="realce">direto pela Hotmart</span>
           </h2>
