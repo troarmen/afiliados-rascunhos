@@ -2,8 +2,9 @@ import Link from 'next/link'
 import { site } from '@/lib/site'
 
 /**
- * Lockup do Duck Affiliate: [emblema em placa navy] + wordmark bicolor
- * + pílula com a assinatura do produtor do catálogo.
+ * Lockup do Duck Affiliate: [emblema em placa navy] + wordmark bicolor.
+ * A pílula "Powered by" fica só no rodapé (`comSelo` existe para quem
+ * precisar dela em outro lugar, mas o topo não a usa).
  *
  * O emblema é o PNG recortado do logo oficial. Ele vem sobre o navy do
  * próprio logo (a versão com alfa comia a jaqueta do pato), e a placa usa
@@ -29,7 +30,7 @@ export function Wordmark() {
   )
 }
 
-export function Marca({ href = '/', comSelo = true }: { href?: string; comSelo?: boolean }) {
+export function Marca({ href = '/', comSelo = false }: { href?: string; comSelo?: boolean }) {
   return (
     <Link className="marca" href={href} aria-label={`${site.nome} — página inicial`}>
       <Emblema />

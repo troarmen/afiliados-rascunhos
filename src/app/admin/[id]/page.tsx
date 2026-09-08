@@ -4,6 +4,9 @@ import { CabecalhoAdmin } from '@/components/admin/CabecalhoAdmin'
 import { EditorCandidatura } from '@/components/admin/EditorCandidatura'
 import { estaAutenticado } from '@/lib/auth'
 import { obterCandidatura, modoPersistencia } from '@/lib/store'
+import { listarAfiliacoes } from '@/lib/store-afiliacoes'
+import { listarProgramas } from '@/lib/store-materiais'
+import { plataforma as plataformaDe } from '@/lib/plataformas'
 import { faixaDoScore } from '@/lib/score'
 import { dataLonga, nomeDaArea, normalizarUrl } from '@/lib/utils'
 import { linkWhatsApp, site } from '@/lib/site'
@@ -19,6 +22,7 @@ export default async function FichaCandidato({ params }: { params: Promise<{ id:
 
   const faixa = faixaDoScore(c.score)
   const redes = Object.entries(c.redes ?? {}).filter(([, valor]) => Boolean(valor))
+  const [afiliacoes, programas] = await Promise.all([listarAfiliacoes({ candidaturaId: c.id }), listarProgramas(false)])
   const whatsapp = linkWhatsApp(
     `Olá, ${c.nome.split(' ')[0]}! Aqui é da equipe do ${site.nome}, sobre a sua inscrição no programa de afiliados.`,
   )
@@ -107,6 +111,36 @@ export default async function FichaCandidato({ params }: { params: Promise<{ id:
                   <dd>{dataLonga(c.criadoEm)}</dd>
                 </div>
               </dl>
+            </section>
+
+            <section className="ficha-bloco">
+              <h2>Link de vendas</h2>
+              {afiliacoes.length === 0 ? (
+                <p className="ficha-texto">
+                  {c.status === 'aprovado'
+                    ? 'Ainda não cadastrou. O parceiro cola o link da plataforma na página do programa, dentro da área dele — até lá, os textos saem sem link e não há QR.'
+                    : 'Só depois de aprovado: o parceiro cadastra o link da plataforma na área dele.'}
+                </p>
+              ) : (
+                <dl className="ficha-lista">
+                  {afiliacoes.map((a) => {
+                    const programa = programas.find((p) => p.id === a.programaId)
+                    return (
+                      <div key={a.id}>
+                        <dt>{programa?.nome ?? 'Programa'}</dt>
+                        <dd>
+                          <a href={a.url} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--ambar-texto)', fontWeight: 600, overflowWrap: 'anywhere' }}>
+                            {a.url}
+                          </a>
+                          <div className="celula-secundaria">
+                            {plataformaDe(programa?.plataforma).nome} · atualizado em {dataLonga(a.atualizadoEm)}
+                          </div>
+                        </dd>
+                      </div>
+                    )
+                  })}
+                </dl>
+              )}
             </section>
 
             <section className="ficha-bloco">

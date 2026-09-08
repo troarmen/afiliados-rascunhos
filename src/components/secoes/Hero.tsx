@@ -22,10 +22,10 @@ export function Hero() {
           </p>
 
           <div className="hero__acoes">
-            <Link className="botao botao--g" href="/#inscricao">
+            <Link className="botao botao--g" href="/inscricao">
               Quero ser afiliado <Seta />
             </Link>
-            <Link className="botao botao--secundario botao--g" href="/#como-funciona">
+            <Link className="botao botao--secundario botao--g" href="/como-funciona">
               Ver como funciona
             </Link>
           </div>
@@ -33,6 +33,10 @@ export function Hero() {
           <p className="hero__nota">
             Inscrição gratuita · Resposta em até {comissao.prazoResposta} dias úteis · Sem
             exclusividade
+          </p>
+          <p className="hero__outra-porta">
+            Tem um curso e quer afiliados?{' '}
+            <Link href="/para-produtores">Veja a página para produtores</Link>
           </p>
 
           <div className="hero__provas">

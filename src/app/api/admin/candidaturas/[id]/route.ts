@@ -2,6 +2,7 @@ import { NextResponse, type NextRequest } from 'next/server'
 import { estaAutenticado } from '@/lib/auth'
 import { atualizacaoSchema } from '@/lib/schema'
 import { atualizarCandidatura, obterCandidatura } from '@/lib/store'
+import { boasVindasParceiro } from '@/lib/mail'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
@@ -20,9 +21,16 @@ export async function PATCH(req: NextRequest, ctx: { params: Promise<{ id: strin
     return NextResponse.json({ mensagem: 'Dados inválidos.' }, { status: 422 })
   }
 
+  const anterior = await obterCandidatura(id)
   const atualizada = await atualizarCandidatura(id, resultado.data)
   if (!atualizada) {
     return NextResponse.json({ mensagem: 'Candidatura não encontrada.' }, { status: 404 })
+  }
+
+  // Virou "aprovado" agora (e não estava antes): avisa que a área do
+  // parceiro existe. Erro de e-mail não pode derrubar a triagem.
+  if (atualizada.status === 'aprovado' && anterior?.status !== 'aprovado') {
+    void boasVindasParceiro(atualizada)
   }
 
   return NextResponse.json({ ok: true, candidatura: atualizada })

@@ -26,8 +26,8 @@ const nextConfig = {
   async redirects() {
     return [
       // Atalhos divulgados em vídeo / bio de redes sociais.
-      { source: '/inscricao', destination: '/#inscricao', permanent: false },
-      { source: '/participar', destination: '/#inscricao', permanent: false },
+      { source: '/participar', destination: '/inscricao', permanent: false },
+      { source: '/candidatura', destination: '/inscricao', permanent: false },
       { source: '/faq', destination: '/perguntas-frequentes', permanent: true },
     ]
   },

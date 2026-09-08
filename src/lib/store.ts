@@ -1,41 +1,20 @@
 import 'server-only'
-import { createClient, type SupabaseClient } from '@supabase/supabase-js'
 import { randomUUID } from 'node:crypto'
-import fs from 'node:fs/promises'
-import path from 'node:path'
 import type { Candidatura, CandidaturaInput, Status } from './schema'
 import { calcularScore } from './score'
+import { escreverColecao, lerColecao, modoPersistencia, supabase } from './db'
 
 /**
- * Adaptador de persistência.
+ * Store de candidaturas.
  *
- * Com `NEXT_PUBLIC_SUPABASE_URL` + `SUPABASE_SERVICE_ROLE_KEY` definidos, grava
- * no Postgres do Supabase. Sem eles, cai para um arquivo JSON em `.data/` para
- * que `npm run dev` funcione sem nenhuma configuração. O modo arquivo é só
- * para desenvolvimento — nunca use em produção (sem concorrência, sem backup).
+ * A escolha entre Supabase e arquivo JSON vive em `db.ts`, compartilhada com
+ * o store de materiais. Aqui só a tradução entre o formato da aplicação e as
+ * colunas da tabela, e as operações do funil.
  */
 
+export { modoPersistencia }
+
 const TABELA = 'candidaturas'
-const ARQUIVO = path.join(process.cwd(), '.data', 'candidaturas.json')
-
-let cliente: SupabaseClient | null = null
-
-export function modoPersistencia(): 'supabase' | 'arquivo' {
-  return process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY
-    ? 'supabase'
-    : 'arquivo'
-}
-
-function supabase(): SupabaseClient {
-  if (!cliente) {
-    cliente = createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_ROLE_KEY!,
-      { auth: { persistSession: false } },
-    )
-  }
-  return cliente
-}
 
 // --- Conversão entre o formato da aplicação e as colunas do banco -----------
 
@@ -103,19 +82,8 @@ function doBanco(l: LinhaBanco): Candidatura {
 
 // --- Modo arquivo ----------------------------------------------------------
 
-async function lerArquivo(): Promise<Candidatura[]> {
-  try {
-    const bruto = await fs.readFile(ARQUIVO, 'utf8')
-    return JSON.parse(bruto) as Candidatura[]
-  } catch {
-    return []
-  }
-}
-
-async function escreverArquivo(lista: Candidatura[]) {
-  await fs.mkdir(path.dirname(ARQUIVO), { recursive: true })
-  await fs.writeFile(ARQUIVO, JSON.stringify(lista, null, 2), 'utf8')
-}
+const lerArquivo = () => lerColecao<Candidatura>(TABELA)
+const escreverArquivo = (lista: Candidatura[]) => escreverColecao(TABELA, lista)
 
 // --- API pública -----------------------------------------------------------
 

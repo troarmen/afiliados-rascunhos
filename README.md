@@ -15,9 +15,9 @@ seleção passam a ser um ativo nosso**, não de um formulário do Google.
 
 O Duck Affiliate é **marca independente**: nome, identidade visual, domínio e posicionamento
 são dele. O **Rascunhos Econômicos** é o produtor do primeiro catálogo de cursos oferecido
-dentro do programa — daí a assinatura *Powered by Rascunhos Econômicos*, que aparece na
-pílula do cabeçalho, no rodapé, no cartão social e numa seção própria da home
-(`#catalogo`).
+dentro do programa — daí a assinatura *Powered by Rascunhos Econômicos*, que aparece no
+rodapé, no cartão social e numa seção própria da home (`#catalogo`). **No cabeçalho ela não
+aparece**: o topo é a marca Duck Affiliate, e só.
 
 A separação é proposital e está no documento de visão: a arquitetura precisa receber outros
 produtores de conteúdo educacional depois, sem que o site tenha de ser reescrito.
@@ -51,33 +51,129 @@ E acesse `/admin`.
 
 ---
 
+## Mapa do site
+
+A home é a porta, não o prédio: responde "o que é, é sério, como se divide, o que ganho,
+de quem é o curso" e manda cada aprofundamento para uma landing page. Tudo que está no
+menu e no rodapé é página própria — buscar uma informação não é rolar a home.
+
+| Rota | Público | Responde |
+|---|---|---|
+| `/` | ambos | O que é o Duck Affiliate e por onde começar |
+| `/como-funciona` | afiliado | Três partes, seis passos, critérios de seleção |
+| `/para-afiliados` | afiliado | Quem encaixa, áreas, kit que recebe, comparativo |
+| `/comissao` | afiliado | Simulador, rastreio, pagamento, dúvidas de dinheiro |
+| `/para-produtores` | produtor | O que a estrutura entrega a quem tem curso + formulário de interesse |
+| `/inscricao` | afiliado | Formulário de candidatura |
+| `/contato` | ambos | E-mail e WhatsApp |
+| `/programa` | afiliado | Regras completas, por extenso |
+| `/perguntas-frequentes` | afiliado | FAQ inteira |
+| `/para-criadores/<área>` | afiliado | Páginas de SEO por área |
+| `/parceiro/entrar` | afiliado aprovado | Login por link ("Entrar" no topo e no rodapé) |
+
+**Vocabulário.** Para o afiliado, "canal" é o canal dele no YouTube. Por isso o outro lado
+do modelo — canal, escola ou criador que tem curso — se chama **produtor** no site público.
+Internamente a entidade é o *programa* (`programas` no banco).
+
+**Produtores.** O formulário de `/para-produtores` grava em `produtores_interessados`
+(ou `.data/produtores_interessados.json`), avisa a equipe por e-mail e aparece em
+`/admin/produtores` com status. Integrar um produtor novo ainda é manual: criar o programa
+no banco e publicar os materiais dele.
+
+## Área do parceiro e biblioteca de materiais
+
+Parceiro **aprovado** entra em `/parceiro` sem senha: informa o e-mail da candidatura,
+recebe um link que vale 20 minutos e vira uma sessão de 30 dias. Se o status deixar de
+ser "aprovado", o acesso cai na próxima página — não há nada para revogar.
+
+```
+/parceiro                                   Meus programas (+ "pronto para vender" ou "falta seu link")
+/parceiro/<programa>                        Link de vendas + QR, destaques, campanhas
+/parceiro/<programa>/materiais              Biblioteca: busca, filtros, ordenação, grade/lista
+/parceiro/<programa>/materiais/<id>         Detalhe: prévia, baixar/copiar/abrir, link e QR deste material
+```
+
+### Link de vendas e material individualizado
+
+O Duck Affiliate não processa venda: quem rastreia e paga é a plataforma do produtor
+(Hotmart, no primeiro programa). O parceiro cria a conta lá, pede afiliação ao produto e
+**cola o link que a plataforma gerou** na página do programa — é o vínculo parceiro ×
+programa (`afiliacoes`, um link por parceiro por programa; o passo a passo por plataforma
+está em `src/lib/plataformas.ts`). A partir daí o material vira dele:
+
+- **QR code** gerado no servidor (`qrcode`, sem serviço externo), PNG de 256 a 2048 px ou
+  SVG, em `/api/parceiro/programas/<slug>/qr`. Codifica o link do parceiro e nada mais.
+- **Textos com `{{link}}`**: o admin escreve o marcador onde o link entra; cada parceiro
+  vê e copia o texto já com o próprio link. Sem link cadastrado o marcador fica visível e a
+  interface manda cadastrar.
+- **Etiqueta de origem por material**: na Hotmart o link ganha `?src=duck-<tipo>-<id>`
+  (QR do programa: `src=duck-qr`), que a plataforma devolve no relatório de vendas como
+  origem — o parceiro descobre qual thumbnail ou descrição vendeu. Um `src` que o parceiro
+  já tenha no link não é sobrescrito. Eduzz/Kiwify: só validação de domínio, sem etiqueta.
+
+Na prévia da equipe o cartão aparece no estado "pronto" com um link de exemplo, e o
+passo a passo fica atrás de "ver o passo a passo"; salvar e baixar exigem parceiro real.
+
+Quem publica é a equipe, em `/admin/materiais` (e `/admin/campanhas`). O painel abre em
+`/admin` com o que há para fazer (candidaturas na fila, produtores sem contato, materiais,
+campanhas) e uma ajuda dobrável; **Ver como parceiro** abre a biblioteca em prévia, com a
+sessão da própria equipe, sem contar uso. Um material é um
+**arquivo** (baixar), um **texto** (copiar) ou um **link** (abrir). Tipos: imagem, vídeo,
+banner, social, e-mail, copy, cupom, logo, PDF, link, outro.
+
+**Sem Supabase** os arquivos vão para `.data/materiais/` e o upload passa pelo servidor.
+**Com Supabase** o navegador envia direto para o bucket privado `materiais` (URL assinada)
+e o download é um redirecionamento para uma URL de leitura de 60 s — o arquivo nunca ocupa
+a função do Next, o que importa porque a Vercel corta requisições em ~4,5 MB.
+
+Em desenvolvimento sem `RESEND_API_KEY`, o link de acesso do parceiro é impresso no
+terminal do `npm run dev`.
+
+Todo parceiro aprovado hoje vê todos os programas ativos (há um só). O único vínculo
+explícito parceiro × programa é o link de vendas; restringir *quais* programas cada
+parceiro vê é a primeira coisa a adicionar quando entrar o segundo produtor — está anotado
+no roadmap.
+
 ## Estrutura
 
 ```
 src/
 ├── app/
-│   ├── page.tsx                    Landing page (todas as seções)
+│   ├── page.tsx                    Home (porta de entrada, 8 seções)
+│   ├── como-funciona/ · para-afiliados/ · comissao/    Landing pages do afiliado
+│   ├── para-produtores/            Landing page do produtor + formulário de interesse
+│   ├── inscricao/ · contato/       Candidatura e contato (saíram da home)
 │   ├── programa/                   Regras completas do programa (SEO)
 │   ├── perguntas-frequentes/       FAQ com schema.org FAQPage
 │   ├── para-criadores/[area]/      10 páginas programáticas de SEO
 │   ├── termos/ · privacidade/      Minutas jurídicas (revisar antes de publicar)
 │   ├── obrigado/                   Pós-inscrição (noindex)
-│   ├── admin/                      Painel de triagem
+│   ├── parceiro/                   Área do parceiro (login por link, link de vendas, biblioteca)
+│   ├── admin/                      Painel: início por tarefas, candidaturas, materiais,
+│   │                               campanhas, produtores interessados
 │   └── api/
-│       ├── candidaturas/           POST público do formulário
-│       └── admin/                  Sessão, atualização e exportação CSV
-├── components/                     Interface (seções, formulário, painel)
+│       ├── candidaturas/ · produtores/    POST público dos dois formulários
+│       ├── materiais/[id]/arquivo/        Download do material (conta uso)
+│       ├── parceiro/                      Acesso, sessão, uso, link de vendas e QR
+│       └── admin/                         Sessão, triagem, materiais, campanhas, CSV
+├── components/                     Interface (seções, formulários, painel, parceiro)
 ├── lib/
-│   ├── site.ts                     Configuração institucional
+│   ├── site.ts                     Configuração institucional, menu e rodapé
 │   ├── programa.ts                 ⚠️ Conteúdo comercial — números ficam aqui
+│   ├── produtores.ts               Conteúdo da página do produtor
+│   ├── plataformas.ts              Hotmart/Eduzz/Kiwify: validação do link e etiqueta de origem
+│   ├── materiais.ts                Domínio da biblioteca + personalização por parceiro
+│   ├── qr.ts                       QR code gerado no servidor (PNG/SVG)
 │   ├── schema.ts                   Validação (zod) e tipos
 │   ├── score.ts                    Triagem automática de prioridade
-│   ├── store.ts                    Persistência (Supabase ou arquivo)
-│   ├── auth.ts                     Sessão do painel
+│   ├── db.ts                       Supabase ou arquivo (`.data/`)
+│   ├── store*.ts                   Candidaturas, materiais, produtores, afiliações
+│   ├── storage.ts                  Arquivos: bucket privado ou disco local
+│   ├── auth.ts · auth-parceiro.ts  Sessão do painel e do parceiro
 │   └── mail.ts                     E-mails transacionais (Resend)
-└── middleware.ts                   Barreira do /admin
-supabase/schema.sql                 Tabela, índices, RLS e views do funil
-docs/                               Playbooks de operação, comunidade, SEO e roadmap
+└── middleware.ts                   Barreira do /admin e do /parceiro
+supabase/schema.sql                 Tabelas, índices, RLS, bucket e funções
+docs/                               Playbooks, roadmap e handoff
 ```
 
 O `preview/landing.html` foi removido no rebrand: era um espelho estático da identidade
@@ -86,13 +182,13 @@ agora é o próprio `npm run dev` (continua no histórico do git, se precisar).
 
 ### Seções da home, na ordem
 
-`Hero` · `Numeros` · `Pilares` · `FaixaAreas` · `ComoFunciona` · `QuemPodeParticipar` ·
-`Beneficios` · `Comissao` · `Portal` · `Comparativo` · `Selecao` · `Assinatura` · `Faq` ·
-formulário · `Contato` · `Chamada`
+`Hero` · `Numeros` · `Trilhas` · `Pilares` · `Beneficios` · `Assinatura` · `FaqCurto` ·
+`Chamada`
 
-A sequência responde, nesta ordem, às perguntas de quem chega: o que é → é sério? → como
-funciona → serve para mim? → o que eu ganho → quanto → o que recebo → por que aqui → como
-me escolhem → de quem é o curso → e as dúvidas → me inscrevo.
+Eram 15 seções; viraram 8. A home responde "o que é → é sério? → para onde eu vou → como
+funciona → o que eu ganho → de quem é o curso → dúvidas rápidas → me inscrevo", e `Trilhas`
+é o desvio: quatro portas para as landing pages, onde mora o aprofundamento. O que saiu da
+home não foi jogado fora — virou página no menu e no rodapé.
 
 ---
 
@@ -192,8 +288,12 @@ NEXT_PUBLIC_SUPABASE_URL="https://xxx.supabase.co"
 SUPABASE_SERVICE_ROLE_KEY="..."     # nunca prefixar com NEXT_PUBLIC_
 ```
 
-A tabela sobe com RLS ligado e **sem políticas**: só o servidor, usando a service role key,
-lê ou escreve. Se essa chave vazar, a base inteira vaza — trate como senha de banco.
+As tabelas sobem com RLS ligado e **sem políticas**: só o servidor, usando a service role
+key, lê ou escreve. Se essa chave vazar, a base inteira vaza — trate como senha de banco.
+
+O `schema.sql` é **idempotente** (`create ... if not exists`, `add column if not exists`):
+rodar de novo num banco que já existe aplica só o que falta. É assim que se migra um
+ambiente já publicado — ver [docs/06-handoff.md](docs/06-handoff.md).
 
 ### 2. E-mails (opcional, mas recomendado)
 
@@ -216,6 +316,9 @@ Configure todas as variáveis do `.env.example` no painel do provedor.
 - [ ] Google Analytics: preencher `NEXT_PUBLIC_GA_ID`
 - [ ] Publicar o vídeo de divulgação apontando para o domínio
 - [ ] Trocar `ADMIN_PASSWORD` por uma senha forte e única
+- [ ] Conferir o bucket privado `materiais` no Supabase (Storage) e subir os primeiros materiais
+- [ ] Combinar com o produtor o link de afiliação do produto (`programas.url_afiliacao`),
+      que vira o botão "Solicitar afiliação" na área do parceiro
 
 ---
 
@@ -257,3 +360,4 @@ Serve contra flood bobo. Para algo sério, ver `docs/05-roadmap.md`.
 | [docs/03-comunidade-e-materiais.md](docs/03-comunidade-e-materiais.md) | Estrutura do Discord e da biblioteca de materiais |
 | [docs/04-seo.md](docs/04-seo.md) | Estratégia de busca e plano de conteúdo |
 | [docs/05-roadmap.md](docs/05-roadmap.md) | Da landing page à plataforma multiprodutor |
+| [docs/06-handoff.md](docs/06-handoff.md) | **Estado atual, o que falta configurar e o que é manual** |

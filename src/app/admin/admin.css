@@ -17,12 +17,22 @@
 
 .adm__topo-interno {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 16px;
-  height: 62px;
-  padding-inline: clamp(16px, 3vw, 28px);
+  gap: 10px 16px;
+  min-height: 62px;
+  padding: 8px clamp(16px, 3vw, 28px);
   max-width: 1400px;
   margin-inline: auto;
+}
+
+/* Em tela estreita as ações vão para a segunda linha, encostadas à direita;
+   sem isto marca + selo + "Exportar CSV" + "Sair" somavam ~470px em 390. */
+@media (max-width: 560px) {
+  .adm__topo-acoes {
+    flex-basis: 100%;
+    justify-content: flex-end;
+  }
 }
 
 .adm__marca {
@@ -318,3 +328,189 @@ table.adm-tabela {
   border-color: var(--ambar-texto);
   color: #fff;
 }
+
+/* --- Navegação entre seções do painel ------------------------------------- */
+
+.adm__nav {
+  display: flex;
+  gap: 4px;
+  margin-left: 8px;
+}
+
+.adm__nav a {
+  padding: 6px 11px;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--tinta-2);
+  text-decoration: none;
+}
+
+.adm__nav a:hover { background: var(--gelo); color: var(--tinta); }
+
+.adm__nav a[aria-current='page'] {
+  background: var(--navy);
+  color: var(--ambar);
+}
+
+.adm__topo-acoes {
+  margin-left: auto;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* Em tela estreita a navegação vai para a segunda linha inteira, em vez
+   de sumir — antes, no celular, não havia como trocar de seção. */
+@media (max-width: 760px) {
+  .adm__nav {
+    order: 3;
+    flex-basis: 100%;
+    margin-left: 0;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+  .adm__nav a { white-space: nowrap; }
+  .adm__topo-acoes { flex-basis: auto; }
+}
+
+/* --- Formulário de material ----------------------------------------------- */
+
+.opcoes--compactas { gap: 8px; }
+.opcoes--compactas .opcao { padding: 8px 12px; font-size: 0.86rem; }
+.opcoes--compactas .opcao:has(input:checked) { border-color: var(--cor-tipo, var(--ambar-texto)); }
+.opcao[aria-disabled='true'] { opacity: 0.6; cursor: not-allowed; }
+
+.zona-envio {
+  border: 2px dashed var(--linha-forte);
+  border-radius: var(--raio);
+  padding: 26px 20px;
+  text-align: center;
+  cursor: pointer;
+  background: var(--superficie-2);
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.zona-envio:hover { border-color: var(--ambar-texto); }
+.zona-envio[data-estado='enviando'] { border-color: var(--ambar); background: var(--ambar-suave); cursor: progress; }
+.zona-envio[data-estado='ok'] { border-style: solid; border-color: var(--ok); }
+.zona-envio[data-estado='erro'] { border-color: var(--erro); }
+.zona-envio p { display: flex; flex-direction: column; gap: 4px; align-items: center; }
+
+
+/* --- Início do painel: tarefas ------------------------------------------ */
+
+.tarefas {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
+}
+
+.tarefa {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 20px 22px;
+  background: var(--superficie);
+  border: 1px solid var(--linha);
+  border-radius: 14px;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.tarefa:hover { border-color: var(--linha-forte); box-shadow: var(--sombra-1); }
+.tarefa[data-urgente='true'] { border-color: var(--ambar); box-shadow: inset 4px 0 0 var(--ambar); }
+
+.tarefa__numero {
+  font-family: var(--fonte-titulo);
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.tarefa__rotulo { font-size: 0.78rem; color: var(--tinta-3); margin-bottom: 8px; }
+.tarefa h2 { font-size: 1.05rem; font-family: var(--fonte-titulo); }
+.tarefa p { font-size: 0.86rem; color: var(--tinta-2); line-height: 1.5; flex: 1; }
+.tarefa .link-ambar { margin-top: 8px; font-size: 0.86rem; }
+
+/* --- Ajuda dobrável ------------------------------------------------------- */
+
+.ajuda-painel {
+  background: var(--superficie);
+  border: 1px solid var(--linha);
+  border-radius: 12px;
+}
+
+.ajuda-painel summary {
+  cursor: pointer;
+  padding: 12px 16px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--tinta-2);
+  list-style: none;
+}
+
+.ajuda-painel summary::-webkit-details-marker { display: none; }
+.ajuda-painel summary::before { content: '?'; display: inline-grid; place-items: center; width: 20px; height: 20px; margin-right: 10px; border-radius: 50%; background: var(--ambar-suave); color: var(--ambar-texto); font-size: 0.78rem; }
+.ajuda-painel[open] summary { border-bottom: 1px solid var(--linha); }
+
+.ajuda-painel__corpo { padding: 14px 16px 16px; font-size: 0.9rem; color: var(--tinta-2); line-height: 1.6; }
+.ajuda-painel__corpo ol { padding-left: 20px; margin: 0; display: flex; flex-direction: column; gap: 8px; }
+
+/* --- Formulário de material em etapas ------------------------------------ */
+
+.etapa-form {
+  padding-top: 8px;
+  border-top: 1px solid var(--linha);
+}
+
+.etapa-form:first-child { border-top: 0; padding-top: 0; }
+
+.etapa-form__titulo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--fonte-titulo);
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.etapa-form__titulo span {
+  display: inline-grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: var(--ambar);
+  font-size: 0.82rem;
+}
+
+.tipos-grade {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+}
+
+.tipo-opcao {
+  --cor-tipo: var(--tinta-3);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 12px;
+  border: 1px solid var(--linha-forte);
+  border-radius: 10px;
+  background: var(--superficie);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--tinta-2);
+}
+
+.tipo-opcao input { position: absolute; opacity: 0; width: 0; height: 0; }
+.tipo-opcao svg { color: var(--cor-tipo); flex-shrink: 0; }
+.tipo-opcao:hover { border-color: var(--cor-tipo); }
+.tipo-opcao[data-ativo='true'] { border-color: var(--cor-tipo); background: color-mix(in srgb, var(--cor-tipo) 10%, var(--superficie)); color: var(--tinta); }
+.tipo-opcao:has(input:focus-visible) { outline: 2px solid var(--ambar); outline-offset: 2px; }

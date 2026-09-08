@@ -85,9 +85,9 @@ independente", capaz de receber outros produtores depois. Uma marca que veste a 
 produtor específico não sobrevive à chegada do segundo.
 
 O que preserva a confiança de quem chega vindo de um vídeo do canal não é a paleta, é a
-**assinatura**: *Powered by Rascunhos Econômicos* aparece na pílula do cabeçalho, no rodapé,
-no cartão social e numa seção própria da home (`#catalogo`) que explica a relação em duas
-frases.
+**assinatura**: *Powered by Rascunhos Econômicos* aparece no rodapé, no cartão social e
+numa seção própria da home (`#catalogo`) que explica a relação em duas frases. Saiu do
+cabeçalho em setembro/2026, por decisão do cliente: no topo, a marca é o Duck Affiliate.
 
 ### Paleta
 

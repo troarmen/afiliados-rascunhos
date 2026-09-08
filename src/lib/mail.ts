@@ -1,5 +1,5 @@
 import 'server-only'
-import type { Candidatura } from './schema'
+import type { Candidatura, InteresseProdutor } from './schema'
 import { site } from './site'
 import { faixaDoScore } from './score'
 
@@ -129,5 +129,84 @@ export function alertaEquipe(c: Candidatura) {
       <p style="margin-top:24px"><a href="${site.url}/admin/${c.id}" style="background:#ffc20e;color:#000e29;font-weight:700;padding:12px 20px;border-radius:8px;text-decoration:none;display:inline-block">Abrir no painel</a></p>`,
     ),
     responderPara: c.email,
+  })
+}
+
+// ===========================================================================
+// Área do parceiro
+// ===========================================================================
+
+/** O link de acesso pedido pelo parceiro. Vale 20 minutos. */
+export function linkDeAcesso(c: Candidatura, url: string) {
+  return enviar({
+    para: c.email,
+    assunto: `Seu link de acesso ao ${site.nome}`,
+    html: layout(
+      `Entre na área do parceiro, ${c.nome.split(' ')[0]}`,
+      `<p>Você pediu um link para entrar na área do parceiro do <strong>${site.nome}</strong>. É só clicar:</p>
+       <p style="margin:22px 0"><a href="${url}" style="background:#ffc20e;color:#000e29;font-weight:700;padding:13px 22px;border-radius:10px;text-decoration:none;display:inline-block">Entrar na área do parceiro</a></p>
+       <p style="font-size:13px;color:#6b7690">O link vale por <strong>20 minutos</strong> e abre só uma sessão neste navegador. Se você não pediu este acesso, pode ignorar este e-mail — nada acontece sem o clique.</p>
+       <p style="font-size:12px;color:#6b7690;word-break:break-all">Se o botão não funcionar, copie e cole: ${url}</p>`,
+    ),
+    responderPara: process.env.MAIL_TEAM,
+  })
+}
+
+/**
+ * Boas-vindas ao virar "aprovado": é assim que o parceiro fica sabendo que
+ * a área existe. Sem este e-mail, o login seria uma porta sem placa.
+ */
+export function boasVindasParceiro(c: Candidatura) {
+  return enviar({
+    para: c.email,
+    assunto: `Você foi aprovado no ${site.nome} — seus materiais já estão prontos`,
+    html: layout(
+      `Bem-vindo ao ${site.nome}, ${c.nome.split(' ')[0]}!`,
+      `<p>Sua candidatura foi aprovada. A partir de agora você tem acesso à <strong>área do parceiro</strong>, onde ficam todos os materiais de divulgação: thumbnails, cortes, roteiros, textos, cupons e o calendário de campanhas.</p>
+       <p><strong>Como entrar:</strong> acesse a área do parceiro, informe este e-mail (<em>${c.email}</em>) e você recebe um link de acesso. Sem senha para guardar.</p>
+       <p style="margin:22px 0"><a href="${site.url}/parceiro/entrar" style="background:#ffc20e;color:#000e29;font-weight:700;padding:13px 22px;border-radius:10px;text-decoration:none;display:inline-block">Acessar a área do parceiro</a></p>
+       <p>Nos próximos dias entramos em contato para alinhar a sua conta na Hotmart e as condições da parceria. Enquanto isso, já dá para conhecer o material.</p>
+       <p style="margin-top:24px">Até já,<br><strong>Equipe ${site.produtor}</strong></p>`,
+    ),
+    responderPara: process.env.MAIL_TEAM,
+  })
+}
+
+// ===========================================================================
+// Produtores
+// ===========================================================================
+
+export function confirmacaoProdutor(p: InteresseProdutor) {
+  return enviar({
+    para: p.email,
+    assunto: `Recebemos o seu interesse no ${site.nome}`,
+    html: layout(
+      `Obrigado, ${p.nome.split(' ')[0]}!`,
+      `<p>Recebemos as informações sobre <strong>${p.projeto}</strong>. A gente lê tudo com calma e volta a falar com você em dias úteis para conversar sobre encaixe e condições.</p>
+       <p>Enquanto isso, se quiser adiantar, responda este e-mail com o link da página de vendas do curso que mais vende hoje — ajuda bastante na conversa.</p>
+       <p style="margin-top:24px">Até breve,<br><strong>Equipe ${site.nome}</strong></p>`,
+    ),
+    responderPara: process.env.MAIL_TEAM,
+  })
+}
+
+export function alertaProdutor(p: InteresseProdutor) {
+  const destino = process.env.MAIL_TEAM
+  if (!destino) return Promise.resolve(false)
+  const esc = (v: string) => v.replace(/</g, '&lt;').replace(/\n/g, '<br>')
+  return enviar({
+    para: destino,
+    assunto: `[Produtor] Novo interesse: ${p.projeto} (${p.plataforma})`,
+    html: layout(
+      'Novo produtor interessado',
+      `<table style="width:100%;font-size:14px;border-collapse:collapse">
+        ${[['Nome', p.nome], ['E-mail', p.email], ['WhatsApp', p.telefone || '—'], ['Projeto', p.projeto], ['Link', p.url || '—'], ['Plataforma', p.plataforma]]
+          .map(([k, v]) => `<tr><td style="padding:6px 12px 6px 0;color:#8a9099;white-space:nowrap;vertical-align:top">${k}</td><td style="padding:6px 0">${v}</td></tr>`)
+          .join('')}
+      </table>
+      <p style="margin-top:20px"><strong>Catálogo e público:</strong><br>${esc(p.catalogo)}</p>
+      <p style="margin-top:24px"><a href="${site.url}/admin/produtores" style="background:#ffc20e;color:#000e29;font-weight:700;padding:12px 20px;border-radius:8px;text-decoration:none;display:inline-block">Abrir no painel</a></p>`,
+    ),
+    responderPara: p.email,
   })
 }

@@ -284,7 +284,7 @@ export default async function PaginaArea({ params }: { params: Promise<{ area: s
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Início', item: urlAbsoluta('/') },
-      { '@type': 'ListItem', position: 2, name: 'Programa', item: urlAbsoluta('/programa') },
+      { '@type': 'ListItem', position: 2, name: 'Para afiliados', item: urlAbsoluta('/para-afiliados') },
       {
         '@type': 'ListItem',
         position: 3,
@@ -306,7 +306,7 @@ export default async function PaginaArea({ params }: { params: Promise<{ area: s
           <div className="envelope">
             <nav className="migalhas" aria-label="Você está aqui">
               <Link href="/">Início</Link> <span aria-hidden="true">/</span>{' '}
-              <Link href="/programa">Programa</Link> <span aria-hidden="true">/</span>{' '}
+              <Link href="/para-afiliados">Para afiliados</Link> <span aria-hidden="true">/</span>{' '}
               <span>{dados.nome}</span>
             </nav>
 
@@ -315,7 +315,7 @@ export default async function PaginaArea({ params }: { params: Promise<{ area: s
               <h1>{conteudo.titulo}</h1>
               <p className="subtitulo">{conteudo.intro}</p>
 
-              <Link className="botao botao--g" href="/#inscricao" style={{ alignSelf: 'flex-start' }}>
+              <Link className="botao botao--g" href="/inscricao" style={{ alignSelf: 'flex-start' }}>
                 Quero me candidatar
               </Link>
 
@@ -359,7 +359,7 @@ export default async function PaginaArea({ params }: { params: Promise<{ area: s
                 Cinco minutos de formulário, resposta em até sete dias úteis. Sem custo e sem
                 exclusividade.
               </p>
-              <Link className="botao" href="/#inscricao" style={{ alignSelf: 'flex-start', marginTop: 8 }}>
+              <Link className="botao" href="/inscricao" style={{ alignSelf: 'flex-start', marginTop: 8 }}>
                 Quero participar
               </Link>
             </div>

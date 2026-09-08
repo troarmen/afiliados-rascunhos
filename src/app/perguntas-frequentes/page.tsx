@@ -48,7 +48,7 @@ export default function PerguntasFrequentes() {
             <h1>Perguntas frequentes sobre o programa de afiliados</h1>
             <p className="subtitulo">
               Tudo o que costumam perguntar antes de se inscrever. Não achou sua dúvida? Escreva
-              para <Link href="/#contato">a equipe</Link>.
+              para <Link href="/contato">a equipe</Link>.
             </p>
           </div>
 

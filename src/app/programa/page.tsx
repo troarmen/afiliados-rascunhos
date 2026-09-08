@@ -150,7 +150,7 @@ export default function Programa() {
               <p>
                 Leva cinco minutos e a resposta sai em até {comissao.prazoResposta} dias úteis.
               </p>
-              <Link className="botao" href="/#inscricao" style={{ alignSelf: 'flex-start', marginTop: 8 }}>
+              <Link className="botao" href="/inscricao" style={{ alignSelf: 'flex-start', marginTop: 8 }}>
                 Quero ser afiliado
               </Link>
             </div>

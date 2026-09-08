@@ -220,9 +220,9 @@ export function FormularioInscricao() {
           <p className="campo__dica" style={{ marginBottom: 4 }}>
             Etapa {etapa + 1} de {ETAPAS.length}
           </p>
-          <h3 style={{ fontFamily: 'var(--fonte-titulo)', fontSize: '1.35rem' }}>
+          <h2 style={{ fontFamily: 'var(--fonte-titulo)', fontSize: '1.35rem' }}>
             {ETAPAS[etapa].titulo}
-          </h3>
+          </h2>
           <p className="campo__dica" style={{ marginTop: 4 }}>
             {ETAPAS[etapa].descricao}
           </p>

@@ -1,89 +1,46 @@
-import Link from 'next/link'
 import { Topo } from '@/components/Topo'
 import { Rodape } from '@/components/Rodape'
 import { Hero } from '@/components/secoes/Hero'
 import { Numeros } from '@/components/secoes/Numeros'
+import { Trilhas } from '@/components/secoes/Trilhas'
 import { Pilares } from '@/components/secoes/Pilares'
-import { FaixaAreas } from '@/components/secoes/FaixaAreas'
-import { ComoFunciona } from '@/components/secoes/ComoFunciona'
-import { QuemPodeParticipar } from '@/components/secoes/QuemPodeParticipar'
 import { Beneficios } from '@/components/secoes/Beneficios'
-import { Comissao } from '@/components/secoes/Comissao'
-import { Portal } from '@/components/secoes/Portal'
-import { Comparativo } from '@/components/secoes/Comparativo'
-import { Selecao } from '@/components/secoes/Selecao'
 import { Assinatura } from '@/components/secoes/Assinatura'
-import { Faq } from '@/components/secoes/Faq'
-import { Contato } from '@/components/secoes/Contato'
+import { FaqCurto } from '@/components/secoes/Faq'
 import { Chamada } from '@/components/secoes/Chamada'
-import { FormularioInscricao } from '@/components/FormularioInscricao'
-import { comissao, faq } from '@/lib/programa'
+import { faq } from '@/lib/programa'
 
 const faqEstruturado = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
-  mainEntity: faq.map((item) => ({
+  mainEntity: faq.slice(0, 3).map((item) => ({
     '@type': 'Question',
     name: item.pergunta,
     acceptedAnswer: { '@type': 'Answer', text: item.resposta },
   })),
 }
 
+/**
+ * A home é a porta, não o prédio.
+ *
+ * Antes ela tinha quinze seções e o formulário no fim: quem queria só a
+ * comissão rolava tudo; quem queria se candidatar também. Agora ela
+ * responde "o que é, é sério, como se divide, o que ganho, de quem é o
+ * curso" e manda cada aprofundamento para a landing certa (Trilhas).
+ */
 export default function Pagina() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqEstruturado) }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqEstruturado) }} />
       <Topo />
       <main id="conteudo">
-        {/* A ordem responde, nesta sequência, às perguntas de quem chega:
-            o que é → é sério? → como funciona → serve para mim? → o que eu
-            ganho → quanto → o que recebo → por que aqui → como me escolhem →
-            de quem é o curso → e as dúvidas → me inscrevo. */}
         <Hero />
         <Numeros />
+        <Trilhas />
         <Pilares />
-        <FaixaAreas />
-        <ComoFunciona />
-        <QuemPodeParticipar />
         <Beneficios />
-        <Comissao />
-        <Portal />
-        <Comparativo />
-        <Selecao />
         <Assinatura />
-        <Faq />
-
-        <section className="secao secao--superficie" id="inscricao">
-          <div className="envelope">
-            <div className="cabecalho-secao centro">
-              <span className="olho">Inscrição</span>
-              <h2 style={{ textAlign: 'center' }}>
-                Candidate <span className="realce">o seu canal</span>
-              </h2>
-              <p className="subtitulo" style={{ textAlign: 'center' }}>
-                Cinco minutos de formulário. Resposta em até {comissao.prazoResposta} dias úteis,
-                aprovada ou não. Nenhum custo, nenhuma pegadinha.
-              </p>
-            </div>
-            <FormularioInscricao />
-            <p
-              className="campo__dica"
-              style={{ textAlign: 'center', marginTop: 22, maxWidth: '56ch', marginInline: 'auto' }}
-            >
-              Seus dados são usados apenas para avaliar esta candidatura e falar com você sobre a
-              parceria. Nunca vendemos ou compartilhamos essas informações —{' '}
-              <Link href="/privacidade" style={{ color: 'var(--ambar-texto)' }}>
-                veja a política de privacidade
-              </Link>
-              .
-            </p>
-          </div>
-        </section>
-
-        <Contato />
+        <FaqCurto />
         <Chamada />
       </main>
       <Rodape />

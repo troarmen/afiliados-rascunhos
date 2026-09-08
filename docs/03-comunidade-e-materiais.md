@@ -61,9 +61,25 @@ que qualquer material que a gente produza. Peça esse relato ativamente.
 `@parceiro-ativo` é reconhecimento, não punição — e cria um incentivo concreto sem
 transformar a comunidade em cobrança.
 
-## Biblioteca de materiais (Google Drive)
+## Biblioteca de materiais
 
-O Drive continua sendo o repositório; o Discord aponta para ele. Estrutura:
+> **Mudou em setembro/2026.** A biblioteca deixou de morar no Google Drive e passou a ser
+> parte do site: o parceiro aprovado entra em `/parceiro`, filtra por tipo, campanha e
+> formato, e baixa ou copia — com o link dele já dentro dos textos (ver README, "Link de
+> vendas e material individualizado"). O Discord aponta para a área do parceiro, não mais
+> para uma pasta.
+>
+> A estrutura de pastas abaixo continua valendo como **lista do que produzir**: cada pasta
+> daqui vira um *tipo* (imagem, vídeo, copy, cupom…) ou uma *campanha* na biblioteca.
+
+### Quem escreve copy: use `{{link}}`
+
+Em material de texto (roteiro, descrição de vídeo, e-mail), escreva `{{link}}` onde o link
+de venda deve entrar. Cada parceiro copia o texto com o **link dele**, etiquetado com aquele
+material — é o que faz o relatório da Hotmart mostrar qual peça vendeu. Nunca cole um link
+fixo no texto: ele atribuiria a venda a outra pessoa.
+
+### Estrutura (referência do que produzir)
 
 ```
 Duck Affiliate/
@@ -122,6 +138,10 @@ por WhatsApp durante o mês inteiro.
 ## Cupons
 
 Um cupom por parceiro, com o nome do canal, e desconto real (sugestão: 10% a 15%).
+
+O cupom é criado **pelo produtor, dentro da Hotmart** — o site não gera cupom. Criado lá,
+ele é publicado como material do tipo "cupom" na biblioteca do parceiro, que copia com um
+clique. O QR code e a etiqueta de origem cobrem o outro caminho: quem chega pelo link.
 
 O cupom faz três coisas ao mesmo tempo: dá algo concreto para a audiência ganhar por seguir
 aquele criador, rastreia venda mesmo quando a pessoa não passa pelo link, e cria uma

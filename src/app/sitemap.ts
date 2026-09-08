@@ -7,6 +7,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const fixas: MetadataRoute.Sitemap = [
     { url: site.url, lastModified: agora, changeFrequency: 'weekly', priority: 1 },
+    ...['/como-funciona', '/para-afiliados', '/comissao', '/para-produtores', '/inscricao'].map((c) => ({
+      url: `${site.url}${c}`,
+      lastModified: agora,
+      changeFrequency: 'monthly' as const,
+      priority: 0.9,
+    })),
+    { url: `${site.url}/contato`, lastModified: agora, changeFrequency: 'yearly', priority: 0.4 },
     {
       url: `${site.url}/programa`,
       lastModified: agora,

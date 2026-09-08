@@ -1223,7 +1223,7 @@ input[type='range']::-moz-range-thumb {
   gap: 18px;
 }
 
-.formulario__topo h3 {
+.formulario__topo h2 {
   font-size: 1.5rem;
 }
 
@@ -2059,5 +2059,151 @@ select {
   }
   .topo__interno {
     gap: 12px;
+  }
+}
+
+/* ==========================================================================
+   Navegação por páginas (a home deixou de carregar tudo)
+   ========================================================================== */
+
+/* Item da página atual: quem chegou por link sabe onde está. */
+.topo__nav a[aria-current='page'] {
+  color: var(--ambar);
+}
+
+.topo__nav a[aria-current='page']::after {
+  content: '';
+  display: block;
+  height: 2px;
+  margin-top: 3px;
+  border-radius: 2px;
+  background: var(--ambar);
+}
+
+.topo__acao {
+  display: none;
+  align-items: center;
+  gap: 14px;
+}
+
+/* Abaixo de 1120px o menu móvel já carrega o CTA e o "Entrar"; mostrar os
+   dois ao lado do hambúrguer estourava a largura em 390px. */
+@media (min-width: 1120px) {
+  .topo__acao {
+    display: flex;
+  }
+}
+
+/* "Entrar": porta da área do parceiro. Discreta, mas sempre presente. */
+.topo__entrar {
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.92rem;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.topo__entrar:hover {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.menu-movel a[aria-current='page'] {
+  color: var(--ambar);
+}
+
+.menu-movel__secundario a {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.92rem;
+}
+
+/* Cabeça padrão das landing pages: migalha, olho, h1, subtítulo, ações. */
+.cabeca-pagina {
+  padding-block: clamp(36px, 5vw, 64px) clamp(40px, 5vw, 64px);
+}
+
+.cabeca-pagina .olho {
+  display: block;
+  margin: 18px 0 12px;
+}
+
+.cabeca-pagina h1 {
+  max-width: 22ch;
+}
+
+.cabeca-pagina .subtitulo {
+  margin-top: 16px;
+}
+
+.cabeca-pagina__acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 26px;
+}
+
+/* Hub da home ----------------------------------------------------------- */
+
+.trilhas {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+}
+
+.trilha {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: clamp(20px, 2.4vw, 26px);
+  background: var(--papel);
+  border: 1px solid var(--linha);
+  border-radius: var(--raio);
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+.trilha:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--sombra-2);
+  border-color: var(--linha-forte);
+}
+
+.trilha h3 {
+  font-size: 1.1rem;
+  margin-top: 4px;
+}
+
+.trilha p {
+  font-size: 0.9rem;
+  color: var(--tinta-2);
+  line-height: 1.55;
+  flex: 1;
+}
+
+.trilha .link-ambar {
+  margin-top: 6px;
+}
+
+/* A segunda porta do hero, em texto — não compete com o CTA principal. */
+.hero__outra-porta {
+  font-size: 0.9rem;
+  color: var(--tinta-3);
+}
+
+.hero__outra-porta a {
+  color: var(--ambar);
+  font-weight: 600;
+}
+
+/* Rodapé com cinco colunas: marca + afiliados + produtores + acesso + legal */
+.rodape__grade--5 {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 170px), 1fr));
+}
+
+@media (min-width: 1000px) {
+  .rodape__grade--5 {
+    grid-template-columns: 1.6fr 1fr 1fr 1fr 1fr;
   }
 }

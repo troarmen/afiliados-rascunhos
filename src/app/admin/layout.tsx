@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import './admin.css'
+import '../parceiro/parceiro.css'
 
 export const metadata: Metadata = {
   title: 'Painel de parceiros',

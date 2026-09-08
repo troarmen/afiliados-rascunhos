@@ -28,8 +28,15 @@ para quem preferir analisar em planilha.
 
 Só faz sentido depois de ~20 parceiros ativos.
 
-- [ ] **Área do parceiro** (`/parceiro`) — login próprio, materiais, cupom e link em um só
-      lugar, sem depender do Discord. *Exige: Supabase Auth, tabela `parceiros`.*
+- [x] **Área do parceiro** (`/parceiro`) — entregue em setembro/2026. Login por link de
+      e-mail (sem senha, sem Supabase Auth: a candidatura aprovada é a identidade), páginas
+      por programa e a **biblioteca de materiais** — que estava prevista para a fase 3 e foi
+      antecipada porque o Drive já era o gargalo antes da primeira turma.
+- [x] **Link de vendas + QR + texto individualizado** — entregue em setembro/2026. O
+      parceiro cola o link da Hotmart na página do programa; o site gera o QR, injeta o
+      link nos textos (`{{link}}`) e etiqueta a origem por material (`src`). Falta: cupom
+      nominal por parceiro (depende do produtor criar o cupom na Hotmart) e conferir a
+      afiliação automaticamente (depende da API/webhook da Hotmart abaixo).
 - [ ] **Webhook da Hotmart** — receber evento de venda aprovada e reembolso para exibir
       resultado por parceiro no site. *Exige: endpoint `/api/hotmart/webhook` com validação
       de assinatura (`hottok`) e tabela `vendas`.*
@@ -46,9 +53,14 @@ Só faz sentido depois de ~20 parceiros ativos.
 
 - [ ] **Catálogo de produtos** — vários produtores, cada um com seus cursos, comissões e
       materiais.
-- [ ] **Cadastro de produtor** — outros criadores educacionais entram na rede pelo site.
+- [~] **Cadastro de produtor** — a porta pública existe (`/para-produtores`, com
+      formulário de interesse, e-mail à equipe e fila em `/admin/produtores`). Falta a
+      integração automática: hoje criar o programa e publicar os materiais dele é manual.
 - [ ] **Marketplace de encaixe** — o parceiro vê os produtos compatíveis com a área dele.
-- [ ] **Biblioteca de materiais nativa**, no lugar do Google Drive.
+- [x] **Biblioteca de materiais nativa**, no lugar do Google Drive — antecipada para a fase 2.
+- [ ] **Afiliação explícita parceiro × programa** — hoje todo aprovado vê todos os programas
+      ativos (há um). Com o segundo produtor entra a tabela `afiliacoes` e o dashboard passa
+      a listar só os programas do parceiro. O código já lê de um ponto só (`/parceiro/page.tsx`).
 - [ ] **Ranking e níveis de parceiro**, com comissão progressiva por histórico.
 - [ ] **Marca própria da rede** (Green Eyes), com o Duck Affiliate como um dos programas.
 
@@ -71,12 +83,25 @@ retrabalho de discussão daqui a três meses.
 | Item | Por que ficou de fora |
 |---|---|
 | Infraestrutura própria de pagamento | O documento de visão é explícito: a Hotmart resolve isso e é a escolha certa agora |
-| Login do candidato | Antes da aprovação ele não tem o que acessar; login vazio só aumenta atrito |
+| Login do candidato | Antes da aprovação ele não tem o que acessar; login vazio só aumenta atrito. **Aprovado** tem: a área do parceiro nasceu com a biblioteca |
 | Chat no site | Sem equipe para responder em tempo real, um chat sem resposta é pior que nenhum |
 | Depoimentos e prova social | Não há parceiro ainda. Depoimento inventado destrói o posicionamento inteiro — incluir na primeira revisão, depois da primeira turma |
 | Dashboard de vendas | Depende do webhook da Hotmart (fase 2) |
 | Multi-idioma | O público é brasileiro |
 | CMS | O conteúdo muda pouco e mora em arquivos versionados; CMS agora seria complexidade sem retorno |
+
+## Revisão de navegação e usabilidade (setembro/2026)
+
+- Home de 15 seções virou porta de 8, com hub para quatro landing pages no menu e no
+  rodapé. Formulário e contato ganharam página própria.
+- O site passou a falar com o produtor (segunda ponta do modelo) em vez de só com o
+  afiliado.
+- "Entrar" no topo e no rodapé: antes, um aprovado não tinha como chegar ao login pelo site.
+- Painel: página inicial com tarefas, navegação com estado e visível no celular,
+  formulário de material em etapas, prévia da biblioteca como parceiro, fila de produtores.
+- Área do parceiro: novidades, "como usar", cartão de ajuda, navegação própria.
+- "Powered by Rascunhos Econômicos" saiu do topo; fica só no rodapé (e no OG).
+- Link de vendas do parceiro por programa, com QR e textos já com o link (ver README).
 
 ## Dívidas técnicas conhecidas
 
@@ -89,3 +114,8 @@ retrabalho de discussão daqui a três meses.
    trivial de testar) e a validação de `schema.ts`.
 5. **Termos e privacidade sem revisão jurídica** — são minutas funcionais, sinalizadas no
    próprio texto das páginas.
+6. **Link de acesso do parceiro não é de uso único** — vale 20 minutos e pode ser aberto
+   mais de uma vez nesse prazo. Aceitável enquanto a área só tem material de divulgação;
+   quando mostrar comissão, guardar tokens consumidos.
+7. **Contador de usos em modo arquivo não é atômico** — dois downloads no mesmo
+   milissegundo podem contar um. Irrelevante em dev; no Supabase o incremento é uma RPC.

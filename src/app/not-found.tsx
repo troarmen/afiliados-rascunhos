@@ -15,7 +15,7 @@ export default function NaoEncontrado() {
             valendo.
           </p>
           <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginTop: 28 }}>
-            <Link className="botao" href="/#inscricao">
+            <Link className="botao" href="/inscricao">
               Quero participar
             </Link>
             <Link className="botao botao--secundario" href="/programa">

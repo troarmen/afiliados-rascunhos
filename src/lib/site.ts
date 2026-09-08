@@ -13,7 +13,7 @@ export const site = {
   nome: 'Duck Affiliate',
   nomeCurto: 'Duck',
   tagline: 'Afiliados que transformam conteúdo em renda',
-  /** Assinatura do produtor do catálogo. Aparece no topo, no rodapé e no OG. */
+  /** Assinatura do produtor do catálogo. Aparece no rodapé e no OG — não no topo. */
   selo: 'Powered by Rascunhos Econômicos',
   produtor: 'Rascunhos Econômicos',
   rede: 'Green Eyes',
@@ -40,21 +40,42 @@ export const site = {
   },
 } as const
 
+/**
+ * Navegação principal. Cada item é uma página própria — a home deixou de
+ * carregar tudo e virou a porta de entrada; o aprofundamento mora nas
+ * landing pages, para que buscar uma informação não seja rolar a página.
+ */
 export const navegacao = [
-  { href: '/#como-funciona', rotulo: 'Como funciona' },
-  { href: '/#quem-pode', rotulo: 'Para quem é' },
-  { href: '/#comissao', rotulo: 'Comissão' },
-  { href: '/#portal', rotulo: 'O que você recebe' },
+  { href: '/como-funciona', rotulo: 'Como funciona' },
+  { href: '/para-afiliados', rotulo: 'Para afiliados' },
+  { href: '/comissao', rotulo: 'Comissão' },
+  { href: '/para-produtores', rotulo: 'Para produtores' },
   { href: '/perguntas-frequentes', rotulo: 'Dúvidas' },
 ] as const
 
+/** Só no menu móvel, abaixo dos itens principais. */
+export const navegacaoSecundaria = [
+  { href: '/programa', rotulo: 'Regras completas' },
+  { href: '/contato', rotulo: 'Contato' },
+] as const
+
 export const rodape = {
-  programa: [
-    { href: '/programa', rotulo: 'Regras do programa' },
-    { href: '/#como-funciona', rotulo: 'Como funciona' },
-    { href: '/#comissao', rotulo: 'Comissão e pagamento' },
-    { href: '/#portal', rotulo: 'Portal do afiliado' },
+  afiliados: [
+    { href: '/como-funciona', rotulo: 'Como funciona' },
+    { href: '/para-afiliados', rotulo: 'Quem pode participar' },
+    { href: '/comissao', rotulo: 'Comissão e pagamento' },
+    { href: '/programa', rotulo: 'Regras completas' },
     { href: '/perguntas-frequentes', rotulo: 'Perguntas frequentes' },
+    { href: '/inscricao', rotulo: 'Candidatar meu canal' },
+  ],
+  produtores: [
+    { href: '/para-produtores', rotulo: 'Encontrar afiliados' },
+    { href: '/para-produtores#interesse', rotulo: 'Cadastrar interesse' },
+    { href: '/contato', rotulo: 'Falar com a equipe' },
+  ],
+  acesso: [
+    { href: '/parceiro/entrar', rotulo: 'Entrar na área do parceiro' },
+    { href: '/inscricao', rotulo: 'Ainda não sou parceiro' },
   ],
   legal: [
     { href: '/termos', rotulo: 'Termos de participação' },
