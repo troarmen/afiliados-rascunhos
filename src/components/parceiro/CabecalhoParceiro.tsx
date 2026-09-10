@@ -2,11 +2,14 @@
 
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
+import { linkComunidade } from '@/lib/site'
 import { Emblema, Wordmark } from '../Marca'
 
 export function CabecalhoParceiro({ nome, previa = false }: { nome: string; previa?: boolean }) {
   const router = useRouter()
   const caminho = usePathname()
+  // NEXT_PUBLIC_*: o valor é embutido no build, então lê igual no cliente.
+  const comunidade = linkComunidade()
   const sair = async () => {
     await fetch('/api/parceiro/sessao', { method: 'DELETE' })
     router.replace('/parceiro/entrar')
@@ -34,6 +37,11 @@ export function CabecalhoParceiro({ nome, previa = false }: { nome: string; prev
           </Link>
           <nav className="par__nav" aria-label="Área do parceiro">
             <Link href="/parceiro" aria-current={caminho === '/parceiro' ? 'page' : undefined}>Meus programas</Link>
+            {comunidade && (
+              <a href={comunidade} target="_blank" rel="noopener noreferrer">
+                Comunidade
+              </a>
+            )}
             <Link href="/parceiro#ajuda">Ajuda</Link>
           </nav>
           <div className="par__topo-acoes">

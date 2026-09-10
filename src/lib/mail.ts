@@ -1,6 +1,6 @@
 import 'server-only'
 import type { Candidatura, InteresseProdutor } from './schema'
-import { site } from './site'
+import { linkComunidade, site } from './site'
 import { faixaDoScore } from './score'
 
 /**
@@ -165,6 +165,16 @@ export function boasVindasParceiro(c: Candidatura) {
       `<p>Sua candidatura foi aprovada. A partir de agora você tem acesso à <strong>área do parceiro</strong>, onde ficam todos os materiais de divulgação: thumbnails, cortes, roteiros, textos, cupons e o calendário de campanhas.</p>
        <p><strong>Como entrar:</strong> acesse a área do parceiro, informe este e-mail (<em>${c.email}</em>) e você recebe um link de acesso. Sem senha para guardar.</p>
        <p style="margin:22px 0"><a href="${site.url}/parceiro/entrar" style="background:#ffc20e;color:#000e29;font-weight:700;padding:13px 22px;border-radius:10px;text-decoration:none;display:inline-block">Acessar a área do parceiro</a></p>
+       ${
+         linkComunidade()
+           ? `<p style="margin:22px 0;padding:16px 18px;border:1px solid #e6e8ee;border-radius:12px;background:#faf9f6">
+                <strong>Entre também na comunidade de parceiros.</strong><br>
+                É onde ficam o calendário de campanhas, os avisos de mudança de oferta e a
+                troca com outros criadores educacionais sobre o que está funcionando.<br>
+                <a href="${linkComunidade()}" style="color:#8a5a00;font-weight:700">Entrar no ${site.comunidade.plataforma} do ${site.nome} →</a>
+              </p>`
+           : ''
+       }
        <p>Nos próximos dias entramos em contato para alinhar a sua conta na Hotmart e as condições da parceria. Enquanto isso, já dá para conhecer o material.</p>
        <p style="margin-top:24px">Até já,<br><strong>Equipe ${site.produtor}</strong></p>`,
     ),

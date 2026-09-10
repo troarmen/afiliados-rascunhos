@@ -305,15 +305,35 @@ Com `RESEND_API_KEY` e `MAIL_FROM` configurados, cada inscrição dispara:
 Sem as variáveis, o site funciona igual — só não envia e-mail. Falha de e-mail **nunca**
 derruba a inscrição.
 
-### 3. Deploy
+### 3. Comunidade de parceiros
+
+O documento de visão coloca a **entrada na comunidade** no fluxo do aprovado, e o site a
+promete em três lugares (etapa 5 de "como funciona", benefícios e comparativo). Quem
+entrega isso é `NEXT_PUBLIC_COMUNIDADE_URL`:
+
+| Variável | Efeito |
+|---|---|
+| `NEXT_PUBLIC_COMUNIDADE_URL` | Convite. **Vazio = nenhum convite aparece** em lugar nenhum |
+| `NEXT_PUBLIC_COMUNIDADE_PLATAFORMA` | Nome no texto dos botões. Padrão `Discord` |
+
+Configurada, ela aparece em três pontos: no **e-mail de aprovação** (o momento exato do
+fluxo), num **cartão na área do parceiro** e no **menu** da área. Vazia, nenhum dos três
+existe — é melhor não citar a comunidade do que oferecer um link morto na semana em que o
+parceiro foi aprovado.
+
+Use um convite **permanente**: o padrão do Discord expira em 7 dias. A estrutura de canais
+recomendada está em [docs/03-comunidade-e-materiais.md](docs/03-comunidade-e-materiais.md).
+
+### 4. Deploy
 
 Feito para a Vercel (`npm run build`). Serve em qualquer host com Node 20+.
 Configure todas as variáveis do `.env.example` no painel do provedor.
 
-### 4. Depois de publicar
+### 5. Depois de publicar
 
 - [ ] Google Search Console: registrar a propriedade e enviar `/sitemap.xml`
 - [ ] Google Analytics: preencher `NEXT_PUBLIC_GA_ID`
+- [ ] Criar a comunidade e preencher `NEXT_PUBLIC_COMUNIDADE_URL` com um convite permanente
 - [ ] Publicar o vídeo de divulgação apontando para o domínio
 - [ ] Trocar `ADMIN_PASSWORD` por uma senha forte e única
 - [ ] Conferir o bucket privado `materiais` no Supabase (Storage) e subir os primeiros materiais

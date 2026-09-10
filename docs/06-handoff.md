@@ -1,6 +1,6 @@
 # Handoff — estado do projeto
 
-Atualizado em **8 de setembro de 2026**. Este documento responde três perguntas: o que
+Atualizado em **10 de setembro de 2026**. Este documento responde três perguntas: o que
 está pronto, o que precisa ser configurado por uma pessoa e o que ainda é manual. O
 "como o código funciona" está no [README](../README.md); o "o que vem depois" está no
 [roadmap](05-roadmap.md).
@@ -15,6 +15,7 @@ está pronto, o que precisa ser configurado por uma pessoa e o que ainda é manu
 | Funil do afiliado | Formulário → banco → triagem por nota → painel → e-mails |
 | Funil do produtor | `/para-produtores` → formulário → fila em `/admin/produtores` com status |
 | Área do parceiro | Login por link de e-mail, biblioteca de materiais, link de vendas e QR |
+| Comunidade | Convite no e-mail de aprovação, cartão e menu da área do parceiro — **depende da URL configurada** |
 | Painel da equipe | Início por tarefas, candidaturas, materiais, campanhas, produtores |
 | Persistência | Supabase quando configurado; JSON em `.data/` quando não |
 
@@ -54,6 +55,10 @@ Nada disso é código: é acesso, conta e decisão comercial.
       2 da área do parceiro. Sem ela, o passo continua existindo, só sem atalho.
 - [ ] **Google Search Console e Analytics** — enviar o sitemap e preencher
       `NEXT_PUBLIC_GA_ID`.
+- [ ] **Comunidade de parceiros** (`NEXT_PUBLIC_COMUNIDADE_URL`) — criar o servidor
+      (Discord é a recomendação de [03](03-comunidade-e-materiais.md)) e colar um convite
+      **permanente**. Sem a variável, o convite não aparece no e-mail de aprovação nem na
+      área do parceiro — e o site continua prometendo a comunidade em três lugares.
 
 ---
 
@@ -125,10 +130,17 @@ proposital: diferenciar a resposta contaria a qualquer um quem está no programa
 
 ## 6. Dívidas conhecidas
 
-- **O caminho Supabase nunca foi exercitado.** Tudo foi construído e testado no modo
-  arquivo. O código dos dois modos está lado a lado em cada função de `store*.ts`, mas a
-  primeira publicação com Supabase real merece um teste de ponta a ponta: inscrição,
-  aprovação, login de parceiro, upload de material, download.
+- ~~**O caminho Supabase nunca foi exercitado.**~~ **Resolvido em 10/09/2026.** O fluxo
+  inteiro foi rodado contra um projeto Supabase real: inscrição (gravou no Postgres, nota
+  calculada, origem por UTM), login e aprovação no painel, `atualizado_em` pelo trigger,
+  pedido de acesso do parceiro (com a proteção contra enumeração conferida), token
+  adulterado rejeitado, upload por URL assinada no bucket privado, download pelo parceiro
+  e contagem de uso pela RPC — com o log atribuindo o download ao parceiro certo. Os dados
+  de teste foram apagados depois.
+- **A verificação do banco é um comando.** `npm run verificar:supabase`
+  ([scripts/verificar-supabase.mjs](../scripts/verificar-supabase.mjs)) confere tabela,
+  coluna, visão, função e bucket, e separa falha de rede de falha de schema. Rode depois de
+  aplicar o `schema.sql` em qualquer ambiente novo.
 - **Limite por IP é em memória** — some a cada deploy e não é compartilhado entre
   instâncias. Serve contra flood bobo; ver roadmap para Redis.
 - **Senha compartilhada no painel** — com três pessoas na operação, migrar para uma conta

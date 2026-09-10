@@ -84,6 +84,36 @@
   font-size: clamp(1.35rem, 1.1rem + 1vw, 1.8rem);
 }
 
+/* Comunidade: o único bloco da área que leva para fora do site, então
+   ganha o contorno âmbar em vez de mais um cartão branco na pilha. */
+.comunidade-cartao {
+  display: flex;
+  /* `.cartao` é flex-direction: column. Aqui o cartão é uma faixa —
+     texto à esquerda, ação à direita — então a direção precisa ser
+     redeclarada, senão o align-items abaixo centraliza a coluna inteira. */
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px 28px;
+  border-color: color-mix(in srgb, var(--ambar) 42%, transparent);
+  background: linear-gradient(
+    100deg,
+    color-mix(in srgb, var(--ambar) 7%, var(--superficie)),
+    var(--superficie) 62%
+  );
+}
+
+/* O texto ocupa o espaço livre e leva o botão para baixo quando a
+   faixa fica estreita demais para os dois lado a lado. */
+.comunidade-cartao > div {
+  flex: 1 1 320px;
+}
+
+.comunidade-cartao .botao {
+  flex-shrink: 0;
+}
+
 .programa-cartao {
   text-decoration: none;
   color: inherit;

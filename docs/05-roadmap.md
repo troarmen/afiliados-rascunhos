@@ -90,6 +90,19 @@ retrabalho de discussão daqui a três meses.
 | Multi-idioma | O público é brasileiro |
 | CMS | O conteúdo muda pouco e mora em arquivos versionados; CMS agora seria complexidade sem retorno |
 
+## Comunidade de parceiros (setembro/2026)
+
+Último item do documento de visão que ainda não tinha implementação nenhuma. O site
+prometia a comunidade em três lugares (etapa 5, benefícios, comparativo) e não havia
+como entrar em lugar nenhum.
+
+Agora o convite é uma variável (`NEXT_PUBLIC_COMUNIDADE_URL`) e aparece no e-mail de
+aprovação, num cartão da área do parceiro e no menu dela. Sem a variável, os três somem —
+melhor não citar do que entregar link morto. A plataforma continua sendo decisão
+operacional; a estrutura de canais recomendada está em `03-comunidade-e-materiais.md`.
+
+Falta a parte que não é código: **criar o servidor** e colar um convite permanente.
+
 ## Revisão de navegação e usabilidade (setembro/2026)
 
 - Home de 15 seções virou porta de 8, com hub para quatro landing pages no menu e no

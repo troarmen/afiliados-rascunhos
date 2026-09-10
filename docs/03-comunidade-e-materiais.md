@@ -4,6 +4,27 @@ O documento de visão é claro: o afiliado aprovado "não receberá apenas um li
 comunidade é o que transforma afiliado em parceiro — e é também o que diferencia este
 programa de qualquer link da Hotmart.
 
+## Como o convite chega ao parceiro (no código)
+
+A plataforma escolhida aqui é uma **decisão operacional**; o site só precisa da URL do
+convite, em `NEXT_PUBLIC_COMUNIDADE_URL` (e do nome dela em
+`NEXT_PUBLIC_COMUNIDADE_PLATAFORMA`, que por padrão é `Discord`).
+
+Com a variável preenchida, o convite aparece em três pontos:
+
+| Onde | Quando o parceiro vê |
+|---|---|
+| E-mail de aprovação (`boasVindasParceiro`) | No momento exato do fluxo: "entrada na comunidade" |
+| Cartão na área do parceiro (`/parceiro#comunidade`) | Toda vez que entra |
+| Menu da área do parceiro | Sempre à mão |
+
+**Vazia, os três somem.** É deliberado: o site promete a comunidade em três lugares
+públicos — etapa 5 de "como funciona", benefícios e comparativo — e um link morto na
+semana da aprovação custa mais credibilidade do que a ausência do convite.
+
+Use um convite **permanente**. O convite padrão do Discord expira em 7 dias, e ninguém
+vai perceber que quebrou até um parceiro reclamar.
+
 ## Escolha da plataforma
 
 **Recomendação: Discord.**

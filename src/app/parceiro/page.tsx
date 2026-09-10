@@ -5,7 +5,7 @@ import { CartaoMaterial } from '@/components/parceiro/CartaoMaterial'
 import { visitanteDaArea } from '@/lib/auth-parceiro'
 import { personalizarMateriais } from '@/lib/materiais'
 import { plataforma as plataformaDe } from '@/lib/plataformas'
-import { site } from '@/lib/site'
+import { linkComunidade, site } from '@/lib/site'
 import { listarAfiliacoes } from '@/lib/store-afiliacoes'
 import { listarCampanhas, listarMateriais, listarProgramas, resumoMateriais } from '@/lib/store-materiais'
 
@@ -36,6 +36,7 @@ export default async function PainelParceiro() {
     }),
   )
   const pendentes = previa ? [] : cartoes.filter((c) => !c.pronto)
+  const comunidade = linkComunidade()
   // Novidades: os últimos publicados em qualquer programa. Quem volta à área
   // vê o que mudou desde a última vez sem abrir biblioteca por biblioteca.
   const novidades = cartoes
@@ -92,6 +93,32 @@ export default async function PainelParceiro() {
             </Link>
           ))}
         </div>
+
+        {comunidade && (
+          <section className="par__secao" id="comunidade">
+            <div className="cartao comunidade-cartao">
+              <div>
+                <span className="olho">Comunidade de parceiros</span>
+                <h2 style={{ fontSize: '1.45rem', marginTop: 6 }}>
+                  Você não divulga sozinho
+                </h2>
+                <p style={{ maxWidth: '58ch' }}>
+                  No {site.comunidade.plataforma} do {site.nome} ficam o calendário de campanhas,
+                  os avisos de mudança de oferta e a troca com outros criadores educacionais sobre
+                  o que está funcionando de verdade — formato, abordagem e números reais.
+                </p>
+              </div>
+              <a
+                className="botao botao--g"
+                href={comunidade}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Entrar no {site.comunidade.plataforma}
+              </a>
+            </div>
+          </section>
+        )}
 
         {novidades.length > 0 && (
           <section className="par__secao">

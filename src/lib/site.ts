@@ -34,6 +34,20 @@ export const site = {
   whatsapp: process.env.NEXT_PUBLIC_WHATSAPP ?? '',
   hotmart: process.env.NEXT_PUBLIC_HOTMART_URL ?? 'https://hotmart.com',
   gaId: process.env.NEXT_PUBLIC_GA_ID ?? '',
+  /**
+   * Comunidade de parceiros.
+   *
+   * O documento de visão a coloca no fluxo do aprovado ("entrada na
+   * comunidade") e o site a promete em `etapas`, `beneficios` e no
+   * comparativo. Sem URL configurada, nenhum convite aparece em lugar
+   * nenhum — promessa sem entrega é pior que ausência, mas link morto
+   * na semana da aprovação é pior ainda.
+   */
+  comunidade: {
+    url: process.env.NEXT_PUBLIC_COMUNIDADE_URL ?? '',
+    /** Discord é a recomendação de docs/03; trocar aqui muda o texto todo. */
+    plataforma: process.env.NEXT_PUBLIC_COMUNIDADE_PLATAFORMA ?? 'Discord',
+  },
   canal: {
     youtube: 'https://www.youtube.com/@rascunhoseconomicos',
     site: 'https://rascunhoseconomicos.com',
@@ -85,6 +99,11 @@ export const rodape = {
 
 export function urlAbsoluta(caminho = '/') {
   return new URL(caminho, site.url).toString()
+}
+
+/** Convite da comunidade, ou `null` quando ainda não há comunidade. */
+export function linkComunidade() {
+  return site.comunidade.url || null
 }
 
 export function linkWhatsApp(mensagem = 'Olá! Vim pelo site do Duck Affiliate.') {
