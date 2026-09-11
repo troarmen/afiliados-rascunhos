@@ -45,8 +45,8 @@ export const site = {
    */
   comunidade: {
     url: process.env.NEXT_PUBLIC_COMUNIDADE_URL ?? '',
-    /** Discord é a recomendação de docs/03; trocar aqui muda o texto todo. */
-    plataforma: process.env.NEXT_PUBLIC_COMUNIDADE_PLATAFORMA ?? 'Discord',
+    /** Telegram é a escolha do cliente (docs/03); trocar aqui muda o texto todo. */
+    plataforma: process.env.NEXT_PUBLIC_COMUNIDADE_PLATAFORMA ?? 'Telegram',
   },
   canal: {
     youtube: 'https://www.youtube.com/@rascunhoseconomicos',

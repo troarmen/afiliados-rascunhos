@@ -89,7 +89,7 @@ disparo automático, e o público-alvo percebe a diferença na primeira linha.
 >
 > 1. **Hotmart** — crie ou acesse sua conta em hotmart.com e me confirme o e-mail
 >    cadastrado. Libero você como afiliado em seguida.
-> 2. **Comunidade** — entre por este link: {link do Discord/WhatsApp}. É onde ficam artes,
+> 2. **Comunidade** — entre por este link: {link do grupo no Telegram}. É onde ficam artes,
 >    textos, cupons e o calendário de campanhas.
 > 3. **Seu cupom** — vou gerar o cupom {SUGESTAO} para a sua audiência. Se preferir outro
 >    nome, me diga.

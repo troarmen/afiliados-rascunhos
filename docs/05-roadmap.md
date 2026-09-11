@@ -98,10 +98,12 @@ como entrar em lugar nenhum.
 
 Agora o convite é uma variável (`NEXT_PUBLIC_COMUNIDADE_URL`) e aparece no e-mail de
 aprovação, num cartão da área do parceiro e no menu dela. Sem a variável, os três somem —
-melhor não citar do que entregar link morto. A plataforma continua sendo decisão
-operacional; a estrutura de canais recomendada está em `03-comunidade-e-materiais.md`.
+melhor não citar do que entregar link morto. A plataforma é decisão do cliente —
+**Telegram**, definido em setembro/2026 —, e a estrutura de canal, grupo e tópicos está em
+`03-comunidade-e-materiais.md`.
 
-Falta a parte que não é código: **criar o servidor** e colar um convite permanente.
+Falta a parte que não é código: **criar o canal de avisos e o grupo no Telegram** e colar o
+link permanente na variável.
 
 ## Revisão de navegação e usabilidade (setembro/2026)
 

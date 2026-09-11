@@ -126,7 +126,7 @@ banner, social, e-mail, copy, cupom, logo, PDF, link, outro.
 e o download é um redirecionamento para uma URL de leitura de 60 s — o arquivo nunca ocupa
 a função do Next, o que importa porque a Vercel corta requisições em ~4,5 MB.
 
-Em desenvolvimento sem `RESEND_API_KEY`, o link de acesso do parceiro é impresso no
+Em desenvolvimento sem `BREVO_API_KEY`, o link de acesso do parceiro é impresso no
 terminal do `npm run dev`.
 
 Todo parceiro aprovado hoje vê todos os programas ativos (há um só). O único vínculo
@@ -170,7 +170,7 @@ src/
 │   ├── store*.ts                   Candidaturas, materiais, produtores, afiliações
 │   ├── storage.ts                  Arquivos: bucket privado ou disco local
 │   ├── auth.ts · auth-parceiro.ts  Sessão do painel e do parceiro
-│   └── mail.ts                     E-mails transacionais (Resend)
+│   └── mail.ts                     E-mails transacionais (Brevo)
 └── middleware.ts                   Barreira do /admin e do /parceiro
 supabase/schema.sql                 Tabelas, índices, RLS, bucket e funções
 docs/                               Playbooks, roadmap e handoff
@@ -297,7 +297,11 @@ ambiente já publicado — ver [docs/06-handoff.md](docs/06-handoff.md).
 
 ### 2. E-mails (opcional, mas recomendado)
 
-Com `RESEND_API_KEY` e `MAIL_FROM` configurados, cada inscrição dispara:
+O transporte é a **API v3 da Brevo** (`POST /v3/smtp/email`), chamada por `fetch` em
+[src/lib/mail.ts](src/lib/mail.ts) — sem SDK. A chave é a de API, não a de SMTP, e o
+remetente de `MAIL_FROM` precisa ser um domínio autenticado na conta.
+
+Com `BREVO_API_KEY` e `MAIL_FROM` configurados, cada inscrição dispara:
 
 - confirmação automática para o candidato, com o que esperar e em quanto tempo;
 - alerta para a equipe (`MAIL_TEAM`) com a ficha completa e a prioridade da triagem.
@@ -314,15 +318,16 @@ entrega isso é `NEXT_PUBLIC_COMUNIDADE_URL`:
 | Variável | Efeito |
 |---|---|
 | `NEXT_PUBLIC_COMUNIDADE_URL` | Convite. **Vazio = nenhum convite aparece** em lugar nenhum |
-| `NEXT_PUBLIC_COMUNIDADE_PLATAFORMA` | Nome no texto dos botões. Padrão `Discord` |
+| `NEXT_PUBLIC_COMUNIDADE_PLATAFORMA` | Nome no texto dos botões. Padrão `Telegram` |
 
 Configurada, ela aparece em três pontos: no **e-mail de aprovação** (o momento exato do
 fluxo), num **cartão na área do parceiro** e no **menu** da área. Vazia, nenhum dos três
 existe — é melhor não citar a comunidade do que oferecer um link morto na semana em que o
 parceiro foi aprovado.
 
-Use um convite **permanente**: o padrão do Discord expira em 7 dias. A estrutura de canais
-recomendada está em [docs/03-comunidade-e-materiais.md](docs/03-comunidade-e-materiais.md).
+Use um link que **não expire**: no Telegram, o link principal do grupo (`t.me/+…`) ou o
+`@usuario` público do canal valem para sempre; links com limite de tempo ou de usos, não.
+A estrutura de canal e tópicos recomendada está em [docs/03-comunidade-e-materiais.md](docs/03-comunidade-e-materiais.md).
 
 ### 4. Deploy
 
@@ -377,7 +382,7 @@ Serve contra flood bobo. Para algo sério, ver `docs/05-roadmap.md`.
 |---|---|
 | [docs/01-posicionamento.md](docs/01-posicionamento.md) | Identidade, tom de voz e decisões de marca |
 | [docs/02-operacao-selecao.md](docs/02-operacao-selecao.md) | Playbook de triagem + modelos de e-mail e WhatsApp |
-| [docs/03-comunidade-e-materiais.md](docs/03-comunidade-e-materiais.md) | Estrutura do Discord e da biblioteca de materiais |
+| [docs/03-comunidade-e-materiais.md](docs/03-comunidade-e-materiais.md) | Estrutura do Telegram e da biblioteca de materiais |
 | [docs/04-seo.md](docs/04-seo.md) | Estratégia de busca e plano de conteúdo |
 | [docs/05-roadmap.md](docs/05-roadmap.md) | Da landing page à plataforma multiprodutor |
 | [docs/06-handoff.md](docs/06-handoff.md) | **Estado atual, o que falta configurar e o que é manual** |

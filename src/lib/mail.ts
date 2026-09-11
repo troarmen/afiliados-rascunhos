@@ -4,15 +4,26 @@ import { linkComunidade, site } from './site'
 import { faixaDoScore } from './score'
 
 /**
- * Envio de e-mail via API HTTP da Resend — sem SDK, só `fetch`.
- * Se `RESEND_API_KEY` não estiver definida, as funções viram no-op e apenas
+ * Envio de e-mail via API HTTP da Brevo — sem SDK, só `fetch`.
+ * Se `BREVO_API_KEY` não estiver definida, as funções viram no-op e apenas
  * registram no log. O formulário nunca falha por causa de e-mail.
  */
 
 type Email = { para: string; assunto: string; html: string; responderPara?: string }
 
+/**
+ * A Brevo quer remetente como objeto, não como cabeçalho `Nome <e-mail>`.
+ * `MAIL_FROM` continua no formato legível de sempre; a separação é aqui.
+ */
+function remetente(valor: string) {
+  const casa = valor.match(/^\s*(.*?)\s*<\s*([^>]+)\s*>\s*$/)
+  if (!casa) return { email: valor.trim() }
+  const nome = casa[1].replace(/^"|"$/g, '').trim()
+  return nome ? { name: nome, email: casa[2].trim() } : { email: casa[2].trim() }
+}
+
 async function enviar({ para, assunto, html, responderPara }: Email): Promise<boolean> {
-  const chave = process.env.RESEND_API_KEY
+  const chave = process.env.BREVO_API_KEY
   const de = process.env.MAIL_FROM
   if (!chave || !de) {
     console.info(`[mail] desativado — e-mail "${assunto}" para ${para} não foi enviado.`)
@@ -20,18 +31,19 @@ async function enviar({ para, assunto, html, responderPara }: Email): Promise<bo
   }
 
   try {
-    const resposta = await fetch('https://api.resend.com/emails', {
+    const resposta = await fetch('https://api.brevo.com/v3/smtp/email', {
       method: 'POST',
       headers: {
-        Authorization: `Bearer ${chave}`,
+        'api-key': chave,
+        Accept: 'application/json',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        from: de,
-        to: [para],
+        sender: remetente(de),
+        to: [{ email: para }],
         subject: assunto,
-        html,
-        ...(responderPara ? { reply_to: responderPara } : {}),
+        htmlContent: html,
+        ...(responderPara ? { replyTo: { email: responderPara } } : {}),
       }),
     })
     if (!resposta.ok) {

@@ -52,7 +52,7 @@ export async function POST(req: NextRequest) {
     url.searchParams.set('t', criarTokenDeLink(candidata.id))
     const enviado = await linkDeAcesso(candidata, url.toString())
     if (!enviado && process.env.NODE_ENV !== 'production') {
-      // Sem RESEND_API_KEY em desenvolvimento: o link vai para o terminal E
+      // Sem BREVO_API_KEY em desenvolvimento: o link vai para o terminal E
       // para a tela, relativo ao host atual (site.url pode ser o domínio
       // de produção, que não resolve aqui).
       console.info(`[parceiro] link de acesso para ${email}:\n  ${url.toString()}`)

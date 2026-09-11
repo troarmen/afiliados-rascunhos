@@ -1,6 +1,6 @@
 # Handoff — estado do projeto
 
-Atualizado em **10 de setembro de 2026**. Este documento responde três perguntas: o que
+Atualizado em **11 de setembro de 2026**. Este documento responde três perguntas: o que
 está pronto, o que precisa ser configurado por uma pessoa e o que ainda é manual. O
 "como o código funciona" está no [README](../README.md); o "o que vem depois" está no
 [roadmap](05-roadmap.md).
@@ -44,10 +44,12 @@ Nada disso é código: é acesso, conta e decisão comercial.
 
 ### Recomendado
 
-- [ ] **Resend** (`RESEND_API_KEY`, `MAIL_FROM`, `MAIL_TEAM`) — sem isso ninguém recebe
+- [ ] **Brevo** (`BREVO_API_KEY`, `MAIL_FROM`, `MAIL_TEAM`) — sem isso ninguém recebe
       confirmação, a equipe não recebe alerta e **o parceiro aprovado não consegue entrar**,
       porque o link de acesso vai por e-mail. Em desenvolvimento o link é impresso no
-      terminal e mostrado na tela; em produção, não.
+      terminal e mostrado na tela; em produção, não. A chave é a de **API v3** (Brevo →
+      SMTP & API → API keys), não a de SMTP, e o remetente de `MAIL_FROM` precisa ser um
+      domínio autenticado na conta — domínio não verificado é entrega em spam ou recusa.
 - [ ] **Números do programa** — comissão, ticket de referência e prazos vivem em
       `src/lib/programa.ts` e estão marcados no README como "a confirmar com o cliente".
 - [ ] **Link de afiliação do produto** — a URL onde o parceiro pede afiliação na Hotmart.
@@ -55,10 +57,12 @@ Nada disso é código: é acesso, conta e decisão comercial.
       2 da área do parceiro. Sem ela, o passo continua existindo, só sem atalho.
 - [ ] **Google Search Console e Analytics** — enviar o sitemap e preencher
       `NEXT_PUBLIC_GA_ID`.
-- [ ] **Comunidade de parceiros** (`NEXT_PUBLIC_COMUNIDADE_URL`) — criar o servidor
-      (Discord é a recomendação de [03](03-comunidade-e-materiais.md)) e colar um convite
-      **permanente**. Sem a variável, o convite não aparece no e-mail de aprovação nem na
-      área do parceiro — e o site continua prometendo a comunidade em três lugares.
+- [ ] **Comunidade de parceiros** (`NEXT_PUBLIC_COMUNIDADE_URL`) — a plataforma é o
+      **Telegram** (decisão do cliente, setembro/2026). Criar o canal de avisos e o grupo
+      com Tópicos — estrutura em [03](03-comunidade-e-materiais.md) — e colar um link que
+      **não expire** (`t.me/+…` principal ou `@usuario` público). Sem a variável, o convite
+      não aparece no e-mail de aprovação nem na área do parceiro — e o site continua
+      prometendo a comunidade em três lugares.
 
 ---
 
