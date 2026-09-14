@@ -126,7 +126,7 @@ export function alertaEquipe(c: Candidatura) {
           ['Área', c.area],
           ['Audiência', c.audiencia],
           ['Divulgação', c.formasDivulgacao.join(', ')],
-          ['Já é afiliado Hotmart', c.jaEhAfiliadoHotmart ? 'Sim' : 'Não'],
+          ['Conta em plataforma de venda', c.jaEhAfiliadoHotmart ? 'Sim' : 'Não'],
           ['Score de triagem', `${c.score}/100 — ${faixa.rotulo}`],
           ['Origem', c.origem || '—'],
         ]
@@ -187,7 +187,7 @@ export function boasVindasParceiro(c: Candidatura) {
               </p>`
            : ''
        }
-       <p>Nos próximos dias entramos em contato para alinhar a sua conta na Hotmart e as condições da parceria. Enquanto isso, já dá para conhecer o material.</p>
+       <p>Nos próximos dias entramos em contato para alinhar a sua conta na plataforma de venda e as condições da parceria. Enquanto isso, já dá para conhecer o material.</p>
        <p style="margin-top:24px">Até já,<br><strong>Equipe ${site.produtor}</strong></p>`,
     ),
     responderPara: process.env.MAIL_TEAM,

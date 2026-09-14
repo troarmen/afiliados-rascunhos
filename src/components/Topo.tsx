@@ -66,7 +66,7 @@ export function Topo() {
             <Link className="topo__entrar" href="/parceiro/entrar">
               Entrar
             </Link>
-            <Link className="botao" href="/inscricao">
+            <Link className="botao botao--avanco" href="/inscricao">
               Quero ser afiliado
             </Link>
           </div>
@@ -100,7 +100,7 @@ export function Topo() {
                   <Link href="/parceiro/entrar">Já sou parceiro: entrar</Link>
                 </li>
               </ul>
-              <Link className="botao" href="/inscricao">
+              <Link className="botao botao--avanco" href="/inscricao">
                 Quero ser afiliado
               </Link>
             </div>

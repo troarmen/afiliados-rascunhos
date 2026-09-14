@@ -71,7 +71,7 @@ export default async function Imagem() {
 
         <div style={{ display: 'flex', gap: 14 }}>
           {[
-            `${comissao.base}%–${comissao.teto}% de comissão`,
+            `${comissao.minima}%–${comissao.maxima}% de comissão`,
             `${comissao.cookieDias} dias de rastreio`,
             'Kit de divulgação pronto',
           ].map((texto) => (

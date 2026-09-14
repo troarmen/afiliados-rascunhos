@@ -7,6 +7,7 @@ import {
   areas,
   faixasAudiencia,
   formasDivulgacao,
+  plataformaVenda,
   plataformas,
 } from '@/lib/programa'
 
@@ -466,7 +467,7 @@ export function FormularioInscricao() {
                 checked={dados.jaEhAfiliadoHotmart}
                 onChange={(e) => atualizar('jaEhAfiliadoHotmart', e.target.checked)}
               />
-              <span>Já tenho conta na Hotmart</span>
+              <span>Já tenho conta em uma plataforma de venda (como {plataformaVenda.exemplos})</span>
             </label>
 
             <Campo

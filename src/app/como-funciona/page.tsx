@@ -11,7 +11,7 @@ import { comissao } from '@/lib/programa'
 export const metadata: Metadata = {
   title: 'Como funciona o programa de afiliados, passo a passo',
   description:
-    'Você divulga, o link rastreia por 30 dias e a Hotmart paga. Da inscrição à primeira venda em seis passos, com os critérios de seleção abertos.',
+    'Você divulga, o link rastreia por 30 dias e a plataforma de venda paga. Da inscrição à primeira venda em seis passos, com os critérios de seleção abertos.',
   alternates: { canonical: '/como-funciona' },
   openGraph: {
     title: 'Como funciona o Duck Affiliate, passo a passo',
@@ -34,10 +34,10 @@ export default function PaginaComoFunciona() {
             <h1>Da inscrição à primeira venda, <span className="realce">sem virar empresa</span></h1>
             <p className="subtitulo">
               Você não cria produto, não emite nota, não processa pagamento e não dá suporte a aluno.
-              Esta página mostra exatamente o que você faz, o que a estrutura faz e o que a Hotmart faz.
+              Esta página mostra exatamente o que você faz, o que a estrutura faz e o que a plataforma de venda faz.
             </p>
             <div className="cabeca-pagina__acoes">
-              <Link className="botao" href="/inscricao">Quero me candidatar</Link>
+              <Link className="botao botao--avanco" href="/inscricao">Quero me candidatar</Link>
               <Link className="botao botao--secundario" href="/comissao">Ver a comissão</Link>
             </div>
           </div>
@@ -55,7 +55,7 @@ export default function PaginaComoFunciona() {
               </Link>
               <Link className="cartao cartao--interativo" href="/comissao">
                 <h3>Quanto eu ganho?</h3>
-                <p>{comissao.base}% a {comissao.teto}% por venda, com simulador e regras de pagamento.</p>
+                <p>{comissao.minima}% a {comissao.maxima}% por venda, conforme a parceria, com simulador e regras de pagamento.</p>
                 <span className="link-ambar">Comissão →</span>
               </Link>
               <Link className="cartao cartao--interativo" href="/programa">

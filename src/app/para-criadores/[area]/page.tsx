@@ -29,7 +29,7 @@ type Conteudo = {
    *
    * Antes a description era `intro` + o fecho comercial, e as dez páginas
    * passavam de 185 caracteres — o Google cortava exatamente no fecho
-   * ("40% a 60%, material pronto, Hotmart"), que é o que faz clicar.
+   * ("10% a 40%, material pronto, sem custo"), que é o que faz clicar.
    * O resumo cabe no corte e não repete o title.
    */
   resumo: string
@@ -259,7 +259,7 @@ export async function generateMetadata({
 
   return {
     title: conteudo.tituloSeo ?? conteudo.titulo,
-    description: `${conteudo.resumo} Comissão de ${comissao.base}% a ${comissao.teto}%, material pronto e pagamento pela Hotmart.`,
+    description: `${conteudo.resumo} Comissão de ${comissao.minima}% a ${comissao.maxima}%, material pronto e sem custo para entrar.`,
     alternates: { canonical: `/para-criadores/${area}` },
     openGraph: {
       title: conteudo.titulo,
@@ -315,15 +315,16 @@ export default async function PaginaArea({ params }: { params: Promise<{ area: s
               <h1>{conteudo.titulo}</h1>
               <p className="subtitulo">{conteudo.intro}</p>
 
-              <Link className="botao botao--g" href="/inscricao" style={{ alignSelf: 'flex-start' }}>
+              <Link className="botao botao--g botao--avanco" href="/inscricao" style={{ alignSelf: 'flex-start' }}>
                 Quero me candidatar
               </Link>
 
               <h2>Por que faz sentido para o seu público</h2>
               <p>{conteudo.contexto}</p>
               <p>
-                O programa paga de <strong>{comissao.base}% a {comissao.teto}%</strong> por venda
-                aprovada, com {comissao.cookieDias} dias de rastreio e pagamento pela Hotmart. Você
+                O programa paga de <strong>{comissao.minima}% a {comissao.maxima}%</strong> por venda
+                aprovada, conforme a parceria, com {comissao.cookieDias} dias de rastreio e pagamento
+                pela plataforma de venda. Você
                 recebe material pronto de divulgação e não precisa criar, gravar ou dar suporte a
                 nenhum curso.
               </p>
@@ -359,7 +360,7 @@ export default async function PaginaArea({ params }: { params: Promise<{ area: s
                 Cinco minutos de formulário, resposta em até sete dias úteis. Sem custo e sem
                 exclusividade.
               </p>
-              <Link className="botao" href="/inscricao" style={{ alignSelf: 'flex-start', marginTop: 8 }}>
+              <Link className="botao botao--avanco" href="/inscricao" style={{ alignSelf: 'flex-start', marginTop: 8 }}>
                 Quero participar
               </Link>
             </div>
@@ -379,7 +380,7 @@ export default async function PaginaArea({ params }: { params: Promise<{ area: s
 
             <p className="campo__dica" style={{ marginTop: 32 }}>
               Programa do {site.nome}, com catálogo produzido pelo {site.produtor}. Vendas e
-              comissões processadas pela Hotmart.
+              comissões processadas pela plataforma de venda de cada curso.
             </p>
           </div>
         </section>

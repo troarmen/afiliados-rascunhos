@@ -64,7 +64,7 @@ export function Rodape() {
 
         <div className="rodape__fim">
           <p>© {ano} {site.nome} · {site.selo}</p>
-          <p>Vendas e comissões processadas pela Hotmart. Este site não vende produtos nem processa pagamentos.</p>
+          <p>Vendas e comissões processadas pela plataforma de venda de cada curso. Este site não vende produtos nem processa pagamentos.</p>
         </div>
       </div>
     </footer>

@@ -1,7 +1,7 @@
 'use client'
 
 import { useMemo, useState } from 'react'
-import { comissao } from '@/lib/programa'
+import { comissao, plataformaVenda } from '@/lib/programa'
 
 const moeda = new Intl.NumberFormat('pt-BR', {
   style: 'currency',
@@ -11,7 +11,7 @@ const moeda = new Intl.NumberFormat('pt-BR', {
 
 export function Comissao() {
   const [vendas, setVendas] = useState(8)
-  const [percentual, setPercentual] = useState<number>(comissao.base)
+  const [percentual, setPercentual] = useState<number>(comissao.referenciaSimulacao)
 
   const ganho = useMemo(
     () => (comissao.precoReferencia * percentual * vendas) / 100,
@@ -24,12 +24,12 @@ export function Comissao() {
         <div className="cabecalho-secao">
           <span className="olho">Comissão e pagamento</span>
           <h2>
-            Você é pago por venda, <span className="realce">direto pela Hotmart</span>
+            Você é pago por venda, <span className="realce">direto pela plataforma</span>
           </h2>
           <p className="subtitulo">
-            Não existe repasse manual, planilha nossa ou &ldquo;confia em mim&rdquo;. A Hotmart
-            identifica a origem de cada venda, calcula e paga a sua comissão. Você audita tudo
-            no painel dela.
+            Não existe repasse manual, planilha nossa ou &ldquo;confia em mim&rdquo;. A plataforma
+            de venda do curso (como {plataformaVenda.exemplos}) identifica a origem de cada venda,
+            calcula e paga a sua comissão. Você audita tudo no painel dela.
           </p>
         </div>
 
@@ -37,8 +37,9 @@ export function Comissao() {
           <ul className="lista-marcada">
             <li>
               <span>
-                <strong>Comissão de {comissao.base}% na entrada</strong>, com condição negociada
-                até {comissao.teto}% para parceiros com histórico de resultado.
+                <strong>De {comissao.minima}% a {comissao.maxima}% por venda aprovada</strong>. O
+                percentual de cada parceria é definido por análise interna: encaixe com o curso,
+                perfil da audiência, formato de divulgação e contexto da campanha.
               </span>
             </li>
             <li>
@@ -99,14 +100,14 @@ export function Comissao() {
 
             <div className="controle">
               <div className="controle__cabeca">
-                <label htmlFor="sim-percentual">Sua comissão</label>
+                <label htmlFor="sim-percentual">Comissão da parceria</label>
                 <span className="controle__valor">{percentual}%</span>
               </div>
               <input
                 id="sim-percentual"
                 type="range"
-                min={comissao.base}
-                max={comissao.teto}
+                min={comissao.minima}
+                max={comissao.maxima}
                 step={5}
                 value={percentual}
                 onChange={(e) => setPercentual(Number(e.target.value))}
@@ -115,7 +116,8 @@ export function Comissao() {
 
             <p className="campo__dica">
               Simulação para você dimensionar a oportunidade — não é promessa de ganho. O
-              resultado real depende do seu público, do formato e da frequência da divulgação.
+              resultado real depende do seu público, do formato e da frequência da divulgação. O
+              percentual da sua parceria é definido na aprovação.
             </p>
           </div>
         </div>

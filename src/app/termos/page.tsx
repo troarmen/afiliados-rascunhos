@@ -27,7 +27,7 @@ export default function Termos() {
             <p className="campo__dica">
               Última atualização: {new Date().toLocaleDateString('pt-BR')}. Documento de
               referência do programa — a relação comercial de afiliação é regida também pelos
-              termos da Hotmart.
+              termos da plataforma de venda em que o produto é comercializado.
             </p>
 
             <h2>1. Objeto</h2>
@@ -42,19 +42,20 @@ export default function Termos() {
               A inscrição pelo formulário deste site não gera direito de participação. As
               candidaturas passam por análise e podem ser recusadas a qualquer momento, sem
               obrigação de justificativa. A parceria só se inicia após aprovação expressa e
-              habilitação do parceiro como afiliado na Hotmart.
+              habilitação do parceiro como afiliado na plataforma de venda.
             </p>
 
             <h2>3. Comissionamento</h2>
             <p>
-              A comissão vigente é de {comissao.base}% a {comissao.teto}% sobre o valor da venda
-              aprovada, conforme condição individualmente acordada e registrada na plataforma. O
-              rastreio segue as regras da Hotmart: {comissao.cookieDias} dias de cookie, com
+              A comissão vigente é de {comissao.minima}% a {comissao.maxima}% sobre o valor da venda
+              aprovada. O percentual de cada parceria é definido por análise interna do encaixe e
+              do contexto, individualmente acordado e registrado na plataforma. O rastreio segue as
+              regras da plataforma de venda: {comissao.cookieDias} dias de cookie, com
               atribuição por {comissao.atribuicao}.
             </p>
             <p>
               O cálculo, a retenção de impostos e o pagamento das comissões são executados
-              integralmente pela Hotmart, nos prazos e condições da plataforma. Vendas canceladas,
+              integralmente pela plataforma de venda, nos prazos e condições da plataforma. Vendas canceladas,
               estornadas ou reembolsadas dentro do prazo de garantia geram estorno da comissão
               correspondente.
             </p>
@@ -96,7 +97,7 @@ export default function Termos() {
               A parceria vigora por prazo indeterminado e pode ser encerrada por qualquer das
               partes, a qualquer tempo, sem multa. O descumprimento das regras do item 4 permite o
               descredenciamento imediato. Comissões de vendas já aprovadas e não estornadas
-              continuam devidas pela Hotmart.
+              continuam devidas pela plataforma de venda.
             </p>
 
             <h2>7. Alterações</h2>

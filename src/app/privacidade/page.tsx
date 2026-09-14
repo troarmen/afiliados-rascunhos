@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { Topo } from '@/components/Topo'
 import { Rodape } from '@/components/Rodape'
 import { site } from '@/lib/site'
+import { plataformaVenda } from '@/lib/programa'
 
 export const metadata: Metadata = {
   title: 'Política de privacidade',
@@ -66,7 +67,8 @@ export default function Privacidade() {
             <p>
               Somente com operadores necessários à execução do programa: provedor de hospedagem do
               site, banco de dados, serviço de envio de e-mail transacional e, no caso de parceiros
-              aprovados, a Hotmart — responsável pelo cadastro de afiliado e pelo pagamento das
+              aprovados, a plataforma de venda em que o produto é comercializado (como
+              {plataformaVenda.exemplos}) — responsável pelo cadastro de afiliado e pelo pagamento das
               comissões.
             </p>
 

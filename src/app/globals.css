@@ -44,6 +44,9 @@
   --linha-forte: rgba(0, 14, 41, 0.22);
 
   --ok: #1f7a4d;
+  /* Verde do CTA de avanço (virar afiliado). Branco sobre ele: 6,5:1. */
+  --avanco: #146c3c;
+  --avanco-claro: #1a7f48;
   --alerta: #8a5a00;
   --erro: #c2261e;
   --erro-fundo: #fdecea;
@@ -466,6 +469,20 @@ p {
 
 .botao--largo {
   width: 100%;
+}
+
+/* CTA de avanço: o pedido principal do site (candidatar-se). Verde escuro
+   porque sinaliza dinheiro e seguir em frente, e para não disputar com o
+   âmbar, que no site é realce. Vale no claro e no escuro. */
+.botao--avanco {
+  background: var(--avanco);
+  color: #fff;
+}
+
+.botao--avanco:hover {
+  background: var(--avanco-claro);
+  color: #fff;
+  box-shadow: 0 10px 26px -10px rgba(20, 108, 60, 0.65);
 }
 
 /* Seta que avança no hover — o mesmo gesto usado nos links do site. */
@@ -1698,9 +1715,23 @@ select {
   color: #fff;
 }
 
+/* `.menu-movel a` (bloco, alinhado à esquerda, com borda e cor de link) é
+   mais específico que `.botao` e vencia: o texto do CTA encostava na borda
+   esquerda da pílula e herdava a cor dos links do menu. */
 .menu-movel .botao {
+  display: flex;
+  justify-content: center;
+  text-align: center;
   margin-top: 18px;
   width: 100%;
+  padding: 15px 26px;
+  border-bottom: 1px solid transparent;
+  font-size: 0.95rem;
+}
+
+.menu-movel .botao--avanco,
+.menu-movel .botao--avanco:hover {
+  color: #fff;
 }
 
 @media (min-width: 1120px) {

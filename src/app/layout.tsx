@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     'monetizar canal do YouTube',
     'monetizar canal educacional',
     'afiliado curso online',
-    'afiliado Hotmart educação',
+    'afiliado de cursos educacionais',
     'parceria para criadores de conteúdo',
     'Duck Affiliate',
   ],

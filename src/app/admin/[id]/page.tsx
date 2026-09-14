@@ -83,7 +83,7 @@ export default async function FichaCandidato({ params }: { params: Promise<{ id:
                   <dd>{c.formasDivulgacao.join(', ')}</dd>
                 </div>
                 <div>
-                  <dt>Conta na Hotmart</dt>
+                  <dt>Conta em plataforma de venda</dt>
                   <dd>{c.jaEhAfiliadoHotmart ? 'Já possui' : 'Ainda não tem'}</dd>
                 </div>
                 {redes.length > 0 && (

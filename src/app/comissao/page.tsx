@@ -10,7 +10,7 @@ import { comissao, faq } from '@/lib/programa'
 export const metadata: Metadata = {
   title: 'Comissão de afiliado: quanto você ganha e como recebe',
   description:
-    'De 40% a 60% por venda aprovada, 30 dias de rastreio por último clique, cupom nominal e pagamento pela Hotmart em D+30. Simule o seu cenário.',
+    'De 10% a 40% por venda aprovada, conforme a análise de cada parceria. Rastreio de 30 dias, cupom nominal e pagamento em D+30. Simule o seu cenário.',
   alternates: { canonical: '/comissao' },
   openGraph: {
     title: 'Comissão do Duck Affiliate: quanto e como você recebe',
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 
 /** Só as perguntas que falam de dinheiro, rastreio e pagamento. */
 const perguntasDeComissao = faq.filter((p) =>
-  /recebo|pagamento|Hotmart|indicação|custo|exclusividade/i.test(p.pergunta),
+  /recebo|pagamento|plataforma|indicação|custo|exclusividade/i.test(p.pergunta),
 )
 
 export default function PaginaComissao() {
@@ -49,13 +49,14 @@ export default function PaginaComissao() {
               <Link href="/">Início</Link> <span aria-hidden="true">/</span> <span>Comissão</span>
             </nav>
             <span className="olho">Comissão e pagamento</span>
-            <h1>{comissao.base}% a {comissao.teto}% por venda, <span className="realce">pagos pela Hotmart</span></h1>
+            <h1>{comissao.minima}% a {comissao.maxima}% por venda, <span className="realce">conforme a parceria</span></h1>
             <p className="subtitulo">
-              Não existe repasse manual nem planilha nossa. A Hotmart identifica a origem da venda,
-              calcula e deposita. Abaixo, as regras e um simulador para você dimensionar.
+              O percentual de cada parceria é definido por análise interna do encaixe e do contexto.
+              Quem paga é a plataforma de venda do curso, sem repasse manual nosso. Abaixo, as
+              regras e um simulador para você dimensionar.
             </p>
             <div className="cabeca-pagina__acoes">
-              <Link className="botao" href="/inscricao">Quero me candidatar</Link>
+              <Link className="botao botao--avanco" href="/inscricao">Quero me candidatar</Link>
               <Link className="botao botao--secundario" href="/programa">Regras completas</Link>
             </div>
           </div>

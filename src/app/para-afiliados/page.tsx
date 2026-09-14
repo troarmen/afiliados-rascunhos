@@ -40,7 +40,7 @@ export default function PaginaParaAfiliados() {
               isto não é “mais um link”.
             </p>
             <div className="cabeca-pagina__acoes">
-              <Link className="botao" href="/inscricao">Candidatar meu canal</Link>
+              <Link className="botao botao--avanco" href="/inscricao">Candidatar meu canal</Link>
               <Link className="botao botao--secundario" href="/como-funciona">Como funciona</Link>
             </div>
           </div>
@@ -56,11 +56,11 @@ export default function PaginaParaAfiliados() {
               <h3>Resumo em uma linha</h3>
               <p>
                 Inscrição gratuita, resposta em até {comissao.prazoResposta} dias úteis, sem
-                exclusividade e sem meta. Comissão de {comissao.base}% a {comissao.teto}% paga pela
-                Hotmart.
+                exclusividade e sem meta. Comissão de {comissao.minima}% a {comissao.maxima}% conforme a
+                parceria, paga pela plataforma de venda.
               </p>
               <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginTop: 8 }}>
-                <Link className="botao" href="/inscricao">Quero me candidatar</Link>
+                <Link className="botao botao--avanco" href="/inscricao">Quero me candidatar</Link>
                 <Link className="botao botao--fantasma" href="/perguntas-frequentes">Ver dúvidas frequentes</Link>
               </div>
             </div>

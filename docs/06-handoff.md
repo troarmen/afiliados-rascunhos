@@ -52,6 +52,12 @@ Nada disso é código: é acesso, conta e decisão comercial.
       domínio autenticado na conta — domínio não verificado é entrega em spam ou recusa.
 - [ ] **Números do programa** — comissão, ticket de referência e prazos vivem em
       `src/lib/programa.ts` e estão marcados no README como "a confirmar com o cliente".
+- [ ] **Critério interno do percentual de comissão** — o site promete de 10% a 40% "por
+      análise interna de cada parceria" (encaixe com o curso, audiência, formato e contexto
+      da campanha) e que o parceiro conhece o número antes de divulgar. Essa análise ainda
+      não está escrita em lugar nenhum. Antes da primeira aprovação, a equipe precisa de uma
+      régua, mesmo simples, em `docs/02-operacao-selecao.md` — senão dois parceiros parecidos
+      recebem percentuais diferentes sem explicação.
 - [ ] **Link de afiliação do produto** — a URL onde o parceiro pede afiliação na Hotmart.
       Vai na coluna `programas.url_afiliacao` e vira o botão "Solicitar afiliação" no passo
       2 da área do parceiro. Sem ela, o passo continua existindo, só sem atalho.

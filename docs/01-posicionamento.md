@@ -40,7 +40,7 @@ O realce em "paga" não é enfeite: é a assinatura tipográfica da marca (ver a
 
 ## Os quatro compromissos do tom de voz
 
-1. **Números antes de adjetivos.** "40% por venda, 30 dias de rastreio, D+30" comunica mais
+1. **Números antes de adjetivos.** "10% a 40% por venda, 30 dias de rastreio, D+30" comunica mais
    e mente menos que "as melhores comissões do mercado".
 2. **Dizer o que não fazemos.** A seção "o que não tem encaixe aqui" na landing e o item de
    spam nos termos existem para filtrar. Um programa que aceita todo mundo não vale nada

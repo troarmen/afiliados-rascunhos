@@ -17,12 +17,12 @@ export function Hero() {
             O Duck Affiliate conecta criadores de conteúdo educacional do YouTube a cursos que
             já vendem.
             Você indica com material pronto, o link rastreia a venda por {comissao.cookieDias}{' '}
-            dias e a Hotmart deposita a sua comissão. Sem criar curso, sem gravar aula, sem
+            dias e a plataforma de venda deposita a sua comissão. Sem criar curso, sem gravar aula, sem
             responder aluno.
           </p>
 
           <div className="hero__acoes">
-            <Link className="botao botao--g" href="/inscricao">
+            <Link className="botao botao--g botao--avanco" href="/inscricao">
               Quero ser afiliado <Seta />
             </Link>
             <Link className="botao botao--secundario botao--g" href="/como-funciona">
@@ -44,7 +44,7 @@ export function Hero() {
               <span className="selo__ponto" />
               1ª turma com vagas abertas
             </span>
-            <span className="selo">Pagamento pela Hotmart</span>
+            <span className="selo">Pago pela plataforma de venda</span>
             <span className="selo">Kit de divulgação pronto</span>
           </div>
         </div>
@@ -57,10 +57,10 @@ export function Hero() {
           <div className="painel__corpo">
             <div className="numero">
               <span className="numero__valor">
-                {comissao.base}%–{comissao.teto}%
+                {comissao.minima}%–{comissao.maxima}%
               </span>
               <span className="numero__rotulo">
-                de comissão por venda aprovada, conforme a parceria
+                de comissão por venda aprovada, definida na análise de cada parceria
               </span>
             </div>
 

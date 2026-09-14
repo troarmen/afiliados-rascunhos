@@ -29,7 +29,7 @@ export const site = {
    */
   descricao:
     'Monetize seu canal educacional do YouTube indicando cursos que já vendem: ' +
-    '40% a 60% de comissão por venda, kit de divulgação pronto e pagamento pela Hotmart.',
+    '10% a 40% de comissão por venda, kit de divulgação pronto e sem custo para entrar.',
   email: 'contato@rascunhoseconomicos.com',
   whatsapp: process.env.NEXT_PUBLIC_WHATSAPP ?? '',
   hotmart: process.env.NEXT_PUBLIC_HOTMART_URL ?? 'https://hotmart.com',

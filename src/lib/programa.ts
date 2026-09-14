@@ -14,13 +14,19 @@
  */
 
 export const comissao = {
-  /** Percentual pago ao parceiro na entrada do programa. */
-  base: 40,
-  /** Teto negociado para parceiros com histórico de resultado. */
-  teto: 60,
-  /** Dias de cookie na Hotmart (padrão da plataforma: 30, último clique). */
+  /**
+   * Faixa de comissão. Não existe "entrada" nem "teto por histórico": o
+   * percentual de CADA parceria é definido na aprovação, por análise interna
+   * do encaixe (conteúdo × curso, audiência, formato) e do contexto
+   * (campanha, lançamento, produto). O site mostra a faixa e explica isso.
+   */
+  minima: 10,
+  maxima: 40,
+  /** Ponto de partida do simulador: o meio da faixa, sem acenar com o máximo. */
+  referenciaSimulacao: 25,
+  /** Dias de rastreio na plataforma de venda do catálogo atual (30, último clique). */
   cookieDias: 30,
-  /** Prazo de liberação do saque na Hotmart após a compra. */
+  /** Prazo de liberação do saque na plataforma de venda após a compra. */
   prazoPagamento: 'D+30 da confirmação da compra',
   atribuicao: 'último clique',
   /** Ticket usado apenas na simulação da landing page. Confirmar com o cliente. */
@@ -29,9 +35,21 @@ export const comissao = {
   prazoResposta: 7,
 } as const
 
+/**
+ * Plataforma de venda, sempre no genérico.
+ *
+ * O site é comercial e não tem acordo com nenhuma plataforma: citar uma
+ * marca sozinha ("pagamento pela Hotmart") dá a entender parceria ou
+ * anuência que não existe. Onde o nome ajuda a pessoa a entender, ele
+ * aparece só como exemplo, numa lista, nunca como sujeito da frase.
+ */
+export const plataformaVenda = {
+  exemplos: 'Hotmart, Cademí ou Shopify',
+} as const
+
 /** Números da faixa de prova. Todos são REGRA do programa, não histórico. */
 export const numeros = [
-  { valor: `${comissao.base}%–${comissao.teto}%`, rotulo: 'de comissão por venda aprovada' },
+  { valor: `${comissao.minima}%–${comissao.maxima}%`, rotulo: 'de comissão por venda, conforme a parceria' },
   { valor: `${comissao.cookieDias} dias`, rotulo: `de rastreio por ${comissao.atribuicao}` },
   { valor: 'R$ 0', rotulo: 'de custo para entrar e para ficar' },
   { valor: `${comissao.prazoResposta} dias úteis`, rotulo: 'é o prazo máximo de resposta' },
@@ -63,9 +81,10 @@ export const pilares = [
   },
   {
     numero: 3,
-    titulo: 'A Hotmart paga',
+    titulo: 'A plataforma paga',
     descricao:
-      'A plataforma processa a venda, identifica a origem, calcula a comissão e deposita na ' +
+      `A plataforma de venda (como ${plataformaVenda.exemplos}) processa a venda, identifica ` +
+      'a origem, calcula a comissão e deposita na ' +
       'sua conta. Não existe repasse manual nosso, planilha paralela nem “confia em mim”: ' +
       'você audita cada venda no painel dela.',
     ator: 'A plataforma',
@@ -105,7 +124,7 @@ export const etapas: Etapa[] = [
     numero: 4,
     titulo: 'Você entra como afiliado',
     descricao:
-      'Aprovada a parceria, você cria (ou usa) sua conta Hotmart e é liberado nos produtos. Toda a venda, o rastreio e o pagamento correm por lá.',
+      'Aprovada a parceria, você cria (ou usa) sua conta na plataforma de venda do curso e é liberado nos produtos. Toda a venda, o rastreio e o pagamento correm por lá.',
     prazo: 'mesmo dia',
   },
   {
@@ -134,7 +153,7 @@ export const beneficios: Beneficio[] = [
   {
     icone: 'comissao',
     titulo: 'Comissão por venda, sem teto de ganho',
-    descricao: `A partir de ${comissao.base}% por venda aprovada, com condição negociada até ${comissao.teto}% para parceiros com histórico. Pagamento pela Hotmart, ${comissao.prazoPagamento}.`,
+    descricao: `De ${comissao.minima}% a ${comissao.maxima}% por venda aprovada. O percentual de cada parceria é definido por análise interna: encaixe com o curso, perfil da audiência e contexto da campanha. Pagamento pela plataforma de venda, ${comissao.prazoPagamento}.`,
   },
   {
     icone: 'material',
@@ -184,7 +203,7 @@ export const portal = [
   },
   {
     titulo: 'Acompanhamento',
-    itens: ['Painel de vendas na Hotmart', 'Revisão de resultado', 'Canal direto com o produtor', 'Atualizações dos cursos'],
+    itens: ['Painel de vendas da plataforma', 'Revisão de resultado', 'Canal direto com o produtor', 'Atualizações dos cursos'],
   },
 ] as const
 
@@ -206,7 +225,7 @@ export const comparativo = [
   },
   {
     criterio: 'Comissão',
-    duck: `${comissao.base}% na entrada, negociável até ${comissao.teto}% por histórico`,
+    duck: `De ${comissao.minima}% a ${comissao.maxima}%, definida por análise de cada parceria`,
     comum: 'Percentual fixo, igual para todo mundo, sem conversa',
   },
   {
@@ -353,21 +372,21 @@ export const faq: Pergunta[] = [
   },
   {
     pergunta: 'Quanto eu recebo por venda?',
-    resposta: `A comissão parte de ${comissao.base}% por venda aprovada e pode chegar a ${comissao.teto}% em condições negociadas para parceiros com histórico de resultado. Todo o cálculo e o repasse são feitos pela Hotmart, ${comissao.prazoPagamento}.`,
+    resposta: `Entre ${comissao.minima}% e ${comissao.maxima}% por venda aprovada. O percentual de cada parceria é definido na aprovação, por análise interna: o encaixe do seu conteúdo com o curso, o perfil da audiência, o formato de divulgação e o contexto (lançamento, campanha, produto). Você conhece o seu percentual antes de começar a divulgar. O cálculo e o repasse são feitos pela plataforma de venda, ${comissao.prazoPagamento}.`,
   },
   {
     pergunta: 'Como o pagamento é feito?',
     resposta:
-      'Pela Hotmart, que é quem processa a venda, identifica a origem e paga a comissão direto na sua conta. Você não depende de repasse manual nosso e consegue auditar cada venda no painel da plataforma.',
+      `Pela plataforma de venda do curso (como ${plataformaVenda.exemplos}), que processa a venda, identifica a origem e paga a comissão direto na sua conta. Você não depende de repasse manual nosso e consegue auditar cada venda no painel da plataforma.`,
   },
   {
-    pergunta: 'Preciso já ter conta na Hotmart?',
+    pergunta: 'Preciso já ter conta na plataforma de venda?',
     resposta:
       'Não. Se ainda não tiver, você cria durante a aprovação — leva poucos minutos e é gratuito. Depois disso a gente libera você como afiliado dos produtos.',
   },
   {
     pergunta: 'Por quanto tempo vale a minha indicação?',
-    resposta: `O rastreio segue a regra da Hotmart: ${comissao.cookieDias} dias de cookie, com atribuição por ${comissao.atribuicao}. Se a pessoa clicar no seu link hoje e comprar dentro desse prazo, a comissão é sua. O cupom com o seu nome cobre ainda quem chega ao site sem clicar no link.`,
+    resposta: `O rastreio segue a regra da plataforma de venda do curso: ${comissao.cookieDias} dias de cookie, com atribuição por ${comissao.atribuicao}. Se a pessoa clicar no seu link hoje e comprar dentro desse prazo, a comissão é sua. O cupom com o seu nome cobre ainda quem chega ao site sem clicar no link.`,
   },
   {
     pergunta: 'Preciso produzir a thumbnail e o texto de divulgação?',

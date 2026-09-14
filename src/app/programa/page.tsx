@@ -2,13 +2,13 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Topo } from '@/components/Topo'
 import { Rodape } from '@/components/Rodape'
-import { comissao, etapas, criteriosSelecao } from '@/lib/programa'
+import { comissao, etapas, criteriosSelecao, plataformaVenda } from '@/lib/programa'
 import { site } from '@/lib/site'
 
 export const metadata: Metadata = {
   title: 'Como funciona o programa de afiliados: regras e comissão',
   description:
-    'Comissão de 40% a 60%, 30 dias de rastreio, pagamento pela Hotmart e critérios de seleção: as regras completas do programa, por extenso.',
+    'Comissão de 10% a 40% conforme a parceria, 30 dias de rastreio, pagamento pela plataforma de venda e critérios de seleção: as regras completas, por extenso.',
   alternates: { canonical: '/programa' },
   openGraph: {
     title: 'Como funciona o programa de afiliados do Duck Affiliate',
@@ -41,7 +41,8 @@ export default function Programa() {
             <p>
               Um programa de afiliados para criadores de conteúdo educacional, com foco em canais
               do YouTube. Você indica os cursos para a sua audiência; a venda, o rastreio e o
-              pagamento acontecem na Hotmart; você recebe a comissão por venda aprovada.
+              pagamento acontecem na plataforma de venda do curso (como {plataformaVenda.exemplos});
+              você recebe a comissão por venda aprovada.
             </p>
             <p>
               A tese é simples: existem milhares de criadores produzindo conteúdo sério sobre
@@ -59,8 +60,8 @@ export default function Programa() {
             <h2>O que você recebe</h2>
             <ul>
               <li>
-                Comissão de <strong>{comissao.base}% a {comissao.teto}%</strong> por venda
-                aprovada, conforme a parceria acordada.
+                Comissão de <strong>{comissao.minima}% a {comissao.maxima}%</strong> por venda
+                aprovada, definida por análise interna de cada parceria.
               </li>
               <li>Link de afiliado e cupom de desconto exclusivo com o seu nome.</li>
               <li>
@@ -93,7 +94,13 @@ export default function Programa() {
 
             <h2>Comissão, rastreio e pagamento</h2>
             <p>
-              Toda a operação financeira é da Hotmart. Ela identifica a origem da venda, calcula
+              O percentual de cada parceria fica entre {comissao.minima}% e {comissao.maxima}% e é
+              definido na aprovação, por análise interna: o encaixe do conteúdo com o curso, o
+              perfil da audiência, o formato de divulgação e o contexto da campanha ou do produto.
+              O número é combinado com você antes de a divulgação começar.
+            </p>
+            <p>
+              Toda a operação financeira é da plataforma de venda. Ela identifica a origem da venda, calcula
               a comissão e paga direto na sua conta — não há repasse manual da nossa parte, e
               você audita cada venda no painel da plataforma.
             </p>
@@ -140,7 +147,7 @@ export default function Programa() {
             <h2>Encerramento da parceria</h2>
             <p>
               Qualquer um dos lados pode encerrar quando quiser, sem multa. Comissões de vendas já
-              aprovadas continuam sendo pagas normalmente pela Hotmart. Descredenciamos parceiros
+              aprovadas continuam sendo pagas normalmente pela plataforma de venda. Descredenciamos parceiros
               que descumpram as regras de divulgação — sobretudo spam e promessa de resultado
               financeiro em nome do produto.
             </p>
@@ -150,7 +157,7 @@ export default function Programa() {
               <p>
                 Leva cinco minutos e a resposta sai em até {comissao.prazoResposta} dias úteis.
               </p>
-              <Link className="botao" href="/inscricao" style={{ alignSelf: 'flex-start', marginTop: 8 }}>
+              <Link className="botao botao--avanco" href="/inscricao" style={{ alignSelf: 'flex-start', marginTop: 8 }}>
                 Quero ser afiliado
               </Link>
             </div>

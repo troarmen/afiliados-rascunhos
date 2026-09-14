@@ -9,8 +9,11 @@
  * curso.
  *
  * REGRA: nada de número inventado. O que se promete é o que a estrutura
- * já faz — recrutamento, triagem, biblioteca, campanhas, Hotmart.
+ * já faz — recrutamento, triagem, biblioteca, campanhas. Plataforma de venda
+ * sempre no genérico (ver `plataformaVenda` em programa.ts).
  */
+
+import { plataformaVenda } from './programa'
 
 export const oQueOferece = [
   {
@@ -34,9 +37,9 @@ export const oQueOferece = [
       'Lançamento, promoção, data sazonal: você agrupa os materiais por campanha com prazo, e o afiliado vê o que está em andamento sem precisar perguntar.',
   },
   {
-    titulo: 'Pagamento pela Hotmart',
+    titulo: 'Pagamento pela sua plataforma',
     descricao:
-      'A venda, o rastreio e a comissão continuam na plataforma que você já usa. O Duck Affiliate não toca em dinheiro nem exige infraestrutura nova de pagamento.',
+      `A venda, o rastreio e a comissão continuam na plataforma que você já usa (como ${plataformaVenda.exemplos}). O Duck Affiliate não toca em dinheiro nem exige infraestrutura nova de pagamento.`,
   },
   {
     titulo: 'Acompanhamento do parceiro',
@@ -64,14 +67,14 @@ export const comoFuncionaProdutor = [
   {
     numero: 4,
     titulo: 'Afiliados selecionados divulgam',
-    descricao: 'Criadores aprovados recebem acesso, pegam o material e divulgam no formato deles. A Hotmart paga a comissão.',
+    descricao: 'Criadores aprovados recebem acesso, pegam o material e divulgam no formato deles. A plataforma de venda paga a comissão.',
   },
 ] as const
 
 export const paraQuemProdutor = {
   serve: [
     'Canais, escolas e criadores com curso educacional que já vende — economia, história, filosofia, ciências, concursos e áreas vizinhas',
-    'Quem vende (ou pode vender) pela Hotmart ou plataforma equivalente com programa de afiliados',
+    `Quem vende (ou pode vender) em plataforma com programa de afiliados, como ${plataformaVenda.exemplos}`,
     'Quem quer afiliados que entendam do assunto, não uma lista de e-mails para disparar link',
   ],
   naoServe: [
@@ -85,12 +88,12 @@ export const perguntasProdutor = [
   {
     pergunta: 'Quanto custa colocar meu curso no Duck Affiliate?',
     resposta:
-      'Ainda não há tabela pública: estamos abrindo a rede para os primeiros produtores além do Rascunhos Econômicos, e a condição é conversada caso a caso. O que já está definido é o que NÃO existe: taxa de adesão para o afiliado e infraestrutura própria de pagamento. A comissão do afiliado continua sendo paga pela Hotmart.',
+      'Ainda não há tabela pública: estamos abrindo a rede para os primeiros produtores além do Rascunhos Econômicos, e a condição é conversada caso a caso. O que já está definido é o que NÃO existe: taxa de adesão para o afiliado e infraestrutura própria de pagamento. A comissão do afiliado continua sendo paga pela plataforma de venda.',
   },
   {
     pergunta: 'Preciso mudar de plataforma de venda?',
     resposta:
-      'Não. O modelo foi desenhado em cima da Hotmart justamente para não exigir isso. Se você vende em outra plataforma com programa de afiliados, conte no formulário — avaliamos o encaixe.',
+      'Não. O modelo funciona sobre a plataforma de venda que você já usa, desde que ela tenha programa de afiliados. Conte no formulário onde você vende — avaliamos o encaixe.',
   },
   {
     pergunta: 'Quem escolhe os afiliados do meu curso?',
@@ -108,6 +111,8 @@ export const PLATAFORMAS_VENDA = [
   'Hotmart',
   'Eduzz',
   'Kiwify',
+  'Cademí',
+  'Shopify',
   'Plataforma própria',
   'Outra',
   'Ainda não vendo online',

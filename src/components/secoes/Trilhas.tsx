@@ -10,7 +10,7 @@ import { Seta } from '../Icones'
 const trilhas = [
   { href: '/como-funciona', olho: 'Como funciona', titulo: 'O que você faz e o que a estrutura faz', texto: 'Três partes, seis passos e critério de seleção aberto.' },
   { href: '/para-afiliados', olho: 'Para afiliados', titulo: 'Serve para o meu canal?', texto: 'Perfis, áreas aceitas e o kit que você recebe no dia da aprovação.' },
-  { href: '/comissao', olho: 'Comissão', titulo: `${comissao.base}% a ${comissao.teto}% por venda`, texto: 'Simulador, rastreio de 30 dias e pagamento pela Hotmart.' },
+  { href: '/comissao', olho: 'Comissão', titulo: `${comissao.minima}% a ${comissao.maxima}% por venda`, texto: 'Como o percentual é definido, simulador e rastreio de 30 dias.' },
   { href: '/para-produtores', olho: 'Para produtores', titulo: 'Tenho um curso e quero afiliados', texto: 'Recrutamento, triagem e biblioteca de materiais prontos para o seu catálogo.' },
 ] as const
 

@@ -11,7 +11,7 @@ import { site } from '@/lib/site'
 export const metadata: Metadata = {
   title: 'Encontre afiliados para o seu curso ou canal educacional',
   description:
-    'Recrutamento com triagem humana, biblioteca de materiais integrada, campanhas com calendário e pagamento pela Hotmart. Conte sobre o seu catálogo.',
+    'Recrutamento com triagem humana, biblioteca de materiais e campanhas com calendário, com a venda na sua própria plataforma. Conte sobre o seu catálogo.',
   alternates: { canonical: '/para-produtores' },
   openGraph: {
     title: 'Para produtores: afiliados de conteúdo para o seu curso',
@@ -43,7 +43,7 @@ export default function PaginaParaProdutores() {
               <p className="subtitulo">
                 O {site.nome} conecta cursos educacionais a criadores do YouTube que falam sério com
                 o público que você quer alcançar. Recrutamento, triagem, biblioteca de materiais e
-                campanhas prontos — a venda e a comissão continuam na Hotmart.
+                campanhas prontos — a venda e a comissão continuam na sua plataforma de venda.
               </p>
               <div className="hero__acoes">
                 <Link className="botao botao--g" href="#interesse">Quero afiliados para o meu curso</Link>
@@ -61,7 +61,7 @@ export default function PaginaParaProdutores() {
                   <div className="painel__linha"><dt>Recrutamento</dt><dd>Página + formulário próprios</dd></div>
                   <div className="painel__linha"><dt>Triagem</dt><dd>Humana, com pontuação</dd></div>
                   <div className="painel__linha"><dt>Materiais</dt><dd>Biblioteca por tipo e campanha</dd></div>
-                  <div className="painel__linha"><dt>Pagamento</dt><dd>Hotmart</dd></div>
+                  <div className="painel__linha"><dt>Pagamento</dt><dd>Na sua plataforma de venda</dd></div>
                   <div className="painel__linha"><dt>Primeiro catálogo</dt><dd>{site.produtor}</dd></div>
                 </dl>
               </div>

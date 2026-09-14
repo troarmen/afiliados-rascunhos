@@ -257,8 +257,8 @@ Estão todos em [`src/lib/programa.ts`](src/lib/programa.ts), no objeto `comissa
 
 | Item | Valor no código | Onde aparece |
 |---|---|---|
-| Comissão de entrada | `40%` | Hero, comissão, FAQ, termos, OG image |
-| Comissão máxima | `60%` | Idem |
+| Comissão mínima | `10%` | Hero, comissão, FAQ, termos, OG image |
+| Comissão máxima | `40%` | Idem · o percentual de cada parceria sai de análise interna |
 | Cookie de rastreio | `30 dias` | Comissão, FAQ, termos |
 | Prazo de pagamento | `D+30` | Comissão, FAQ, termos |
 | Ticket de referência | `R$ 497` | Apenas no simulador da landing |

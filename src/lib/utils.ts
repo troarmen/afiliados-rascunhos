@@ -49,7 +49,7 @@ export function paraCsv(lista: Candidatura[]): string {
     ['Área', (c) => nomeDaArea(c.area)],
     ['Audiência', (c) => c.audiencia],
     ['Formas de divulgação', (c) => c.formasDivulgacao.join(' | ')],
-    ['Afiliado Hotmart', (c) => (c.jaEhAfiliadoHotmart ? 'Sim' : 'Não')],
+    ['Conta em plataforma de venda', (c) => (c.jaEhAfiliadoHotmart ? 'Sim' : 'Não')],
     ['Experiência', (c) => c.experiencia ?? ''],
     ['Motivação', (c) => c.motivacao],
     ['Como conheceu', (c) => c.comoConheceu ?? ''],

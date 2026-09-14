@@ -18,7 +18,7 @@ export function Chamada() {
             segunda opção, {site.nome} existe para que isso valha a pena para você também.
           </p>
           <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', justifyContent: 'center', marginTop: 6 }}>
-            <Link className="botao botao--g" href="/inscricao">
+            <Link className="botao botao--g botao--avanco" href="/inscricao">
               Candidatar meu canal <Seta />
             </Link>
             <Link className="botao botao--secundario botao--g" href="/para-produtores">
