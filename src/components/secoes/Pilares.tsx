@@ -16,8 +16,9 @@ export function Pilares() {
             Três partes, e <span className="realce">nenhuma delas é você</span> virando empresa
           </h2>
           <p className="subtitulo">
-            Você não cria produto, não emite nota, não processa pagamento e não dá suporte a
-            aluno. Divide-se assim:
+            Você não precisa cuidar da operação da venda. Pagamento, checkout, entrega do produto
+            e cálculo da comissão ficam com o produtor e a plataforma. Você se concentra na
+            divulgação.
           </p>
         </div>
 

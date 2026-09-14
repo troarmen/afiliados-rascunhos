@@ -33,7 +33,7 @@ export default function PaginaComoFunciona() {
             <span className="olho">Como funciona</span>
             <h1>Da inscrição à primeira venda, <span className="realce">sem virar empresa</span></h1>
             <p className="subtitulo">
-              Você não cria produto, não emite nota, não processa pagamento e não dá suporte a aluno.
+              Você não precisa cuidar da operação da venda.
               Esta página mostra exatamente o que você faz, o que a estrutura faz e o que a plataforma de venda faz.
             </p>
             <div className="cabeca-pagina__acoes">
