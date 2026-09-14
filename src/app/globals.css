@@ -44,11 +44,13 @@
   --linha-forte: rgba(0, 14, 41, 0.22);
 
   --ok: #1f7a4d;
-  /* Verde-amarelado do CTA de avanço (virar afiliado): conversa com o âmbar
-     e o navy da marca. Fundo claro, então o texto é navy — 12,1:1. Branco
-     sobre ele não chega a 2:1 e não serve. */
-  --avanco: #c6d82a;
-  --avanco-claro: #d4e24a;
+  /* CTA de avanço (virar afiliado) no tom do card "A parceria em números":
+     o cinza-azulado do topo do card, medido na tela, com o âmbar do número
+     no texto (7,4:1) e a borda dourada do selo "1ª turma". */
+  --avanco: #2f3744;
+  --avanco-claro: #3a4352;
+  --avanco-borda: rgba(255, 194, 14, 0.32);
+  --avanco-borda-forte: rgba(255, 194, 14, 0.6);
   --alerta: #8a5a00;
   --erro: #c2261e;
   --erro-fundo: #fdecea;
@@ -473,18 +475,20 @@ p {
   width: 100%;
 }
 
-/* CTA de avanço: o pedido principal do site (candidatar-se). Verde
-   porque sinaliza dinheiro e seguir em frente; amarelado para ficar na
-   família do âmbar em vez de destoar dele. Vale no claro e no escuro. */
+/* CTA de avanço: o pedido principal do site (candidatar-se). Veste o card
+   "A parceria em números" — mesma superfície, mesmo âmbar — para o botão e
+   a prova do programa parecerem uma peça só. Vale no claro e no escuro. */
 .botao--avanco {
   background: var(--avanco);
-  color: var(--navy);
+  color: var(--ambar);
+  border-color: var(--avanco-borda);
 }
 
 .botao--avanco:hover {
   background: var(--avanco-claro);
-  color: var(--navy);
-  box-shadow: 0 10px 26px -10px rgba(198, 216, 42, 0.7);
+  color: var(--ambar);
+  border-color: var(--avanco-borda-forte);
+  box-shadow: 0 10px 26px -12px rgba(0, 0, 0, 0.45);
 }
 
 /* Seta que avança no hover — o mesmo gesto usado nos links do site. */
@@ -1733,7 +1737,8 @@ select {
 
 .menu-movel .botao--avanco,
 .menu-movel .botao--avanco:hover {
-  color: var(--navy);
+  color: var(--ambar);
+  border: 1px solid var(--avanco-borda);
 }
 
 @media (min-width: 1120px) {
