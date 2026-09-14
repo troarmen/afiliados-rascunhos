@@ -44,9 +44,11 @@
   --linha-forte: rgba(0, 14, 41, 0.22);
 
   --ok: #1f7a4d;
-  /* Verde do CTA de avanço (virar afiliado). Branco sobre ele: 6,5:1. */
-  --avanco: #146c3c;
-  --avanco-claro: #1a7f48;
+  /* Verde-amarelado do CTA de avanço (virar afiliado): conversa com o âmbar
+     e o navy da marca. Fundo claro, então o texto é navy — 12,1:1. Branco
+     sobre ele não chega a 2:1 e não serve. */
+  --avanco: #c6d82a;
+  --avanco-claro: #d4e24a;
   --alerta: #8a5a00;
   --erro: #c2261e;
   --erro-fundo: #fdecea;
@@ -471,18 +473,18 @@ p {
   width: 100%;
 }
 
-/* CTA de avanço: o pedido principal do site (candidatar-se). Verde escuro
-   porque sinaliza dinheiro e seguir em frente, e para não disputar com o
-   âmbar, que no site é realce. Vale no claro e no escuro. */
+/* CTA de avanço: o pedido principal do site (candidatar-se). Verde
+   porque sinaliza dinheiro e seguir em frente; amarelado para ficar na
+   família do âmbar em vez de destoar dele. Vale no claro e no escuro. */
 .botao--avanco {
   background: var(--avanco);
-  color: #fff;
+  color: var(--navy);
 }
 
 .botao--avanco:hover {
   background: var(--avanco-claro);
-  color: #fff;
-  box-shadow: 0 10px 26px -10px rgba(20, 108, 60, 0.65);
+  color: var(--navy);
+  box-shadow: 0 10px 26px -10px rgba(198, 216, 42, 0.7);
 }
 
 /* Seta que avança no hover — o mesmo gesto usado nos links do site. */
@@ -1731,7 +1733,7 @@ select {
 
 .menu-movel .botao--avanco,
 .menu-movel .botao--avanco:hover {
-  color: #fff;
+  color: var(--navy);
 }
 
 @media (min-width: 1120px) {
