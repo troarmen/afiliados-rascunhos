@@ -10,6 +10,7 @@ import {
   plataformaVenda,
   plataformas,
 } from '@/lib/programa'
+import { normalizarRede } from '@/lib/redes'
 
 type Estado = {
   nome: string
@@ -387,7 +388,8 @@ export function FormularioInscricao() {
                 Outras redes <span style={{ fontWeight: 400, color: 'var(--tinta-3)' }}>(opcional)</span>
               </legend>
               <p className="campo__dica" style={{ marginBottom: 12 }}>
-                Ajuda a entender seu alcance total. Link ou @usuário.
+                Ajuda a entender seu alcance total. Pode escrever só o usuário — o @ entra
+                sozinho — ou colar o link do perfil.
               </p>
               <div className="grade grade--2">
                 {(
@@ -402,10 +404,18 @@ export function FormularioInscricao() {
                     <input
                       id={`rede-${chave}`}
                       type="text"
-                      placeholder="@seuperfil"
+                      placeholder="seuperfil"
                       value={dados.redes[chave]}
                       onChange={(e) =>
                         atualizar('redes', { ...dados.redes, [chave]: e.target.value })
+                      }
+                      // Ao sair do campo o "@" aparece na tela: o candidato vê o
+                      // mesmo valor que a equipe vai ler na ficha.
+                      onBlur={(e) =>
+                        atualizar('redes', {
+                          ...dados.redes,
+                          [chave]: normalizarRede(e.target.value),
+                        })
                       }
                     />
                   </Campo>

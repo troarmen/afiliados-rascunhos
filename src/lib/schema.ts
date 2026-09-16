@@ -1,6 +1,7 @@
 import { z } from 'zod'
 import { SLUGS_TIPO } from './materiais'
 import { areas, faixasAudiencia, formasDivulgacao, plataformas } from './programa'
+import { aceitaComoRede, normalizarRede } from './redes'
 
 const slugsArea = areas.map((a) => a.slug) as [string, ...string[]]
 
@@ -11,15 +12,22 @@ const texto = (min: number, max: number, campo: string) =>
     .min(min, `${campo[0].toUpperCase()}${campo.slice(1)} precisa de pelo menos ${min} caracteres.`)
     .max(max, `Limite de ${max} caracteres.`)
 
-const urlOpcional = z
+/**
+ * Campo de rede social: aceita link, "@usuário" ou só o usuário, e grava
+ * sempre com o "@" quando o candidato escreveu apenas o nome (ver `redes.ts`).
+ * A normalização vem depois da validação para que lixo ("!!!") continue sendo
+ * recusado em vez de virar "@!!!".
+ */
+const redeOpcional = z
   .string()
   .trim()
   .max(300)
   .optional()
   .transform((v) => (v ? v : undefined))
-  .refine((v) => v === undefined || /^(https?:\/\/|@|[\w.-]+\.[a-z]{2,})/i.test(v), {
+  .refine((v) => v === undefined || aceitaComoRede(v), {
     message: 'Informe um link ou @usuário válido.',
   })
+  .transform((v) => (v === undefined ? undefined : normalizarRede(v)))
 
 export const candidaturaSchema = z.object({
   // --- Identificação
@@ -43,10 +51,10 @@ export const candidaturaSchema = z.object({
   }),
   redes: z
     .object({
-      youtube: urlOpcional,
-      instagram: urlOpcional,
-      tiktok: urlOpcional,
-      outra: urlOpcional,
+      youtube: redeOpcional,
+      instagram: redeOpcional,
+      tiktok: redeOpcional,
+      outra: redeOpcional,
     })
     .default({}),
 
