@@ -1,4 +1,5 @@
 import { NextResponse, type NextRequest } from 'next/server'
+import { site } from '@/lib/site'
 
 /**
  * Barreira das duas áreas restritas: /admin (equipe) e /parceiro (afiliado).
@@ -47,7 +48,8 @@ export function middleware(req: NextRequest) {
   if (caminho.startsWith('/api/')) {
     return NextResponse.json({ mensagem: 'Sessão inválida ou expirada.' }, { status: 401 })
   }
-  const destino = new URL(area.entrada, req.url)
+  // Base pública, não `req.url`: atrás do proxy ela vira 0.0.0.0:3000.
+  const destino = new URL(area.entrada, site.url)
   destino.searchParams.set('voltar', caminho)
   return NextResponse.redirect(destino)
 }
