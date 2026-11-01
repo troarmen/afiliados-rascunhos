@@ -41,6 +41,10 @@ export async function GET(req: NextRequest, ctx: { params: Promise<{ id: string 
       'Cache-Control': 'private, max-age=3600',
       'X-Content-Type-Options': 'nosniff',
     })
+    // Um SVG (ou HTML com mime trocado) pode carregar <script>; aberto direto
+    // no navegador, rodaria no nosso domínio. O sandbox desliga scripts.
+    // Exceção: o leitor de PDF do Chrome se recusa a abrir em sandbox.
+    if (material.mime !== 'application/pdf') cabecalhos.set('Content-Security-Policy', 'sandbox')
     if (baixar) {
       const nome = (material.nomeArquivo ?? 'material').replace(/[^\w.\-]+/g, '_')
       cabecalhos.set('Content-Disposition', `attachment; filename="${nome}"`)

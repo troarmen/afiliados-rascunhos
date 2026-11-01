@@ -58,6 +58,7 @@ create index if not exists candidaturas_score_idx     on public.candidaturas (sc
 create or replace function public.tocar_atualizado_em()
 returns trigger
 language plpgsql
+set search_path = ''
 as $$
 begin
   new.atualizado_em = now();
@@ -83,7 +84,7 @@ alter table public.candidaturas enable row level security;
 -- ---------------------------------------------------------------------------
 -- Visões úteis para acompanhar o funil sem sair do Supabase.
 -- ---------------------------------------------------------------------------
-create or replace view public.funil_candidaturas as
+create or replace view public.funil_candidaturas with (security_invoker = true) as
 select
   status,
   count(*)                              as total,
@@ -93,7 +94,7 @@ from public.candidaturas
 group by status
 order by total desc;
 
-create or replace view public.candidaturas_por_area as
+create or replace view public.candidaturas_por_area with (security_invoker = true) as
 select
   area,
   count(*)                                          as total,
@@ -215,6 +216,7 @@ create or replace function public.incrementar_uso_material(
 returns integer
 language plpgsql
 security definer
+set search_path = ''
 as $$
 declare
   novo_total integer;
@@ -307,3 +309,12 @@ create trigger afiliacoes_atualizado_em
   for each row execute function public.tocar_atualizado_em();
 
 alter table public.afiliacoes enable row level security;
+
+-- ===========================================================================
+-- Permissões da API pública (ver auditoria-seguranca.sql)
+-- O site só usa a service_role. A chave anon/publishable não precisa de nada.
+-- ===========================================================================
+revoke all on public.funil_candidaturas, public.candidaturas_por_area from anon, authenticated;
+revoke execute on function public.incrementar_uso_material(uuid, uuid, text) from public, anon, authenticated;
+grant  execute on function public.incrementar_uso_material(uuid, uuid, text) to service_role;
+revoke all on all tables in schema public from anon, authenticated;

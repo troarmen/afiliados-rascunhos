@@ -45,7 +45,8 @@ export async function POST(req: NextRequest) {
   const dados = resultado.data
 
   // Antispam silencioso: responde 200 para o bot não aprender com o erro.
-  const preenchimentoInstantaneo = dados.tempoPreenchimento > 0 && dados.tempoPreenchimento < 4000
+  // O formulário sempre manda o tempo; ausente (0) também é robô.
+  const preenchimentoInstantaneo = dados.tempoPreenchimento < 4000
   if (dados.website || preenchimentoInstantaneo) {
     console.warn(`[antispam] envio descartado (ip ${ip}, tempo ${dados.tempoPreenchimento}ms)`)
     return NextResponse.json({ ok: true })

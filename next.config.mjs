@@ -57,11 +57,16 @@ const nextConfig = {
           { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
           { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
           { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
-          { key: 'Content-Security-Policy', value: csp },
           // Força HTTPS por 1 ano. Sem includeSubDomains/preload de propósito:
           // não sabemos se todo subdomínio tem certificado, e preload é difícil de desfazer.
           ...(emDesenvolvimento ? [] : [{ key: 'Strict-Transport-Security', value: 'max-age=31536000' }]),
         ],
+      },
+      {
+        // Tudo menos a entrega de arquivos dos materiais, que define o próprio
+        // CSP (sandbox) — se este valesse lá, sobrescreveria o da rota.
+        source: '/:path((?!api/materiais/[^/]+/arquivo$).*)',
+        headers: [{ key: 'Content-Security-Policy', value: csp }],
       },
     ]
   },
