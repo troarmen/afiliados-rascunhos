@@ -26,7 +26,8 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ mensagem: 'Alguns campos precisam de atenção.', campos }, { status: 422 })
   }
   const dados = resultado.data
-  if (dados.website || (dados.tempoPreenchimento > 0 && dados.tempoPreenchimento < 4000)) {
+  // O formulário sempre manda o tempo; ausente (0) também é robô.
+  if (dados.website || dados.tempoPreenchimento < 4000) {
     return NextResponse.json({ ok: true })
   }
   try {
