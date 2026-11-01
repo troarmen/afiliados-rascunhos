@@ -3,11 +3,14 @@ import { SLUGS_TIPO } from './materiais'
 import { areas, faixasAudiencia, formasDivulgacao, plataformas } from './programa'
 import { aceitaComoRede, normalizarRede } from './redes'
 
+// Mensagens padrão (as que não personalizamos) em português.
+z.config(z.locales.pt())
+
 const slugsArea = areas.map((a) => a.slug) as [string, ...string[]]
 
 const texto = (min: number, max: number, campo: string) =>
   z
-    .string({ required_error: `Preencha ${campo}.` })
+    .string({ error: (p) => (p.input === undefined ? `Preencha ${campo}.` : undefined) })
     .trim()
     .min(min, `${campo[0].toUpperCase()}${campo.slice(1)} precisa de pelo menos ${min} caracteres.`)
     .max(max, `Limite de ${max} caracteres.`)
@@ -47,7 +50,7 @@ export const candidaturaSchema = z.object({
     .max(300)
     .refine((v) => /^(https?:\/\/|[\w.-]+\.[a-z]{2,})/i.test(v), 'Informe um link válido.'),
   plataformaPrincipal: z.enum(plataformas as unknown as [string, ...string[]], {
-    errorMap: () => ({ message: 'Escolha sua plataforma principal.' }),
+    error: 'Escolha sua plataforma principal.',
   }),
   redes: z
     .object({
@@ -56,12 +59,12 @@ export const candidaturaSchema = z.object({
       tiktok: redeOpcional,
       outra: redeOpcional,
     })
-    .default({}),
+    .prefault({}),
 
   // --- Perfil
-  area: z.enum(slugsArea, { errorMap: () => ({ message: 'Escolha sua área de atuação.' }) }),
+  area: z.enum(slugsArea, { error: 'Escolha sua área de atuação.' }),
   audiencia: z.enum(faixasAudiencia as unknown as [string, ...string[]], {
-    errorMap: () => ({ message: 'Informe o tamanho aproximado da audiência.' }),
+    error: 'Informe o tamanho aproximado da audiência.',
   }),
   formasDivulgacao: z
     .array(z.enum(formasDivulgacao as unknown as [string, ...string[]]))
@@ -76,10 +79,10 @@ export const candidaturaSchema = z.object({
 
   // --- Consentimento (LGPD)
   aceiteTermos: z.literal(true, {
-    errorMap: () => ({ message: 'É preciso aceitar os termos de participação.' }),
+    error: 'É preciso aceitar os termos de participação.',
   }),
   aceiteContato: z.literal(true, {
-    errorMap: () => ({ message: 'Precisamos da sua autorização para entrar em contato.' }),
+    error: 'Precisamos da sua autorização para entrar em contato.',
   }),
 
   // --- Antispam e atribuição (preenchidos pelo próprio formulário)
@@ -151,21 +154,32 @@ const dataOpcional = z
   .transform((v) => (v ? v : null))
   .refine((v) => v === null || /^\d{4}-\d{2}-\d{2}$/.test(v), 'Use a data no formato AAAA-MM-DD.')
 
-export const campanhaSchema = z.object({
-  programaId: z.string().uuid('Programa inválido.'),
+/**
+ * Campos editáveis SEM valor padrão. No zod 4 o `.default()` vale mesmo em
+ * campo opcional: se a edição herdasse os defaults, mudar só o nome
+ * zeraria a descrição e reativaria a campanha.
+ */
+const camposCampanha = {
   nome: z.string().trim().min(2, 'Dê um nome à campanha.').max(120),
-  descricao: z.string().trim().max(600).default(''),
+  descricao: z.string().trim().max(600),
   inicio: dataOpcional,
   fim: dataOpcional,
-  ativa: z.boolean().default(true),
+  ativa: z.boolean(),
+}
+
+export const campanhaSchema = z.object({
+  programaId: z.string().uuid('Programa inválido.'),
+  ...camposCampanha,
+  descricao: camposCampanha.descricao.default(''),
+  ativa: camposCampanha.ativa.default(true),
 })
 
-export const campanhaAtualizacaoSchema = campanhaSchema.omit({ programaId: true }).partial()
+export const campanhaAtualizacaoSchema = z.object(camposCampanha).partial()
 
+/** Sem default aqui pelo mesmo motivo: a edição usa `tags.optional()`. */
 const tags = z
   .array(z.string().trim().min(1).max(40))
   .max(20)
-  .default([])
   .transform((lista) => [...new Set(lista.map((t) => t.toLowerCase()))])
 
 /**
@@ -180,12 +194,12 @@ export const materialSchema = z
       .trim()
       .optional()
       .transform((v) => (v ? v : null)),
-    tipo: z.enum(SLUGS_TIPO, { errorMap: () => ({ message: 'Escolha o tipo do material.' }) }),
+    tipo: z.enum(SLUGS_TIPO, { error: 'Escolha o tipo do material.' }),
     origem: z.enum(['arquivo', 'texto', 'link']),
     titulo: z.string().trim().min(2, 'Dê um título ao material.').max(140),
     descricao: z.string().trim().max(1000).default(''),
     formato: z.string().trim().max(60).default(''),
-    tags,
+    tags: tags.default([]),
     recomendado: z.boolean().default(false),
     arquivado: z.boolean().default(false),
     // arquivo
@@ -256,7 +270,7 @@ export const usoSchema = z.object({
 
 /** O link de vendas do parceiro num programa. A validação por plataforma é feita na rota. */
 export const afiliacaoSchema = z.object({
-  url: z.string({ required_error: 'Cole o seu link.' }).trim().min(8, 'Cole o seu link.').max(600, 'Limite de 600 caracteres.'),
+  url: z.string({ error: (p) => (p.input === undefined ? 'Cole o seu link.' : undefined) }).trim().min(8, 'Cole o seu link.').max(600, 'Limite de 600 caracteres.'),
 })
 
 // ===========================================================================
@@ -284,11 +298,11 @@ export const produtorSchema = z.object({
     .default('')
     .refine((v) => !v || /^(https?:\/\/|[\w.-]+\.[a-z]{2,})/i.test(v), 'Informe um link válido.'),
   plataforma: z.enum(PLATAFORMAS_VENDA as unknown as [string, ...string[]], {
-    errorMap: () => ({ message: 'Informe onde você vende (ou pretende vender).' }),
+    error: 'Informe onde você vende (ou pretende vender).',
   }),
   catalogo: texto(30, 2000, 'a descrição do catálogo e do público'),
   aceiteContato: z.literal(true, {
-    errorMap: () => ({ message: 'Precisamos da sua autorização para entrar em contato.' }),
+    error: 'Precisamos da sua autorização para entrar em contato.',
   }),
   website: z.string().max(0).optional().default(''),
   tempoPreenchimento: z.number().int().nonnegative().optional().default(0),
