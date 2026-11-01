@@ -3,39 +3,18 @@ import { candidaturaSchema } from '@/lib/schema'
 import { criarCandidatura, jaExisteEmail } from '@/lib/store'
 import { alertaEquipe, confirmacaoCandidato } from '@/lib/mail'
 import { site } from '@/lib/site'
+import { criarLimitador, ipDaRequisicao } from '@/lib/limite'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
 
-/**
- * Limite de envio por IP.
- * Em memória: some a cada deploy e não é compartilhado entre instâncias.
- * Suficiente contra flood bobo; para algo sério, trocar por Upstash/Redis
- * (ver docs/05-roadmap.md).
- */
-const JANELA_MS = 10 * 60 * 1000
-const LIMITE = 5
-const tentativas = new Map<string, number[]>()
-
-function excedeuLimite(ip: string): boolean {
-  const agora = Date.now()
-  const anteriores = (tentativas.get(ip) ?? []).filter((t) => agora - t < JANELA_MS)
-  anteriores.push(agora)
-  tentativas.set(ip, anteriores)
-  if (tentativas.size > 5000) tentativas.clear() // trava de memória
-  return anteriores.length > LIMITE
-}
-
-function ipDaRequisicao(req: NextRequest): string {
-  const encaminhado = req.headers.get('x-forwarded-for')
-  if (encaminhado) return encaminhado.split(',')[0].trim()
-  return req.headers.get('x-real-ip') ?? 'desconhecido'
-}
+/** 5 envios por IP a cada 10 minutos. */
+const limite = criarLimitador({ janelaMs: 10 * 60 * 1000, limite: 5 })
 
 export async function POST(req: NextRequest) {
   const ip = ipDaRequisicao(req)
 
-  if (excedeuLimite(ip)) {
+  if (limite.consumir(ip)) {
     return NextResponse.json(
       { mensagem: 'Muitas tentativas seguidas. Aguarde alguns minutos e tente de novo.' },
       { status: 429 },

@@ -4,23 +4,13 @@ import { listarCandidaturas } from '@/lib/store'
 import { criarTokenDeLink, podeAcessar } from '@/lib/auth-parceiro'
 import { linkDeAcesso } from '@/lib/mail'
 import { site } from '@/lib/site'
+import { criarLimitador, ipDaRequisicao } from '@/lib/limite'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
 
 /** Mesmo limitador do formulário: 5 pedidos por IP a cada 10 minutos. */
-const JANELA_MS = 10 * 60 * 1000
-const LIMITE = 5
-const tentativas = new Map<string, number[]>()
-
-function excedeuLimite(ip: string): boolean {
-  const agora = Date.now()
-  const anteriores = (tentativas.get(ip) ?? []).filter((t) => agora - t < JANELA_MS)
-  anteriores.push(agora)
-  tentativas.set(ip, anteriores)
-  if (tentativas.size > 5000) tentativas.clear()
-  return anteriores.length > LIMITE
-}
+const limite = criarLimitador({ janelaMs: 10 * 60 * 1000, limite: 5 })
 
 const espera = (ms: number) => new Promise((r) => setTimeout(r, ms))
 
@@ -32,8 +22,7 @@ const espera = (ms: number) => new Promise((r) => setTimeout(r, ms))
  * está no programa. O e-mail só sai para quem pode entrar.
  */
 export async function POST(req: NextRequest) {
-  const ip = req.headers.get('x-forwarded-for')?.split(',')[0].trim() ?? req.headers.get('x-real-ip') ?? 'desconhecido'
-  if (excedeuLimite(ip)) {
+  if (limite.consumir(ipDaRequisicao(req))) {
     return NextResponse.json({ mensagem: 'Muitos pedidos seguidos. Aguarde alguns minutos.' }, { status: 429 })
   }
 

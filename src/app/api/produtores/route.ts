@@ -3,26 +3,17 @@ import { produtorSchema } from '@/lib/schema'
 import { criarInteresseProdutor } from '@/lib/store-produtores'
 import { alertaProdutor, confirmacaoProdutor } from '@/lib/mail'
 import { site } from '@/lib/site'
+import { criarLimitador, ipDaRequisicao } from '@/lib/limite'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
 
-const JANELA_MS = 10 * 60 * 1000
-const LIMITE = 5
-const tentativas = new Map<string, number[]>()
-
-function excedeuLimite(ip: string): boolean {
-  const agora = Date.now()
-  const anteriores = (tentativas.get(ip) ?? []).filter((t) => agora - t < JANELA_MS)
-  anteriores.push(agora)
-  tentativas.set(ip, anteriores)
-  if (tentativas.size > 5000) tentativas.clear()
-  return anteriores.length > LIMITE
-}
+/** 5 envios por IP a cada 10 minutos. */
+const limite = criarLimitador({ janelaMs: 10 * 60 * 1000, limite: 5 })
 
 export async function POST(req: NextRequest) {
-  const ip = req.headers.get('x-forwarded-for')?.split(',')[0].trim() ?? req.headers.get('x-real-ip') ?? 'desconhecido'
-  if (excedeuLimite(ip)) {
+  const ip = ipDaRequisicao(req)
+  if (limite.consumir(ip)) {
     return NextResponse.json({ mensagem: 'Muitas tentativas seguidas. Aguarde alguns minutos.' }, { status: 429 })
   }
   const resultado = produtorSchema.safeParse(await req.json().catch(() => null))
